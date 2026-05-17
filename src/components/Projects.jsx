@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Terminal, ShoppingBag, GraduationCap, Megaphone, BookOpen, Sparkles } from 'lucide-react';
+import { ExternalLink, Github, Terminal, ShoppingBag, GraduationCap, Coffee, BookOpen, Sparkles } from 'lucide-react';
 import { useSound } from './SoundManager';
 
 const PROJECTS = [
   {
     title: 'Pernambut Hub',
-    subtitle: 'Local Portal & Directory',
-    desc: 'A complete regional hub mapping commercial sectors, local directories, public announcements, and timings. Optimized for maximum mobile performance.',
-    tech: ['HTML5', 'CSS3', 'JavaScript', 'Google Maps API'],
+    subtitle: 'Civic Issue Reporting System',
+    desc: 'Developed a full-stack civic reporting web application using Django, implementing secure authentication, database CRUD operations, and cross-browser rendering deployed on Render.',
+    tech: ['Python Django', 'HTML5', 'CSS3', 'JavaScript'],
     icon: Terminal,
     live: 'https://pernambut-hub.onrender.com/',
     github: 'https://github.com/Zakki-05',
@@ -17,9 +17,9 @@ const PROJECTS = [
   },
   {
     title: 'Tech Zone Ecommerce',
-    subtitle: 'High-End Electronic Storefront',
-    desc: 'An immersive consumer electronic marketplace complete with high-speed filters, fluid shopping cart states, Stripe APIs, and persistent secure client checkout routing.',
-    tech: ['React JS', 'Redux Toolkit', 'Tailwind CSS', 'Stripe'],
+    subtitle: 'Electronics Storefront Application',
+    desc: 'Developed a responsive e-commerce web application for selling smartphones, smartwatches, and earbuds. Designed custom categorization lists, pagination controls, and active sessions scaling.',
+    tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Web Design'],
     icon: ShoppingBag,
     live: 'https://tech-zone-zakki-05.netlify.app/',
     github: 'https://github.com/Zakki-05',
@@ -28,9 +28,9 @@ const PROJECTS = [
   },
   {
     title: 'Al Huda Islamic School',
-    subtitle: 'Institution Portal & Manager',
-    desc: 'A premium academic administration platform managing online student admission structures, responsive image assets, and dynamic event notice channels.',
-    tech: ['React JS', 'Framer Motion', 'Tailwind CSS'],
+    subtitle: 'Educational Institution Portal',
+    desc: 'Created a multi-page educational school website showcasing academic curriculum structures, dynamic image galleries, and event notice layouts optimized for mobile and desktop screens.',
+    tech: ['HTML5', 'CSS3', 'JavaScript', 'Clean Architecture'],
     icon: GraduationCap,
     live: 'https://al-huda-islamic-school.netlify.app/',
     github: 'https://github.com/Zakki-05',
@@ -38,12 +38,12 @@ const PROJECTS = [
     shadow: 'rgba(236, 72, 153, 0.15)'
   },
   {
-    title: 'Digital Marketing Website',
-    subtitle: 'High-Conversion Agency Site',
-    desc: 'A high-converting promotional platform optimized for client acquisitions, media loads, fluid scrolling triggers, and elegant responsive layouts.',
-    tech: ['HTML5', 'Tailwind CSS', 'Vanilla JavaScript'],
-    icon: Megaphone,
-    live: 'https://digital-marketing-zakki.netlify.app/',
+    title: 'Al Br Cafe',
+    subtitle: 'Modern Cafe Web Application',
+    desc: 'Custom-developed a responsive single-page restaurant platform featuring a seamless customer reservation system, Bootstrap grids, and mobile-first visual branding blocks.',
+    tech: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap Framework'],
+    icon: Coffee,
+    live: 'https://github.com/Zakki-05',
     github: 'https://github.com/Zakki-05',
     color: 'from-[#f59e0b] to-[#ec4899]',
     shadow: 'rgba(245, 158, 11, 0.15)'

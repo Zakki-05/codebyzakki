@@ -152,14 +152,13 @@ export default function Hero() {
             </a>
 
             <a
-              href="http://codebyzakki.in/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/MOHAMMED_ZAKKI_ADNAAN_P_Resume_2026.pdf"
+              download="MOHAMMED_ZAKKI_ADNAAN_P_Resume_2026.pdf"
               onMouseEnter={playHover}
               onClick={playClick}
               className="px-8 py-4 rounded-xl border border-neon-purple/20 bg-neon-purple/5 text-neon-purple font-mono text-xs font-bold tracking-widest hover:bg-neon-purple hover:text-white transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105"
             >
-              LIVE RESUME
+              DOWNLOAD RESUME
             </a>
           </div>
 

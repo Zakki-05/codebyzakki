@@ -1,69 +1,69 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { School, GraduationCap, Code, Rocket, Blocks, Database, Network, Search, Sparkles } from 'lucide-react';
+import { School, GraduationCap, Code, Rocket, Blocks, Award, Network, Search, Sparkles } from 'lucide-react';
 import { useSound } from './SoundManager';
 
 const TIMELINE = [
   {
-    title: 'Completed Schooling',
-    date: 'June 2021',
-    desc: 'Laid down logical foundation and computer science fundamentals with deep dedication and interest.',
+    title: 'Completed Class XII',
+    date: 'June 2023',
+    desc: 'Graduated from Islamiah Higher Secondary School, Pernambut, under the Tamil Nadu State Board.',
     icon: School,
     color: 'border-neon-blue bg-neon-blue/10 text-neon-blue',
     shadow: 'rgba(0, 240, 255, 0.2)'
   },
   {
-    title: 'Started BCA Degree',
-    date: 'August 2021',
+    title: 'Began BCA Degree',
+    date: 'August 2023',
     desc: 'Joined Islamiah College (Autonomous), Vaniyambadi, to pursue a Bachelor of Computer Applications.',
     icon: GraduationCap,
     color: 'border-neon-purple bg-neon-purple/10 text-neon-purple',
     shadow: 'rgba(139, 92, 246, 0.2)'
   },
   {
-    title: 'Learned Frontend Development',
-    date: 'Early 2022',
-    desc: 'Mastered standard markup & styling frameworks: HTML5, CSS3, JavaScript, and Tailwind CSS.',
+    title: 'Flask Micro-Framework',
+    date: 'September 2024',
+    desc: 'Completed a technical workshop on Python-based web development using Flask at Sacred Heart College.',
     icon: Code,
     color: 'border-neon-pink bg-neon-pink/10 text-neon-pink',
     shadow: 'rgba(236, 72, 153, 0.2)'
   },
   {
-    title: 'Built Multiple Projects',
-    date: 'Late 2022',
-    desc: 'Crafted 10+ custom landing platforms, responsive portfolios, and interactive local directories.',
+    title: 'Frontend Developer Intern',
+    date: 'July 2025',
+    desc: 'Applied HTML5, CSS3, and JavaScript principles at AspiraSys to build functional web components and interactive layouts.',
     icon: Rocket,
     color: 'border-emerald-400 bg-emerald-400/10 text-emerald-400',
     shadow: 'rgba(16, 185, 129, 0.2)'
   },
   {
-    title: 'Learned React JS Framework',
-    date: 'Mid 2023',
-    desc: 'Unlocked state controllers, hooks, context engines, routing nodes, and single-page mechanics.',
+    title: 'Industrial Training',
+    date: 'Sep 2025 - Oct 2025',
+    desc: 'Completed a 6-week intensive Web Development, AI Tools & Deployment Platforms training program in Chennai.',
     icon: Blocks,
     color: 'border-neon-blue bg-neon-blue/10 text-neon-blue',
     shadow: 'rgba(0, 240, 255, 0.2)'
   },
   {
-    title: 'Learned Python Django Framework',
-    date: 'Late 2023',
-    desc: 'Explored backend servers, relational databases, REST API design, security authentication.',
-    icon: Database,
+    title: 'First Place Winner',
+    date: 'December 2025',
+    desc: 'Secured 1st Place in the Pirates Pursuits event at the TECH-FRENZY 2K25 National Level Technical Symposium.',
+    icon: Sparkles,
     color: 'border-neon-purple bg-neon-purple/10 text-neon-purple',
     shadow: 'rgba(139, 92, 246, 0.2)'
   },
   {
-    title: 'Built Full Stack Applications',
-    date: '2024 - 2025',
-    desc: 'Engineered "Pernambut Connection" community dashboard, integrating Django APIs with React clients.',
-    icon: Network,
+    title: 'Third Prize Winner',
+    date: 'December 2025',
+    desc: 'Won 3rd Prize in the ADZ - AP event hosted at the Sacred Heart College IT Symposium.',
+    icon: Award,
     color: 'border-neon-pink bg-neon-pink/10 text-neon-pink',
     shadow: 'rgba(236, 72, 153, 0.2)'
   },
   {
-    title: 'Looking for Frontend Opportunities',
+    title: 'Seeking Frontend Roles',
     date: 'Present Day',
-    desc: 'Ready to contribute as a Frontend Developer to create next-generation responsive systems.',
+    desc: 'Ready to contribute as a Frontend Developer to engineer next-generation responsive systems and full-stack Django interfaces.',
     icon: Search,
     color: 'border-emerald-400 bg-emerald-400/10 text-emerald-400 animate-pulse',
     shadow: 'rgba(16, 185, 129, 0.3)'

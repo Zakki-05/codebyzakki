@@ -4,10 +4,10 @@ import { User, Award, Shield, CheckCircle, Cpu, Network, Compass, Sparkles } fro
 import { useSound } from './SoundManager';
 
 const STATS = [
-  { label: 'Projects Completed', value: 15, suffix: '+', icon: CheckCircle, color: 'text-neon-blue' },
-  { label: 'Technologies Learned', value: 12, suffix: '+', icon: Cpu, color: 'text-neon-purple' },
-  { label: 'Frontend Experience', value: 2, suffix: ' Years', icon: Award, color: 'text-neon-pink' },
-  { label: 'Full Stack Projects', value: 5, suffix: '+', icon: Network, color: 'text-emerald-400' }
+  { label: 'Projects Completed', value: 12, suffix: '+', icon: CheckCircle, color: 'text-neon-blue' },
+  { label: 'Technologies Learned', value: 10, suffix: '+', icon: Cpu, color: 'text-neon-purple' },
+  { label: 'Internships Completed', value: 1, suffix: ' (AspiraSys)', icon: Award, color: 'text-neon-pink' },
+  { label: 'Symposium Prizes Won', value: 2, suffix: '', icon: Network, color: 'text-emerald-400' }
 ];
 
 // Reusable Counter component that ticks up when entering the viewport
@@ -107,8 +107,14 @@ export default function About() {
                 <div className="absolute inset-6 rounded-full border border-dashed border-neon-blue/30 animate-[spin_6s_linear_infinite_reverse]"></div>
                 
                 {/* Tech Icon */}
-                <div className="w-16 h-16 rounded-3xl bg-[#050505] border border-white/10 flex items-center justify-center shadow-lg relative group">
-                  <User className="w-6 h-6 text-white group-hover:text-neon-blue transition-colors" />
+                <div className="w-16 h-16 rounded-3xl bg-[#050505] border border-white/10 flex items-center justify-center shadow-lg relative group overflow-hidden">
+                  <img 
+                    src="/my-pic.png" 
+                    alt="Mohammed Zakki Adnaan" 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 relative z-10" 
+                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                  />
+                  <User className="w-6 h-6 text-white absolute group-hover:text-neon-blue transition-colors z-0" />
                 </div>
               </div>
 
@@ -116,7 +122,7 @@ export default function About() {
               <div className="text-center space-y-1">
                 <h4 className="text-sm font-black font-poppins text-white uppercase tracking-wider">Mohammed Zakki Adnaan</h4>
                 <span className="text-[9px] font-mono text-text-gray block uppercase">COLLEGE: Islamiah College (Autonomous), Vaniyambadi</span>
-                <span className="text-[9px] font-mono text-neon-blue block uppercase font-bold">DEGREE: BCA (Final Year)</span>
+                <span className="text-[9px] font-mono text-neon-blue block uppercase font-bold">DEGREE: BCA (Batch of 2026)</span>
               </div>
 
             </div>
@@ -160,7 +166,7 @@ export default function About() {
               ABOUT ME
             </h2>
             <p className="text-text-gray text-base font-light leading-relaxed font-sans max-w-2xl">
-              I am a passionate frontend developer focused on building responsive, interactive, and visually impressive web applications. I enjoy creating smooth user experiences with modern UI design, animations, and clean frontend architecture.
+              Frontend Developer with hands-on experience in building responsive and user-friendly web applications using HTML5, CSS3, JavaScript, React.js, and Django. Completed my Bachelor of Computer Applications (BCA) in the 2026 batch with practical internship experience, specialized in clean UI creation, rapid prototyping, and scalable full-stack integrations.
             </p>
           </div>
 
