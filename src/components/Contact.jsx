@@ -34,6 +34,9 @@ const SOCIAL_LINKS = [
   { icon: Mail, label: 'Email', href: 'mailto:zakkibca2023@gmail.com' }
 ];
 
+// ⚡ Web3Forms Access Key — Get yours free at https://web3forms.com
+const WEB3FORMS_ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE';
+
 export default function Contact() {
   const { playHover, playClick, playSuccess } = useSound();
   const sectionRef = useRef(null);
@@ -47,6 +50,7 @@ export default function Contact() {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -56,19 +60,43 @@ export default function Contact() {
     e.preventDefault();
     playClick();
     setIsSending(true);
+    setSubmitError('');
 
-    // Simulate submission delay for premium feel
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      const payload = {
+        access_key: WEB3FORMS_ACCESS_KEY,
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject || `Portfolio Contact from ${formData.name}`,
+        message: formData.message,
+        from_name: 'Portfolio Contact Form',
+        botcheck: '', // Honeypot spam protection
+      };
 
-    setIsSending(false);
-    setIsSubmitted(true);
-    playSuccess();
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
+      });
 
-    // Reset after showing success
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 4000);
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        playSuccess();
+        // Reset after showing success
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({ name: '', email: '', subject: '', message: '' });
+        }, 5000);
+      } else {
+        setSubmitError(result.message || 'Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      setSubmitError('Network error. Please check your connection and try again.');
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const containerVariants = {
