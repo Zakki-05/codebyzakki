@@ -3,6 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Github, Linkedin, Mail, Instagram, ChevronDown, Terminal, Cpu, ShieldAlert, Zap } from 'lucide-react';
 import { useSound } from './SoundManager';
 
+// Profile image path — uses Vite's base URL resolution
+const PROFILE_IMG = new URL('/my-pic.png', import.meta.url).href;
+
 const ROLES = [
   'Frontend Developer',
   'Creative Coder',
@@ -254,10 +257,10 @@ export default function Hero() {
                 {/* SVG glowing high-tech logo chip */}
                 <div className="w-24 h-24 rounded-full bg-black border border-white/20 flex items-center justify-center relative shadow-lg overflow-hidden glowing-ring">
                   <img 
-                    src="/my-pic.png" 
+                    src={PROFILE_IMG} 
                     alt="Mohammed Zakki Adnaan" 
                     className="w-full h-full object-cover relative z-10" 
-                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                    loading="eager"
                   />
                   <Zap className="w-8 h-8 text-neon-blue animate-pulse absolute z-0" />
                 </div>
