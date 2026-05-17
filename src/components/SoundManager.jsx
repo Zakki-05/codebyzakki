@@ -4,6 +4,7 @@ const SoundContext = createContext();
 
 // Global persistent AudioContext to completely bypass React's asynchronous state delays
 let globalAudioCtx = null;
+let bgMusic = null; // Global Audio element for background music track
 
 const initCtx = () => {
   if (!globalAudioCtx) {
@@ -29,10 +30,24 @@ export const SoundProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('sound_muted', JSON.stringify(isMuted));
     
-    // If user has unmuted, initialize audio context on first screen interaction
     if (!isMuted) {
+      // 🎶 Initialize and Play Background Music Loop on Unmute
+      if (typeof window !== 'undefined') {
+        if (!bgMusic) {
+          bgMusic = new Audio('/portfolio-bgm.mp3');
+          bgMusic.loop = true;
+          bgMusic.volume = 0.15; // Set to a premium, subtle lounge atmosphere volume
+        }
+        bgMusic.play().catch(err => {
+          console.log("Music play deferred until next screen interaction:", err);
+        });
+      }
+
       const handleFirstInteraction = () => {
         initCtx();
+        if (bgMusic) {
+          bgMusic.play().catch(e => console.log(e));
+        }
         window.removeEventListener('mousedown', handleFirstInteraction);
         window.removeEventListener('keydown', handleFirstInteraction);
       };
@@ -42,6 +57,11 @@ export const SoundProvider = ({ children }) => {
         window.removeEventListener('mousedown', handleFirstInteraction);
         window.removeEventListener('keydown', handleFirstInteraction);
       };
+    } else {
+      // ⏸️ Pause Background Music instantly on Mute
+      if (bgMusic) {
+        bgMusic.pause();
+      }
     }
   }, [isMuted]);
 
@@ -168,6 +188,16 @@ export const SoundProvider = ({ children }) => {
     const nextMuted = !isMuted;
     if (!nextMuted) {
       initCtx();
+      if (!bgMusic) {
+        bgMusic = new Audio('/portfolio-bgm.mp3');
+        bgMusic.loop = true;
+        bgMusic.volume = 0.15;
+      }
+      bgMusic.play().catch(e => console.log("Unmute deferred music trigger:", e));
+    } else {
+      if (bgMusic) {
+        bgMusic.pause();
+      }
     }
     setIsMuted(nextMuted);
   };

@@ -102,19 +102,19 @@ export default function About() {
             >
               
               {/* Spinning technical coordinate lines */}
-              <div className="relative w-36 h-36 flex items-center justify-center bg-white/[0.01] rounded-full border border-white/5">
-                <div className="absolute inset-2 rounded-full border border-dashed border-neon-purple/20 animate-spin-slow"></div>
-                <div className="absolute inset-6 rounded-full border border-dashed border-neon-blue/30 animate-[spin_6s_linear_infinite_reverse]"></div>
+              <div className="relative w-48 h-48 flex items-center justify-center bg-white/[0.01] rounded-full border border-white/5">
+                <div className="absolute inset-3 rounded-full border border-dashed border-neon-purple/20 animate-spin-slow"></div>
+                <div className="absolute inset-9 rounded-full border border-dashed border-neon-blue/30 animate-[spin_6s_linear_infinite_reverse]"></div>
                 
                 {/* Tech Icon */}
-                <div className="w-16 h-16 rounded-3xl bg-[#050505] border border-white/10 flex items-center justify-center shadow-lg relative group overflow-hidden">
+                <div className="w-28 h-28 rounded-full bg-[#050505] border border-white/10 flex items-center justify-center shadow-lg relative group overflow-hidden glowing-ring">
                   <img 
                     src="/my-pic.png" 
                     alt="Mohammed Zakki Adnaan" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 relative z-10" 
                     onError={(e) => { e.currentTarget.style.display = 'none'; }}
                   />
-                  <User className="w-6 h-6 text-white absolute group-hover:text-neon-blue transition-colors z-0" />
+                  <User className="w-10 h-10 text-white absolute group-hover:text-neon-blue transition-colors z-0" />
                 </div>
               </div>
 

@@ -144,3 +144,23 @@ html.lenis {
 .glowing-ring {
   box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
 }
+
+/* Futuristic vertical ID card laser scan animation */
+@keyframes scan {
+  0% {
+    top: 0%;
+    opacity: 0.8;
+  }
+  50% {
+    top: 100%;
+    opacity: 0.8;
+  }
+  100% {
+    top: 0%;
+    opacity: 0.8;
+  }
+}
+
+.laser-scan-line {
+  animation: scan 4s linear infinite;
+}

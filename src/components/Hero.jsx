@@ -247,19 +247,19 @@ export default function Hero() {
             >
               
               {/* Central high tech spinning core */}
-              <div className="relative w-28 h-28 flex items-center justify-center">
+              <div className="relative w-40 h-40 flex items-center justify-center">
                 <div className="absolute inset-0 rounded-full border-2 border-dashed border-neon-blue/30 animate-spin-slow"></div>
-                <div className="absolute w-20 h-20 rounded-full border border-neon-purple/40 animate-[spin_4s_linear_infinite_reverse]"></div>
+                <div className="absolute w-32 h-32 rounded-full border border-neon-purple/40 animate-[spin_4s_linear_infinite_reverse]"></div>
                 
                 {/* SVG glowing high-tech logo chip */}
-                <div className="w-12 h-12 rounded-2xl bg-black border border-white/20 flex items-center justify-center relative shadow-lg overflow-hidden">
+                <div className="w-24 h-24 rounded-full bg-black border border-white/20 flex items-center justify-center relative shadow-lg overflow-hidden glowing-ring">
                   <img 
                     src="/my-pic.png" 
                     alt="Mohammed Zakki Adnaan" 
                     className="w-full h-full object-cover relative z-10" 
                     onError={(e) => { e.currentTarget.style.display = 'none'; }}
                   />
-                  <Zap className="w-5 h-5 text-neon-blue animate-pulse absolute z-0" />
+                  <Zap className="w-8 h-8 text-neon-blue animate-pulse absolute z-0" />
                 </div>
               </div>
 
