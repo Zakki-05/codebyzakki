@@ -13,7 +13,7 @@ import Projects from './components/Projects';
 import Experience from './components/Experience';
 import Services from './components/Services';
 import Testimonials from './components/Testimonials';
-import Contact from './components/Contact';
+import Contact from './components/Contact.jsx';
 import Footer from './components/Footer';
 import { SoundProvider } from './components/SoundManager';
 
