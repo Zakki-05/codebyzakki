@@ -113,7 +113,7 @@ export default function Hero() {
             <h1 className="text-4xl sm:text-6xl md:text-7xl font-black font-poppins tracking-tight text-white leading-none">
               Mohammed <br />
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-neon-blue via-white to-neon-purple text-neon-glow">
-                Zakki Adnaan
+                Zakki Adnaan P
               </span>
             </h1>
 
@@ -178,7 +178,7 @@ export default function Hero() {
                 <Github className="w-4 h-4" />
               </a>
               <a
-                href="https://www.linkedin.com/in/zakki-adnan-01aa77298"
+                href="https://www.linkedin.com/in/mohammed-zakki-adnan-p/"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={playClick}
@@ -282,7 +282,7 @@ export default function Hero() {
                 <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
                 <span className="text-[8px] text-white/40 ml-1">stack_compiler.js</span>
               </div>
-              <p className="text-neon-blue"><span className="text-neon-purple">const</span> Dev = <span className="text-white">"Zakki Adnaan"</span>;</p>
+              <p className="text-neon-blue"><span className="text-neon-purple">const</span> Dev = <span className="text-white">"Mohammed Zakki Adnaan P"</span>;</p>
               <p className="text-neon-blue"><span className="text-neon-purple">const</span> Tech = [<span className="text-white">"React"</span>, <span className="text-white">"Django"</span>];</p>
               <p className="text-white/40">// Status: Ready to execute</p>
             </div>

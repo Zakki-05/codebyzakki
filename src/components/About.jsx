@@ -101,26 +101,34 @@ export default function About() {
               style={{ transform: 'translateZ(40px)' }}
             >
               
-              {/* Spinning technical coordinate lines */}
-              <div className="relative w-48 h-48 flex items-center justify-center bg-white/[0.01] rounded-full border border-white/5">
-                <div className="absolute inset-3 rounded-full border border-dashed border-neon-purple/20 animate-spin-slow"></div>
-                <div className="absolute inset-9 rounded-full border border-dashed border-neon-blue/30 animate-[spin_6s_linear_infinite_reverse]"></div>
+              {/* High-tech vertical Card Photo Frame */}
+              <div className="relative w-56 h-72 rounded-[24px] bg-[#050505]/60 border border-white/10 flex items-center justify-center shadow-2xl overflow-hidden group glowing-ring">
+                {/* Tech corner brackets */}
+                <div className="absolute top-2.5 left-2.5 w-3.5 h-3.5 border-t-2 border-l-2 border-neon-blue/60 z-20"></div>
+                <div className="absolute top-2.5 right-2.5 w-3.5 h-3.5 border-t-2 border-r-2 border-neon-blue/60 z-20"></div>
+                <div className="absolute bottom-2.5 left-2.5 w-3.5 h-3.5 border-b-2 border-l-2 border-neon-blue/60 z-20"></div>
+                <div className="absolute bottom-2.5 right-2.5 w-3.5 h-3.5 border-b-2 border-r-2 border-neon-blue/60 z-20"></div>
                 
-                {/* Tech Icon */}
-                <div className="w-28 h-28 rounded-full bg-[#050505] border border-white/10 flex items-center justify-center shadow-lg relative group overflow-hidden glowing-ring">
-                  <img 
-                    src="/my-pic.png" 
-                    alt="Mohammed Zakki Adnaan" 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 relative z-10" 
-                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                  />
-                  <User className="w-10 h-10 text-white absolute group-hover:text-neon-blue transition-colors z-0" />
+                {/* Cyber laser scanner animation line */}
+                <div className="absolute w-full h-[2px] bg-neon-blue shadow-[0_0_8px_#00f0ff] top-0 left-0 laser-scan-line z-20 pointer-events-none"></div>
+
+                <img 
+                  src="/my-pic.png" 
+                  alt="Mohammed Zakki Adnaan" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 relative z-10" 
+                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                />
+                
+                {/* Fallback structural avatar view */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/[0.01] z-0">
+                  <User className="w-14 h-14 text-white/20 group-hover:text-neon-blue/40 transition-colors" />
+                  <span className="text-[8px] font-mono text-text-gray mt-2 tracking-widest">LOADING_AVATAR</span>
                 </div>
               </div>
 
               {/* Status information and metadata logs */}
               <div className="text-center space-y-1">
-                <h4 className="text-sm font-black font-poppins text-white uppercase tracking-wider">Mohammed Zakki Adnaan</h4>
+                <h4 className="text-sm font-black font-poppins text-white uppercase tracking-wider">Mohammed Zakki Adnaan P</h4>
                 <span className="text-[9px] font-mono text-text-gray block uppercase">COLLEGE: Islamiah College (Autonomous), Vaniyambadi</span>
                 <span className="text-[9px] font-mono text-neon-blue block uppercase font-bold">DEGREE: BCA (Batch of 2026)</span>
               </div>

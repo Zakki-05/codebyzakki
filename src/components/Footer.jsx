@@ -73,7 +73,7 @@ export default function Footer() {
               <Github className="w-4.5 h-4.5" />
             </a>
             <a
-              href="https://www.linkedin.com/in/zakki-adnan-01aa77298"
+              href="https://www.linkedin.com/in/mohammed-zakki-adnan-p/"
               target="_blank"
               rel="noopener noreferrer"
               onClick={playClick}
@@ -93,7 +93,7 @@ export default function Footer() {
               <Mail className="w-4.5 h-4.5" />
             </a>
             <a
-              href="https://github.com/Zakki-05"
+              href="https://www.instagram.com/mr_zakki_05/"
               target="_blank"
               rel="noopener noreferrer"
               onClick={playClick}
@@ -127,7 +127,7 @@ export default function Footer() {
           
           <div className="flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5 text-neon-blue animate-spin-slow" />
-            <span>Designed & Developed by Mohammed Zakki Adnaan</span>
+            <span>Designed & Developed by Mohammed Zakki Adnaan P</span>
           </div>
 
           <a
