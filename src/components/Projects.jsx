@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Terminal, ShoppingBag, GraduationCap, Coffee, BookOpen, Sparkles } from 'lucide-react';
+import { ExternalLink, Github, Terminal, ShoppingBag, GraduationCap, Coffee, BookOpen, Network, Sparkles } from 'lucide-react';
 import { useSound } from './SoundManager';
 
 const PROJECTS = [
@@ -58,6 +58,17 @@ const PROJECTS = [
     github: 'https://github.com/Zakki-05/library-management-zakki-05',
     color: 'from-[#10b981] to-[#00f0ff]',
     shadow: 'rgba(16, 185, 129, 0.15)'
+  },
+  {
+    title: 'Pernambut Connects Admin',
+    subtitle: 'Relational Control Panel',
+    desc: 'An advanced operational administrator dashboard managing local announcements, verified GOLD status credentials, custom prayer timings, and citizen donation charts.',
+    tech: ['React JS', 'Django REST', 'Recharts', 'Tailwind CSS'],
+    icon: Network,
+    live: 'https://github.com/Zakki-05',
+    github: 'https://github.com/Zakki-05',
+    color: 'from-[#00f0ff] to-[#ec4899]',
+    shadow: 'rgba(0, 240, 255, 0.15)'
   }
 ];
 

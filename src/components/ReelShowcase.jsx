@@ -73,19 +73,51 @@ const REEL_PROJECTS = [
   },
   {
     id: 5,
-    title: 'Digital Marketing Site',
-    subtitle: 'High-Conversion Agency Landing Page',
-    desc: 'A high-converting promotional platform optimized for client generation. Features dynamic landing layout variants, optimized media bundles, and fluid CTA triggers.',
-    tech: ['HTML5', 'Tailwind CSS', 'Vanilla JavaScript'],
+    title: 'Al Br Cafe',
+    subtitle: 'Modern Cafe Web Application',
+    desc: 'Custom-developed a responsive single-page restaurant platform featuring a seamless customer reservation system, Bootstrap grids, and mobile-first visual branding blocks.',
+    tech: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap Framework'],
     likes: 215,
     comments: [
-      { user: 'GrowthMarketer', text: 'This loading speed is insane. Instant load!' },
-      { user: 'Startup_Founder', text: 'Love the floating elements. Exactly what agencies need.' }
+      { user: 'CafeOwner', text: 'The online reservation setup is incredibly user friendly!' },
+      { user: 'WebReviewer', text: 'Stunning mobile-first design, very smooth.' }
     ],
     github: 'https://github.com/Zakki-05',
-    live: 'https://digital-marketing-zakki.netlify.app/',
+    live: 'https://github.com/Zakki-05',
     gradient: 'from-[#f59e0b] to-[#ec4899]',
     visualPattern: 'grid'
+  },
+  {
+    id: 6,
+    title: 'Library Management System',
+    subtitle: 'Database Transaction Hub',
+    desc: 'A secure relational management backend streamlining book borrowing workflows, QR code transactions, and clean inventory dashboards.',
+    tech: ['Python Django', 'SQLite', 'Bootstrap', 'QR API'],
+    likes: 289,
+    comments: [
+      { user: 'Bookworm_Dev', text: 'The QR transaction workflow is super convenient!' },
+      { user: 'Database_Admin', text: 'Clean relational database schemas, very optimized.' }
+    ],
+    github: 'https://github.com/Zakki-05/library-management-zakki-05',
+    live: 'https://github.com/Zakki-05/library-management-zakki-05',
+    gradient: 'from-[#10b981] to-[#00f0ff]',
+    visualPattern: 'circles'
+  },
+  {
+    id: 7,
+    title: 'Pernambut Connects Admin',
+    subtitle: 'Relational Control Panel',
+    desc: 'An advanced operational administrator dashboard managing local announcements, verified GOLD status credentials, custom prayer timings, and citizen donation charts.',
+    tech: ['React JS', 'Django REST', 'Recharts', 'Tailwind CSS'],
+    likes: 354,
+    comments: [
+      { user: 'Admin_Master', text: 'Visual charts make monitoring Pernambut civic databases so easy!' },
+      { user: 'Lead_Recruiter', text: 'Incredibly complete full-stack scope. This is standard corporate level.' }
+    ],
+    github: 'https://github.com/Zakki-05',
+    live: 'https://github.com/Zakki-05',
+    gradient: 'from-[#00f0ff] to-[#ec4899]',
+    visualPattern: 'matrix'
   }
 ];
 

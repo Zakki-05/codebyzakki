@@ -41,7 +41,9 @@ export default function Background3D() {
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, 64, 64);
       
-      return new THREE.CanvasTexture(canvas);
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.premultiplyAlpha = false;
+      return texture;
     };
 
     const particleTexture = createCircleTexture();
@@ -127,6 +129,7 @@ export default function Background3D() {
 
     // 8. Animation Loop
     const clock = new THREE.Clock();
+    let animationFrameId;
 
     const animate = () => {
       const elapsedTime = clock.getElapsedTime();
@@ -158,7 +161,7 @@ export default function Background3D() {
       positionAttr.needsUpdate = true;
 
       renderer.render(scene, camera);
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
     };
 
     animate();
@@ -179,6 +182,7 @@ export default function Background3D() {
 
     // 10. Clean-up WebGL instances on Unmount
     return () => {
+      cancelAnimationFrame(animationFrameId);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);

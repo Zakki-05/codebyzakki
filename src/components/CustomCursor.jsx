@@ -104,7 +104,7 @@ export default function CustomCursor() {
     default: {
       width: 32,
       height: 32,
-      backgroundColor: 'transparent',
+      backgroundColor: 'rgba(0, 0, 0, 0)',
       borderColor: 'rgba(0, 240, 255, 0.4)',
       borderWidth: 2,
     },
@@ -153,7 +153,7 @@ export default function CustomCursor() {
 
       {/* 2. Trailing glowing interactive ring */}
       <motion.div
-        className="fixed top-0 left-0 rounded-full pointer-events-none z-[9999] flex items-center justify-center -translate-x-1/2 -translate-y-1/2 border border-solid"
+        className="fixed top-0 left-0 rounded-full pointer-events-none z-[9999] flex items-center justify-center -translate-x-1/2 -translate-y-1/2 border-solid"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
