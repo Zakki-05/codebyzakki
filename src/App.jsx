@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
+import TechnicalHighlights from './components/TechnicalHighlights';
 import ReelShowcase from './components/ReelShowcase';
 import FeaturedProject from './components/FeaturedProject';
 import Projects from './components/Projects';
@@ -68,6 +69,7 @@ function CoreApp() {
             <Hero />
             <About />
             <Skills />
+            <TechnicalHighlights />
             <ReelShowcase />
             <FeaturedProject />
             <Projects />

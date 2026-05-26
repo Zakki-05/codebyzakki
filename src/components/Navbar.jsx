@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Volume2, VolumeX, Github, Linkedin, MessageSquare, Send } from 'lucide-react';
+import { Menu, X, Volume2, VolumeX, Send } from 'lucide-react';
 import { useSound } from './SoundManager';
 
 const NAV_LINKS = [
@@ -17,6 +17,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState('#home');
   
   const { isMuted, toggleMute, playHover, playClick } = useSound();
 
@@ -34,6 +35,19 @@ export default function Navbar() {
       if (totalHeight > 0) {
         setScrollProgress((window.scrollY / totalHeight) * 100);
       }
+
+      // 3. Active Section detection
+      const scrollPosition = window.scrollY + 250; // offset for better response
+      for (const link of NAV_LINKS) {
+        const el = document.querySelector(link.href);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(link.href);
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -47,18 +61,22 @@ export default function Navbar() {
     
     const target = document.querySelector(href);
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+      // Small offset for fixed navbar
+      const yOffset = -80;
+      const y = target.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      setActiveSection(href);
     }
   };
 
   return (
     <>
       {/* 1. Global Page Scroll Progress Line */}
-      <div className="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink z-[9999] transition-all duration-100" style={{ width: `${scrollProgress}%` }} />
+      <div className="fixed top-0 left-0 h-[2.5px] bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink z-[9999] transition-all duration-100" style={{ width: `${scrollProgress}%` }} />
 
-      <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         scrolled 
-          ? 'py-4 bg-background-primary/70 backdrop-blur-xl border-b border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.4)]' 
+          ? 'py-3.5 bg-background-primary/50 backdrop-blur-2xl border-b border-white/[0.04] shadow-[0_4px_30px_rgba(0,0,0,0.5)]' 
           : 'py-6 bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
@@ -68,31 +86,35 @@ export default function Navbar() {
             href="#home" 
             onClick={(e) => handleLinkClick(e, '#home')}
             onMouseEnter={playHover}
-            className="flex items-center gap-2 font-poppins text-lg font-black tracking-widest text-white hover:opacity-80 transition-opacity"
+            className="flex items-center gap-1.5 font-poppins text-base font-black tracking-[0.2em] text-white hover:opacity-90 transition-opacity"
           >
             <span>ZAKKI</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse"></span>
-            <span className="text-[10px] font-mono text-neon-purple">DEV</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse-slow"></span>
+            <span className="text-[9px] font-mono text-neon-purple font-bold tracking-widest">DEV</span>
           </a>
 
           {/* Desktop Navigation links */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-7">
             {NAV_LINKS.map(link => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
                 onMouseEnter={playHover}
-                className="text-xs font-mono text-text-gray hover:text-white uppercase tracking-wider transition-colors relative group py-1"
+                className={`text-[11px] font-mono uppercase tracking-widest transition-colors duration-300 relative group py-1 ${
+                  activeSection === link.href ? 'text-white font-bold' : 'text-text-gray hover:text-white'
+                }`}
               >
                 {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-neon-blue transition-all duration-300 group-hover:w-full" />
+                <span className={`absolute bottom-0 left-0 h-[1.5px] bg-neon-blue transition-all duration-300 ${
+                  activeSection === link.href ? 'w-full' : 'w-0 group-hover:w-full'
+                }`} />
               </a>
             ))}
           </nav>
 
           {/* Action Utilities (Audio, Socials, Mobile toggle) */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             
             {/* Audio Toggle Synthesizer */}
             <button
@@ -100,16 +122,16 @@ export default function Navbar() {
               onMouseEnter={playHover}
               className={`p-2 rounded-full border transition-all duration-300 relative group ${
                 !isMuted 
-                  ? 'bg-neon-blue/10 border-neon-blue/40 text-neon-blue shadow-[0_0_15px_rgba(0,240,255,0.25)]' 
-                  : 'bg-white/5 border-white/10 text-text-gray hover:border-white/20 hover:text-white'
+                  ? 'bg-neon-blue/5 border-neon-blue/20 text-neon-blue shadow-[0_0_12px_rgba(0,240,255,0.15)]' 
+                  : 'bg-white/5 border-white/5 text-text-gray hover:border-white/10 hover:text-white'
               }`}
               title={isMuted ? 'Unmute Futuristic Synthesizer SFX' : 'Mute Synthesizer SFX'}
             >
-              {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 animate-bounce" />}
+              {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 animate-pulse" />}
               
               {/* Dynamic Sound Radar Rings */}
               {!isMuted && (
-                <span className="absolute -inset-1 rounded-full border border-neon-blue/30 animate-ping pointer-events-none" />
+                <span className="absolute -inset-1 rounded-full border border-neon-blue/20 animate-ping pointer-events-none" />
               )}
             </button>
 
@@ -118,9 +140,9 @@ export default function Navbar() {
               href="#contact"
               onClick={(e) => handleLinkClick(e, '#contact')}
               onMouseEnter={playHover}
-              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 hover:border-neon-blue hover:text-neon-blue text-xs font-mono tracking-widest uppercase transition-all duration-300 hover:scale-105 bg-white/[0.02]"
+              className="hidden sm:flex items-center gap-1.5 px-4.5 py-1.5 rounded-full border border-white/5 hover:border-neon-blue/30 hover:text-neon-blue text-[10px] font-mono tracking-widest uppercase transition-all duration-300 hover:scale-105 bg-white/[0.01]"
             >
-              <Send className="w-3.5 h-3.5" />
+              <Send className="w-3 h-3" />
               HIRE ME
             </a>
 
@@ -128,10 +150,10 @@ export default function Navbar() {
             <button
               onClick={() => { playClick(); setIsOpen(!isOpen); }}
               onMouseEnter={playHover}
-              className="lg:hidden p-2 rounded-lg bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors"
+              className="lg:hidden p-2 rounded-lg bg-white/5 border border-white/5 text-white hover:bg-white/10 transition-colors"
               aria-label="Toggle menu"
             >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
 
           </div>
@@ -139,17 +161,19 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Navigation Drawer */}
-        <div className={`lg:hidden fixed inset-x-0 top-[73px] bg-background-primary/95 border-b border-white/5 backdrop-blur-2xl transition-all duration-300 origin-top overflow-hidden z-40 ${
+        <div className={`lg:hidden fixed inset-x-0 top-[60px] bg-background-primary/95 border-b border-white/5 backdrop-blur-3xl transition-all duration-300 origin-top overflow-hidden z-40 ${
           isOpen ? 'scale-y-100 opacity-100 py-6' : 'scale-y-0 opacity-0 py-0 pointer-events-none'
-        }`} style={{ maxHeight: 'calc(100vh - 73px)' }}>
-          <div className="flex flex-col items-center gap-6 px-6 font-mono text-sm tracking-widest">
+        }`} style={{ maxHeight: 'calc(100vh - 60px)' }}>
+          <div className="flex flex-col items-center gap-5 px-6 font-mono text-xs tracking-widest">
             {NAV_LINKS.map(link => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
                 onMouseEnter={playHover}
-                className="text-text-gray hover:text-white uppercase transition-colors py-2"
+                className={`uppercase transition-colors py-1.5 ${
+                  activeSection === link.href ? 'text-white font-bold' : 'text-text-gray hover:text-white'
+                }`}
               >
                 {link.label}
               </a>
@@ -159,9 +183,9 @@ export default function Navbar() {
               href="#contact"
               onClick={(e) => handleLinkClick(e, '#contact')}
               onMouseEnter={playHover}
-              className="flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple text-black font-bold tracking-widest uppercase transition-all duration-300 w-full max-w-xs justify-center shadow-lg mt-4"
+              className="flex items-center gap-2 px-8 py-2.5 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple text-black font-bold tracking-widest uppercase transition-all duration-300 w-full max-w-xs justify-center shadow-lg mt-3 text-[11px]"
             >
-              <Send className="w-4 h-4" />
+              <Send className="w-3.5 h-3.5" />
               HIRE ME
             </a>
           </div>

@@ -93,63 +93,63 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden tech-grid">
+    <section id="home" className="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden tech-grid">
       
       {/* Cinematic drift blur blobs */}
-      <div className="absolute top-[20%] left-[-10%] w-[400px] h-[400px] rounded-full bg-neon-blue/10 blur-[120px] pointer-events-none z-0"></div>
-      <div className="absolute bottom-[20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-neon-purple/10 blur-[150px] pointer-events-none z-0"></div>
+      <div className="absolute top-[15%] left-[-5%] w-[450px] h-[450px] rounded-full bg-neon-blue/[0.04] blur-[130px] pointer-events-none z-0"></div>
+      <div className="absolute bottom-[15%] right-[-5%] w-[450px] h-[450px] rounded-full bg-neon-purple/[0.03] blur-[130px] pointer-events-none z-0"></div>
 
-      <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-10 relative z-10">
         
-        {/* Left Core Text Intro Column (lg:col-span-7) */}
+        {/* Left Core Text Intro Column */}
         <div className="lg:col-span-7 flex flex-col justify-center space-y-8 text-left">
           
-          <div className="space-y-4">
+          <div className="space-y-5">
             
             {/* Tiny introductory chip */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] font-mono tracking-widest text-text-gray uppercase">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/[0.04] bg-white/[0.02] text-[9px] font-mono tracking-[0.2em] text-text-gray/80 uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse"></span>
-              HELLO, WELCOME TO MY PORTFOLIO
+              PORTFOLIO // ESTABLISH_SYSTEM_v1
             </div>
 
             {/* Giant Title Name */}
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-black font-poppins tracking-tight text-white leading-none">
+            <h1 className="text-5xl sm:text-7xl font-extrabold font-poppins tracking-tight text-white leading-[1.05]">
               Mohammed <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-neon-blue via-white to-neon-purple text-neon-glow">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-neon-blue to-neon-purple drop-shadow-sm font-black">
                 Zakki Adnaan P
               </span>
             </h1>
 
             {/* Sub-role typing engine */}
-            <div className="h-10 flex items-center font-mono text-lg md:text-2xl text-neon-blue uppercase tracking-widest">
+            <div className="h-8 flex items-center font-mono text-sm md:text-lg text-neon-blue uppercase tracking-[0.25em] font-medium">
               <span>{`> `}</span>
-              <span className="ml-2 font-bold">{displayedRole}</span>
-              <span className="w-2.5 h-6 bg-neon-blue ml-1 animate-pulse"></span>
+              <span className="ml-2">{displayedRole}</span>
+              <span className="w-2 h-4.5 bg-neon-blue ml-1.5 animate-pulse"></span>
             </div>
 
             {/* Summary description paragraph */}
-            <p className="text-text-gray max-w-xl text-sm md:text-base font-light leading-relaxed font-sans">
-              I craft modern, fully responsive, and highly interactive frontend systems. Focused on engineering visual web wonders with React, Tailwind CSS, GSAP, and Django frameworks.
+            <p className="text-text-gray/90 max-w-xl text-xs md:text-sm font-light leading-relaxed font-sans">
+              I engineer next-generation responsive systems and robust client interfaces. Focused on crafting highly modular, pixel-perfect, and high-performance frontend visual wonderlands utilizing React, Tailwind CSS, Framer Motion, and Django REST APIs.
             </p>
           </div>
 
           {/* Action Call to Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-wrap gap-3.5">
             <a
               href="#reels-showcase"
               onClick={(e) => handleScrollClick(e, '#reels-showcase')}
               onMouseEnter={playHover}
-              className="px-8 py-4 rounded-xl bg-neon-blue text-black hover:bg-neon-purple hover:text-white font-mono text-xs font-black tracking-widest transition-all duration-300 flex items-center justify-center gap-2 glowing-ring hover:scale-105"
+              className="px-6 py-3 rounded-full bg-white text-black hover:bg-neon-blue hover:text-black font-mono text-[10px] font-bold tracking-widest transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105"
             >
               EXPLORE REELS
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </a>
             
             <a
               href="#contact"
               onClick={(e) => handleScrollClick(e, '#contact')}
               onMouseEnter={playHover}
-              className="px-8 py-4 rounded-xl border border-white/10 bg-white/[0.02] hover:border-white/30 text-white font-mono text-xs font-bold tracking-widest transition-all duration-300 flex items-center justify-center gap-2 hover:bg-white/5 hover:scale-105"
+              className="px-6 py-3 rounded-full border border-white/5 bg-white/[0.01] hover:border-white/10 text-white font-mono text-[10px] font-bold tracking-widest transition-all duration-300 flex items-center justify-center gap-2 hover:bg-white/[0.03] hover:scale-105"
             >
               HIRE ME
             </a>
@@ -159,26 +159,26 @@ export default function Hero() {
               download="MOHAMMED_ZAKKI_ADNAAN_P_Resume_2026.pdf"
               onMouseEnter={playHover}
               onClick={playClick}
-              className="px-8 py-4 rounded-xl border border-neon-purple/20 bg-neon-purple/5 text-neon-purple font-mono text-xs font-bold tracking-widest hover:bg-neon-purple hover:text-white transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105"
+              className="px-6 py-3 rounded-full border border-neon-purple/20 bg-neon-purple/[0.03] text-neon-purple font-mono text-[10px] font-bold tracking-widest hover:bg-neon-purple hover:text-white transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105"
             >
-              DOWNLOAD RESUME
+              RESUME.PDF
             </a>
           </div>
 
           {/* Connected Socials Strip */}
-          <div className="pt-4 flex items-center gap-6">
-            <span className="text-[10px] font-mono text-text-gray uppercase tracking-widest">Connect:</span>
-            <div className="flex gap-4">
+          <div className="pt-4 flex items-center gap-4.5">
+            <span className="text-[9px] font-mono text-text-gray/50 uppercase tracking-widest">Connect // Logs:</span>
+            <div className="flex gap-2.5">
               <a
                 href="https://github.com/Zakki-05"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={playClick}
                 onMouseEnter={playHover}
-                className="p-2.5 rounded-lg bg-white/5 hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-110 transition-all"
+                className="p-2 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
                 title="Github profile"
               >
-                <Github className="w-4 h-4" />
+                <Github className="w-3.5 h-3.5" />
               </a>
               <a
                 href="https://www.linkedin.com/in/mohammed-zakki-adnan-p/"
@@ -186,108 +186,114 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 onClick={playClick}
                 onMouseEnter={playHover}
-                className="p-2.5 rounded-lg bg-white/5 hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-110 transition-all"
+                className="p-2 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
                 title="LinkedIn profile"
               >
-                <Linkedin className="w-4 h-4" />
+                <Linkedin className="w-3.5 h-3.5" />
               </a>
               <a
                 href="mailto:zakkibca2023@gmail.com"
                 onClick={playClick}
                 onMouseEnter={playHover}
-                className="p-2.5 rounded-lg bg-white/5 hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-110 transition-all"
+                className="p-2 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
                 title="Email direct"
               >
-                <Mail className="w-4 h-4" />
+                <Mail className="w-3.5 h-3.5" />
               </a>
               <a
-                href="https://github.com/Zakki-05"
+                href="https://www.instagram.com/mr_zakki_05/"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={playClick}
                 onMouseEnter={playHover}
-                className="p-2.5 rounded-lg bg-white/5 hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-110 transition-all"
-                title="Instagram portfolio showcase"
+                className="p-2 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
+                title="Instagram profile"
               >
-                <Instagram className="w-4 h-4" />
+                <Instagram className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>
 
         </div>
 
-        {/* Right 3D Visualizer Dashboard Column (lg:col-span-5) */}
+        {/* Right 3D Visualizer Dashboard Column */}
         <div className="lg:col-span-5 flex items-center justify-center relative">
           
-          {/* Neon particle ring backdrops */}
-          <div className="absolute w-[280px] h-[280px] rounded-full border border-dashed border-neon-blue/15 animate-spin-slow pointer-events-none"></div>
-          <div className="absolute w-[360px] h-[360px] rounded-full border border-dashed border-neon-purple/10 animate-[spin_20s_linear_infinite] pointer-events-none"></div>
+          {/* Subtle decoration backdrops */}
+          <div className="absolute w-[240px] h-[240px] rounded-full border border-dashed border-neon-blue/5 animate-spin-slow pointer-events-none"></div>
+          <div className="absolute w-[320px] h-[320px] rounded-full border border-dashed border-neon-purple/5 animate-[spin_30s_linear_infinite] pointer-events-none"></div>
 
           {/* Interactive Card container */}
           <div
             ref={cardRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="w-[280px] h-[400px] xs:w-[320px] xs:h-[440px] rounded-[32px] glass-card p-6 border-white/5 flex flex-col justify-between relative select-none cursor-grab active:cursor-grabbing"
+            className="w-[290px] h-[390px] rounded-[24px] glass-card p-5 border-white/[0.03] flex flex-col justify-between relative select-none cursor-grab active:cursor-grabbing"
             style={{ 
-              transition: 'transform 0.1s ease-out, box-shadow 0.1s ease-out',
+              transition: 'transform 0.15s ease-out, box-shadow 0.15s ease-out',
               transformStyle: 'preserve-3d'
             }}
           >
             {/* Top dashboard status */}
-            <div className="flex justify-between items-center" style={{ transform: 'translateZ(30px)' }}>
-              <div className="flex items-center gap-2">
-                <Terminal className="w-4 h-4 text-neon-blue" />
-                <span className="text-[10px] font-mono text-white/60 uppercase">CORE_DEV_OS v1.0</span>
+            <div className="flex justify-between items-center" style={{ transform: 'translateZ(20px)' }}>
+              <div className="flex items-center gap-1.5">
+                <Terminal className="w-3.5 h-3.5 text-neon-blue" />
+                <span className="text-[9px] font-mono text-white/40 uppercase tracking-widest">system_monitor.sh</span>
               </div>
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+              <div className="flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-[8px] font-mono text-white/40 uppercase">LIVE</span>
+              </div>
             </div>
 
             {/* Glowing developer schematic blueprint visual */}
             <div 
-              className="flex-1 flex flex-col items-center justify-center relative py-6"
-              style={{ transform: 'translateZ(50px)' }}
+              className="flex-1 flex flex-col items-center justify-center relative py-4"
+              style={{ transform: 'translateZ(40px)' }}
             >
               
               {/* Central high tech spinning core */}
-              <div className="relative w-40 h-40 flex items-center justify-center">
-                <div className="absolute inset-0 rounded-full border-2 border-dashed border-neon-blue/30 animate-spin-slow"></div>
-                <div className="absolute w-32 h-32 rounded-full border border-neon-purple/40 animate-[spin_4s_linear_infinite_reverse]"></div>
+              <div className="relative w-36 h-36 flex items-center justify-center">
+                <div className="absolute inset-0 rounded-full border border-dashed border-neon-blue/10 animate-spin-slow"></div>
+                <div className="absolute w-28 h-28 rounded-full border border-neon-purple/10 animate-[spin_5s_linear_infinite_reverse]"></div>
                 
-                {/* SVG glowing high-tech logo chip */}
-                <div className="w-24 h-24 rounded-full bg-black border border-white/20 flex items-center justify-center relative shadow-lg overflow-hidden glowing-ring">
+                {/* SVG profile picture avatar */}
+                <div className="w-22 h-22 rounded-full bg-[#050505] border border-white/5 flex items-center justify-center relative shadow-lg overflow-hidden glowing-ring">
                   <img 
                     src={PROFILE_IMG} 
                     alt="Mohammed Zakki Adnaan" 
                     className="w-full h-full object-cover relative z-10" 
                     loading="eager"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
                   />
-                  <Zap className="w-8 h-8 text-neon-blue animate-pulse absolute z-0" />
+                  <Zap className="w-6 h-6 text-neon-blue animate-pulse absolute z-0" />
                 </div>
               </div>
 
               {/* Status information text */}
-              <div className="text-center mt-6 space-y-1">
-                <span className="text-[10px] font-mono text-neon-blue font-bold tracking-widest uppercase">SYSTEM: ONLINE</span>
-                <span className="text-[9px] font-mono text-text-gray block">LATENCY: 22ms // CPU: ACTIVE</span>
+              <div className="text-center mt-4 space-y-0.5">
+                <span className="text-[9px] font-mono text-neon-blue font-bold tracking-widest uppercase">PLATFORM OS: STABLE</span>
+                <span className="text-[8px] font-mono text-text-gray/60 block">120 FPS // SYSTEM COMPILING...</span>
               </div>
 
             </div>
 
             {/* Bottom Dashboard details code preview mock */}
             <div 
-              className="p-3 bg-black/60 rounded-xl border border-white/5 font-mono text-[9px] text-text-gray space-y-1 text-left"
-              style={{ transform: 'translateZ(40px)' }}
+              className="p-3 bg-black/40 rounded-xl border border-white/5 font-mono text-[9px] text-text-gray space-y-1.5 text-left"
+              style={{ transform: 'translateZ(30px)' }}
             >
               <div className="flex gap-1.5 items-center pb-1.5 border-b border-white/5">
-                <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                <div className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                <span className="text-[8px] text-white/40 ml-1">stack_compiler.js</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
+                <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
+                <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
+                <span className="text-[7.5px] text-white/30 ml-1">react_kernel.json</span>
               </div>
-              <p className="text-neon-blue"><span className="text-neon-purple">const</span> Dev = <span className="text-white">"Mohammed Zakki Adnaan P"</span>;</p>
-              <p className="text-neon-blue"><span className="text-neon-purple">const</span> Tech = [<span className="text-white">"React"</span>, <span className="text-white">"Django"</span>];</p>
-              <p className="text-white/40">// Status: Ready to execute</p>
+              <p className="text-text-gray/80"><span className="text-neon-purple">const</span> developer = <span className="text-white">"Mohammed Zakki"</span>;</p>
+              <p className="text-text-gray/80"><span className="text-neon-purple">const</span> stack = [<span className="text-neon-blue">"React"</span>, <span className="text-neon-blue">"Tailwind"</span>, <span className="text-neon-blue">"Django"</span>];</p>
+              <p className="text-white/20">// Connection established successfully</p>
             </div>
 
           </div>
@@ -297,13 +303,13 @@ export default function Hero() {
       </div>
 
       {/* Floating Bouncing Scroll Chevron at bottom */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center gap-1.5 z-10 pointer-events-none">
-        <span className="text-[9px] font-mono tracking-widest text-text-gray uppercase animate-pulse">SCROLL TO CODE</span>
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center gap-1 z-10 pointer-events-none">
+        <span className="text-[8px] font-mono tracking-[0.2em] text-text-gray/40 uppercase animate-pulse">SCROLL_DOWN</span>
         <motion.div
-          animate={{ y: [0, 6, 0] }}
+          animate={{ y: [0, 5, 0] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
         >
-          <ChevronDown className="w-4 h-4 text-neon-blue" />
+          <ChevronDown className="w-3.5 h-3.5 text-neon-blue/60" />
         </motion.div>
       </div>
 

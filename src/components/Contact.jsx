@@ -116,14 +116,14 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative py-24 md:py-32 px-6 overflow-hidden"
+      className="relative py-28 md:py-36 px-6 overflow-hidden bg-[#030303]"
     >
       {/* Background ambient blobs */}
-      <div className="absolute top-[10%] right-[-15%] w-[500px] h-[500px] rounded-full bg-neon-blue/5 blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-[10%] left-[-10%] w-[400px] h-[400px] rounded-full bg-neon-purple/5 blur-[120px] pointer-events-none" />
+      <div className="absolute top-[10%] right-[-15%] w-[450px] h-[450px] rounded-full bg-neon-blue/[0.02] blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-[10%] left-[-10%] w-[350px] h-[350px] rounded-full bg-neon-purple/[0.02] blur-[120px] pointer-events-none" />
 
       {/* Grid overlay */}
-      <div className="absolute inset-0 tech-grid-cyan opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 tech-grid-cyan opacity-10 pointer-events-none" />
 
       <motion.div
         variants={containerVariants}
@@ -132,27 +132,26 @@ export default function Contact() {
         className="max-w-7xl mx-auto relative z-10"
       >
         {/* Section Header */}
-        <motion.div variants={itemVariants} className="text-center mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] font-mono tracking-widest text-neon-blue uppercase">
+        <motion.div variants={itemVariants} className="text-center mb-20 space-y-4">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/[0.04] bg-white/[0.01] text-[9px] font-mono tracking-widest text-neon-blue uppercase">
             <Terminal className="w-3 h-3" />
-            INIT_CONTACT // ESTABLISH_CONNECTION
+            INIT_CONTACT // SECURE_TRANSMISSION
           </div>
 
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black font-poppins tracking-tight text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-poppins tracking-tight text-white uppercase">
             Let's Build{' '}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-neon-blue to-neon-purple text-neon-glow">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-neon-blue via-white to-neon-purple drop-shadow-sm font-black">
               Something Epic
             </span>
           </h2>
 
-          <p className="text-text-gray max-w-2xl mx-auto text-sm md:text-base font-light leading-relaxed">
-            Got a project in mind, an idea to collaborate, or just want to say hello?
-            I'm always open to discussing new opportunities and creative ventures.
+          <p className="text-text-gray max-w-xl mx-auto text-xs md:text-sm font-light leading-relaxed font-sans mt-3">
+            Open for freelance opportunities, full-time React engineering vacancies, and creative SaaS UI collaborations.
           </p>
         </motion.div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
 
           {/* Left Column: Info Cards + Socials */}
           <motion.div variants={itemVariants} className="lg:col-span-5 space-y-6">
@@ -162,36 +161,36 @@ export default function Contact() {
               <motion.div
                 key={info.label}
                 variants={itemVariants}
-                className="glass-card rounded-2xl p-5 flex items-start gap-4 group"
+                className="glass-card rounded-2xl p-4.5 flex items-start gap-4 group"
                 onMouseEnter={playHover}
               >
-                <div className={`p-3 rounded-xl bg-${info.color}/10 border border-${info.color}/20 group-hover:border-${info.color}/40 transition-colors`}>
-                  <info.icon className={`w-5 h-5 text-${info.color}`} />
+                <div className={`p-2.5 rounded-xl bg-white/[0.01] border border-white/5 group-hover:border-neon-blue/20 transition-colors`}>
+                  <info.icon className="w-4.5 h-4.5 text-white/75 group-hover:text-neon-blue transition-colors" />
                 </div>
-                <div className="space-y-1">
-                  <span className="text-[10px] font-mono tracking-widest text-text-gray uppercase">
+                <div className="space-y-0.5 text-left">
+                  <span className="text-[8px] font-mono tracking-widest text-text-gray/50 uppercase block">
                     {info.label}
                   </span>
                   {info.href ? (
                     <a
                       href={info.href}
                       onClick={playClick}
-                      className="block text-sm text-white hover:text-neon-blue transition-colors font-medium"
+                      className="block text-xs text-white hover:text-neon-blue transition-colors font-medium"
                     >
                       {info.value}
                     </a>
                   ) : (
-                    <p className="text-sm text-white font-medium">{info.value}</p>
+                    <p className="text-xs text-white font-medium">{info.value}</p>
                   )}
                 </div>
               </motion.div>
             ))}
 
             {/* Social Links Strip */}
-            <motion.div variants={itemVariants} className="glass-card rounded-2xl p-6 space-y-4">
-              <span className="text-[10px] font-mono tracking-widest text-text-gray uppercase flex items-center gap-2">
+            <motion.div variants={itemVariants} className="glass-card rounded-2xl p-5 space-y-4">
+              <span className="text-[8px] font-mono tracking-widest text-text-gray/50 uppercase flex items-center gap-1.5 text-left">
                 <Sparkles className="w-3 h-3 text-neon-purple animate-spin-slow" />
-                CONNECT_ON_SOCIALS
+                CONNECT_CHANNELS
               </span>
               <div className="grid grid-cols-2 gap-3">
                 {SOCIAL_LINKS.map(social => (
@@ -202,26 +201,26 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     onClick={playClick}
                     onMouseEnter={playHover}
-                    className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-neon-blue/30 hover:bg-white/5 transition-all group"
+                    className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/[0.01] border border-white/5 hover:border-neon-blue/20 hover:bg-white/[0.02] transition-all group"
                   >
-                    <social.icon className="w-4 h-4 text-text-gray group-hover:text-neon-blue transition-colors" />
-                    <span className="text-xs font-mono text-text-gray group-hover:text-white transition-colors">{social.label}</span>
-                    <ArrowUpRight className="w-3 h-3 text-text-gray group-hover:text-neon-blue ml-auto opacity-0 group-hover:opacity-100 transition-all" />
+                    <social.icon className="w-3.5 h-3.5 text-text-gray/70 group-hover:text-neon-blue transition-colors" />
+                    <span className="text-[10px] font-mono text-text-gray/80 group-hover:text-white transition-colors">{social.label}</span>
+                    <ArrowUpRight className="w-3 h-3 text-text-gray/30 group-hover:text-neon-blue ml-auto opacity-0 group-hover:opacity-100 transition-all" />
                   </a>
                 ))}
               </div>
             </motion.div>
 
             {/* Terminal-style availability status */}
-            <motion.div variants={itemVariants} className="p-4 bg-black/60 rounded-xl border border-white/5 font-mono text-[10px] text-text-gray space-y-1.5">
+            <motion.div variants={itemVariants} className="p-4 bg-black/40 rounded-xl border border-white/5 font-mono text-[9px] text-text-gray/80 space-y-1.5 text-left">
               <div className="flex gap-1.5 items-center pb-2 border-b border-white/5">
-                <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                <div className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                <span className="text-[8px] text-white/40 ml-1">availability_status.sh</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
+                <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
+                <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
+                <span className="text-[7.5px] text-white/30 ml-1">availability_status.sh</span>
               </div>
               <p><span className="text-neon-purple">$</span> <span className="text-neon-blue">check</span> --freelance-status</p>
-              <p className="text-emerald-400">✓ Currently accepting new projects</p>
+              <p className="text-emerald-500">✓ Currently accepting new projects</p>
               <p><span className="text-neon-purple">$</span> <span className="text-neon-blue">response</span> --avg-time</p>
               <p className="text-white/60">⚡ Typically within 24 hours</p>
             </motion.div>
@@ -230,47 +229,47 @@ export default function Contact() {
 
           {/* Right Column: Contact Form */}
           <motion.div variants={itemVariants} className="lg:col-span-7">
-            <div className="glass-card rounded-3xl p-6 md:p-8 relative overflow-hidden">
+            <div className="glass-card rounded-[24px] p-6 md:p-8 relative overflow-hidden">
 
               {/* Decorative corner accents */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-neon-blue/5 to-transparent pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-neon-purple/5 to-transparent pointer-events-none" />
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-neon-blue/[0.02] to-transparent pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-neon-purple/[0.02] to-transparent pointer-events-none" />
 
               {/* Form Header */}
-              <div className="mb-8 space-y-2">
-                <h3 className="text-xl md:text-2xl font-bold font-poppins text-white">
+              <div className="mb-6 space-y-1.5 text-left">
+                <h3 className="text-lg md:text-xl font-bold font-poppins text-white">
                   Send a Message
                 </h3>
-                <p className="text-[11px] font-mono text-text-gray uppercase tracking-wider">
-                  // Fill out the form below and I'll get back to you ASAP
+                <p className="text-[8px] font-mono text-text-gray/40 uppercase tracking-widest">
+                  // secure messaging endpoint
                 </p>
               </div>
 
               {isSubmitted ? (
                 /* Success State */
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center justify-center py-16 space-y-4"
+                  className="flex flex-col items-center justify-center py-12 space-y-4"
                 >
-                  <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
-                    <CheckCircle className="w-8 h-8 text-emerald-400" />
+                  <div className="w-14 h-14 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                    <CheckCircle className="w-6 h-6 text-emerald-400" />
                   </div>
-                  <h4 className="text-xl font-bold text-white font-poppins">Message Sent!</h4>
-                  <p className="text-sm text-text-gray text-center max-w-sm">
-                    Thanks for reaching out. I'll review your message and respond within 24 hours.
+                  <h4 className="text-lg font-bold text-white font-poppins">Message Sent!</h4>
+                  <p className="text-xs text-text-gray/80 text-center max-w-xs">
+                    Thank you for your feedback. Zakki will review your message and reach back within 24 hours.
                   </p>
-                  <span className="text-[10px] font-mono text-neon-blue uppercase tracking-widest animate-pulse">
-                    TRANSMISSION_CONFIRMED ✓
+                  <span className="text-[8px] font-mono text-neon-blue uppercase tracking-widest animate-pulse mt-2">
+                    TRANSMISSION_SUCCESSFUL ✓
                   </span>
                 </motion.div>
               ) : (
                 /* Contact Form */
-                <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* Name Field */}
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-mono text-text-gray uppercase tracking-widest">
+                    <div className="space-y-1.5 text-left">
+                      <label className="text-[8.5px] font-mono text-text-gray/50 uppercase tracking-widest block pl-1">
                         Your Name
                       </label>
                       <input
@@ -281,13 +280,13 @@ export default function Contact() {
                         onFocus={playHover}
                         required
                         placeholder="John Doe"
-                        className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-white text-sm font-light placeholder:text-white/20 focus:outline-none focus:border-neon-blue/50 focus:ring-1 focus:ring-neon-blue/20 transition-all"
+                        className="w-full px-3.5 py-3 rounded-xl bg-white/[0.01] border border-white/5 text-white text-xs font-light placeholder:text-white/10 focus:outline-none focus:border-neon-blue/30 transition-all font-sans"
                       />
                     </div>
 
                     {/* Email Field */}
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-mono text-text-gray uppercase tracking-widest">
+                    <div className="space-y-1.5 text-left">
+                      <label className="text-[8.5px] font-mono text-text-gray/50 uppercase tracking-widest block pl-1">
                         Your Email
                       </label>
                       <input
@@ -298,14 +297,14 @@ export default function Contact() {
                         onFocus={playHover}
                         required
                         placeholder="john@example.com"
-                        className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-white text-sm font-light placeholder:text-white/20 focus:outline-none focus:border-neon-blue/50 focus:ring-1 focus:ring-neon-blue/20 transition-all"
+                        className="w-full px-3.5 py-3 rounded-xl bg-white/[0.01] border border-white/5 text-white text-xs font-light placeholder:text-white/10 focus:outline-none focus:border-neon-blue/30 transition-all font-sans"
                       />
                     </div>
                   </div>
 
                   {/* Subject Field */}
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-mono text-text-gray uppercase tracking-widest">
+                  <div className="space-y-1.5 text-left">
+                    <label className="text-[8.5px] font-mono text-text-gray/50 uppercase tracking-widest block pl-1">
                       Subject
                     </label>
                     <input
@@ -315,14 +314,14 @@ export default function Contact() {
                       onChange={handleChange}
                       onFocus={playHover}
                       required
-                      placeholder="Project Collaboration / Freelance / Hiring"
-                      className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-white text-sm font-light placeholder:text-white/20 focus:outline-none focus:border-neon-blue/50 focus:ring-1 focus:ring-neon-blue/20 transition-all"
+                      placeholder="Project Collaboration / Hiring Enquiry"
+                      className="w-full px-3.5 py-3 rounded-xl bg-white/[0.01] border border-white/5 text-white text-xs font-light placeholder:text-white/10 focus:outline-none focus:border-neon-blue/30 transition-all font-sans"
                     />
                   </div>
 
                   {/* Message Field */}
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-mono text-text-gray uppercase tracking-widest">
+                  <div className="space-y-1.5 text-left">
+                    <label className="text-[8.5px] font-mono text-text-gray/50 uppercase tracking-widest block pl-1">
                       Message
                     </label>
                     <textarea
@@ -331,9 +330,9 @@ export default function Contact() {
                       onChange={handleChange}
                       onFocus={playHover}
                       required
-                      rows={5}
-                      placeholder="Tell me about your project, idea, or just say hi..."
-                      className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-white text-sm font-light placeholder:text-white/20 focus:outline-none focus:border-neon-blue/50 focus:ring-1 focus:ring-neon-blue/20 transition-all resize-none"
+                      rows={4}
+                      placeholder="Describe your technical requirements, timelines, or hiring parameters..."
+                      className="w-full px-3.5 py-3 rounded-xl bg-white/[0.01] border border-white/5 text-white text-xs font-light placeholder:text-white/10 focus:outline-none focus:border-neon-blue/30 transition-all resize-none font-sans"
                     />
                   </div>
 
@@ -342,26 +341,26 @@ export default function Contact() {
                     type="submit"
                     disabled={isSending}
                     onMouseEnter={playHover}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full py-4 rounded-xl bg-gradient-to-r from-neon-blue to-neon-purple text-black font-mono text-xs font-black tracking-widest uppercase flex items-center justify-center gap-3 hover:shadow-[0_0_30px_rgba(0,240,255,0.3)] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    className="w-full py-3 rounded-full bg-white hover:bg-neon-blue text-black hover:text-black font-mono text-[10px] font-bold tracking-widest uppercase flex items-center justify-center gap-2 hover:shadow-[0_0_15px_rgba(0,240,255,0.1)] transition-all disabled:opacity-60 disabled:cursor-not-allowed mt-2"
                   >
                     {isSending ? (
                       <>
-                        <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                        <div className="w-3.5 h-3.5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
                         TRANSMITTING...
                       </>
                     ) : (
                       <>
-                        <Send className="w-4 h-4" />
+                        <Send className="w-3.5 h-3.5" />
                         SEND MESSAGE
                       </>
                     )}
                   </motion.button>
 
                   {/* Bottom fine print */}
-                  <p className="text-[9px] font-mono text-text-gray text-center tracking-wider uppercase">
-                    // Your message will be sent to zakkibca2023@gmail.com
+                  <p className="text-[7.5px] font-mono text-text-gray/40 text-center tracking-widest uppercase pt-2">
+                    // encrypted pipeline routed via Web3Forms REST
                   </p>
                 </form>
               )}

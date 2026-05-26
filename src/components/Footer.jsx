@@ -32,45 +32,45 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#050505] border-t border-white/5 py-12 px-6 overflow-hidden">
+    <footer className="relative bg-[#030303] border-t border-white/[0.03] py-16 px-6 overflow-hidden">
       
-      {/* 1. Futuristic top glowing line */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-neon-blue to-transparent opacity-60 shadow-[0_0_15px_rgba(0,240,255,0.4)] pointer-events-none" />
+      {/* 1. Subtle premium glowing accent */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-neon-purple/20 to-transparent pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto space-y-10 relative z-10">
+      <div className="max-w-7xl mx-auto space-y-12 relative z-10">
         
         {/* Core elements grid */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8 pb-8 border-b border-white/[0.03]">
           
           {/* Logo brand */}
-          <div className="flex flex-col items-center md:items-start space-y-2">
+          <div className="flex flex-col items-center md:items-start space-y-1.5 text-center md:text-left">
             <a 
               href="#home"
               onClick={handleScrollTop}
               onMouseEnter={playHover}
-              className="flex items-center gap-2 font-poppins text-lg font-black tracking-widest text-white uppercase"
+              className="flex items-center gap-1.5 font-poppins text-base font-black tracking-[0.2em] text-white uppercase"
             >
               <span>ZAKKI</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse"></span>
-              <span className="text-[10px] font-mono text-neon-purple">DEV</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse-slow"></span>
+              <span className="text-[9px] font-mono text-neon-purple font-bold">DEV</span>
             </a>
-            <p className="text-[10px] font-mono text-text-gray uppercase tracking-widest">
-              Pernambut, Tamil Nadu, India
+            <p className="text-[9px] font-mono text-text-gray/80 uppercase tracking-widest">
+              Pernambut, Tamil Nadu, India // BCA '26
             </p>
           </div>
 
           {/* Quick social links */}
-          <div className="flex gap-4">
+          <div className="flex gap-3">
             <a
               href="https://github.com/Zakki-05"
               target="_blank"
               rel="noopener noreferrer"
               onClick={playClick}
               onMouseEnter={playHover}
-              className="p-2.5 rounded-lg bg-white/5 hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-110 transition-all"
+              className="p-2.5 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
               title="Github direct"
             >
-              <Github className="w-4.5 h-4.5" />
+              <Github className="w-4 h-4" />
             </a>
             <a
               href="https://www.linkedin.com/in/mohammed-zakki-adnan-p/"
@@ -78,19 +78,19 @@ export default function Footer() {
               rel="noopener noreferrer"
               onClick={playClick}
               onMouseEnter={playHover}
-              className="p-2.5 rounded-lg bg-white/5 hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-110 transition-all"
+              className="p-2.5 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
               title="LinkedIn direct"
             >
-              <Linkedin className="w-4.5 h-4.5" />
+              <Linkedin className="w-4 h-4" />
             </a>
             <a
               href="mailto:zakkibca2023@gmail.com"
               onClick={playClick}
               onMouseEnter={playHover}
-              className="p-2.5 rounded-lg bg-white/5 hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-110 transition-all"
+              className="p-2.5 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
               title="Email direct"
             >
-              <Mail className="w-4.5 h-4.5" />
+              <Mail className="w-4 h-4" />
             </a>
             <a
               href="https://www.instagram.com/mr_zakki_05/"
@@ -98,24 +98,24 @@ export default function Footer() {
               rel="noopener noreferrer"
               onClick={playClick}
               onMouseEnter={playHover}
-              className="p-2.5 rounded-lg bg-white/5 hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-110 transition-all"
+              className="p-2.5 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
               title="Instagram direct"
             >
-              <Instagram className="w-4.5 h-4.5" />
+              <Instagram className="w-4 h-4" />
             </a>
           </div>
 
         </div>
 
         {/* Navigation list */}
-        <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 pt-6 border-t border-white/5 font-mono text-[10px] tracking-wider uppercase">
+        <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 font-mono text-[10px] tracking-widest uppercase">
           {NAV_LINKS.map(link => (
             <a
               key={link.label}
               href={link.href}
               onClick={(e) => handleLinkClick(e, link.href)}
               onMouseEnter={playHover}
-              className="text-text-gray hover:text-neon-blue transition-colors"
+              className="text-text-gray hover:text-neon-blue transition-colors duration-200"
             >
               {link.label}
             </a>
@@ -123,20 +123,20 @@ export default function Footer() {
         </div>
 
         {/* Copyright and scroll top bottom row */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 pt-6 text-[10px] font-mono text-text-gray uppercase tracking-wider">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 pt-6 text-[9px] font-mono text-text-gray/60 uppercase tracking-widest">
           
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-2">
             <Sparkles className="w-3.5 h-3.5 text-neon-blue animate-spin-slow" />
-            <span>Designed & Developed by Mohammed Zakki Adnaan P</span>
+            <span>© {new Date().getFullYear()} Mohammed Zakki Adnaan P. All rights reserved.</span>
           </div>
 
           <a
             href="#home"
             onClick={handleScrollTop}
             onMouseEnter={playHover}
-            className="flex items-center gap-1.5 hover:text-white transition-colors"
+            className="flex items-center gap-1.5 hover:text-white transition-colors duration-200"
           >
-            <span>Back to top</span>
+            <span>BACK TO SYSTEM ROOT</span>
             <ArrowUp className="w-3.5 h-3.5 animate-bounce" />
           </a>
 

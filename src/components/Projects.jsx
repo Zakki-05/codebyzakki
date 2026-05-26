@@ -130,7 +130,7 @@ export default function Projects() {
                 onMouseLeave={handleMouseLeave}
                 onMouseEnter={() => { playHover(); setHoveredIndex(idx); }}
                 onClick={playClick}
-                className="rounded-[28px] glass-card p-6 border-white/5 flex flex-col justify-between h-[450px] relative select-none cursor-grab active:cursor-grabbing hover:border-white/10"
+                className="rounded-[24px] glass-card p-5 border-white/5 flex flex-col justify-between h-[440px] relative select-none cursor-grab active:cursor-grabbing hover:border-white/10"
                 style={{
                   transition: 'transform 0.15s ease-out, box-shadow 0.15s ease-out',
                   transformStyle: 'preserve-3d'
@@ -139,49 +139,51 @@ export default function Projects() {
                 
                 {/* 1. Card Image Mockup Viewport */}
                 <div 
-                  className={`h-[180px] rounded-2xl bg-gradient-to-br ${proj.color} p-4 flex flex-col justify-between overflow-hidden relative group/mock`}
+                  className={`h-[160px] rounded-2xl bg-[#09090b] border border-white/5 p-4 flex flex-col justify-between overflow-hidden relative group/mock`}
                   style={{ transform: 'translateZ(20px)' }}
                 >
                   {/* Grid Lines inside Mockup */}
-                  <div className="absolute inset-0 tech-grid opacity-15 pointer-events-none" />
+                  <div className="absolute inset-0 tech-grid opacity-10 pointer-events-none" />
 
                   {/* Top Bar details */}
                   <div className="flex justify-between items-center relative z-10">
-                    <span className="text-[8px] font-mono bg-black/50 px-2 py-0.5 rounded text-white tracking-widest uppercase">
-                      BUILD.LOG
+                    <span className="text-[7.5px] font-mono bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded text-white/50 tracking-widest uppercase">
+                      BUILD.LOG // v1.0
                     </span>
-                    <Icon className="w-4 h-4 text-white animate-pulse" />
+                    <Icon className="w-3.5 h-3.5 text-white/30 group-hover/mock:text-neon-blue transition-colors animate-pulse" />
                   </div>
 
                   {/* Core Icon illustration */}
-                  <div className="flex-1 flex items-center justify-center relative z-10 group-hover/mock:scale-110 transition-transform duration-500">
-                    <div className="w-12 h-12 rounded-xl bg-black/60 border border-white/15 flex items-center justify-center shadow-lg">
-                      <Icon className="w-5 h-5 text-white" />
+                  <div className="flex-1 flex items-center justify-center relative z-10 group-hover/mock:scale-105 transition-transform duration-500">
+                    <div className="w-11 h-11 rounded-xl bg-black border border-white/5 flex items-center justify-center shadow-lg relative">
+                      {/* Subtly glowing top line on hover */}
+                      <div className="absolute inset-x-0 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-neon-blue/40 to-transparent opacity-0 group-hover/mock:opacity-100 transition-opacity" />
+                      <Icon className="w-4 h-4 text-white" />
                     </div>
                   </div>
 
                   {/* Bottom details block */}
-                  <div className="relative z-10 flex justify-between items-center text-[9px] font-mono text-white/80">
-                    <span>STATUS: COMPILED</span>
+                  <div className="relative z-10 flex justify-between items-center text-[8px] font-mono text-white/30">
+                    <span>STATE: STABLE</span>
                     <span>READY</span>
                   </div>
 
                   {/* Subtle vector lines design */}
-                  <div className="absolute -right-4 -bottom-4 w-24 h-24 border border-white/10 rounded-full scale-110 pointer-events-none" />
+                  <div className="absolute -right-4 -bottom-4 w-20 h-20 border border-white/5 rounded-full scale-110 pointer-events-none" />
                 </div>
 
                 {/* 2. Text Details */}
-                <div className="flex-1 flex flex-col justify-between pt-6 space-y-4" style={{ transform: 'translateZ(30px)' }}>
+                <div className="flex-1 flex flex-col justify-between pt-5 space-y-3.5" style={{ transform: 'translateZ(30px)' }}>
                   
                   {/* Metadata and Title */}
-                  <div className="space-y-1 text-left">
-                    <span className="text-[10px] font-mono text-neon-blue uppercase tracking-widest font-bold">
+                  <div className="space-y-1.5 text-left">
+                    <span className="text-[9px] font-mono text-neon-blue uppercase tracking-widest font-bold">
                       {proj.subtitle}
                     </span>
-                    <h3 className="text-xl font-bold font-poppins text-white tracking-tight leading-tight">
+                    <h3 className="text-base font-extrabold font-poppins text-white tracking-wide leading-tight">
                       {proj.title}
                     </h3>
-                    <p className="text-[11px] text-text-gray leading-relaxed font-sans font-light line-clamp-3">
+                    <p className="text-[10px] text-text-gray/70 leading-relaxed font-sans font-light line-clamp-3">
                       {proj.desc}
                     </p>
                   </div>
@@ -189,14 +191,14 @@ export default function Projects() {
                   {/* Tech stack badges */}
                   <div className="flex flex-wrap gap-1.5">
                     {proj.tech.map(t => (
-                      <span key={t} className="text-[9px] font-mono bg-white/5 border border-white/10 px-2 py-0.5 rounded text-white">
+                      <span key={t} className="text-[8.5px] font-mono bg-white/[0.01] border border-white/5 px-2 py-0.5 rounded text-white/80">
                         {t}
                       </span>
                     ))}
                   </div>
 
                   {/* Action buttons footer */}
-                  <div className="flex justify-between items-center pt-4 border-t border-white/5">
+                  <div className="flex justify-between items-center pt-3 border-t border-white/[0.03]">
                     
                     <a
                       href={proj.github}
@@ -204,7 +206,7 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       onClick={(e) => { playClick(); e.stopPropagation(); }}
                       onMouseEnter={playHover}
-                      className="text-[10px] font-mono text-text-gray hover:text-white flex items-center gap-1.5 transition-colors uppercase tracking-wider"
+                      className="text-[9px] font-mono text-text-gray hover:text-white flex items-center gap-1.5 transition-colors uppercase tracking-widest font-bold"
                     >
                       <Github className="w-3.5 h-3.5" />
                       Repository
@@ -216,10 +218,10 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       onClick={(e) => { playClick(); e.stopPropagation(); }}
                       onMouseEnter={playHover}
-                      className="text-[10px] font-mono text-neon-blue font-bold flex items-center gap-1 hover:text-neon-purple transition-colors uppercase tracking-wider"
+                      className="text-[9px] font-mono text-neon-blue font-bold flex items-center gap-1 hover:text-neon-purple transition-colors uppercase tracking-widest"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
-                      Live Link
+                      Live Preview
                     </a>
 
                   </div>

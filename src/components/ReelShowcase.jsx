@@ -291,49 +291,49 @@ export default function ReelShowcase() {
           </div>
 
           {/* Central Instagram Reel Smart Phone Shell */}
-          <div className="relative w-[340px] h-[640px] sm:w-[360px] sm:h-[680px] bg-black rounded-[52px] p-3 border-4 border-white/10 shadow-[0_0_80px_rgba(0,240,255,0.15)] flex flex-col select-none z-10">
+          <div className="relative w-[330px] h-[610px] sm:w-[340px] sm:h-[630px] bg-black rounded-[48px] p-2.5 border border-zinc-800 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] flex flex-col select-none z-10">
             
             {/* Phone Front Camera notch */}
-            <div className="absolute top-5 left-1/2 -translate-x-1/2 w-28 h-5 bg-black rounded-full z-50 flex items-center justify-center">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#111] border border-white/10"></div>
+            <div className="absolute top-4.5 left-1/2 -translate-x-1/2 w-24 h-4 bg-black rounded-full z-50 flex items-center justify-center">
+              <div className="w-2 h-2 rounded-full bg-[#111] border border-white/5"></div>
             </div>
 
             {/* Main Inside Viewport */}
-            <div className="relative flex-1 bg-background-secondary rounded-[42px] overflow-hidden flex flex-col border border-white/5">
+            <div className="relative flex-1 bg-background-secondary rounded-[38px] overflow-hidden flex flex-col border border-white/5">
               
               {/* Active project card wrapper with parallax */}
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeProject.id}
-                  initial={{ opacity: 0, y: 120, scale: 0.95 }}
+                  initial={{ opacity: 0, y: 80, scale: 0.98 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -120, scale: 0.95 }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+                  exit={{ opacity: 0, y: -80, scale: 0.98 }}
+                  transition={{ type: 'spring', stiffness: 280, damping: 26 }}
                   className="absolute inset-0 flex flex-col"
                 >
                   {/* Dynamic Project Visualizer Panel representing vertical video */}
-                  <div className={`relative h-2/3 bg-gradient-to-br ${activeProject.gradient} p-6 flex flex-col justify-between overflow-hidden group`}>
+                  <div className={`relative h-[62%] bg-gradient-to-br ${activeProject.gradient} p-5 flex flex-col justify-between overflow-hidden group`}>
                     
                     {/* Visualizer animation details depending on pattern type */}
                     <div className="absolute inset-0 opacity-20 pointer-events-none">
                       {activeProject.visualPattern === 'circles' && (
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-48 h-48 border border-white rounded-full animate-ping"></div>
-                          <div className="absolute w-72 h-72 border border-white/50 rounded-full animate-spin-slow"></div>
+                          <div className="w-36 h-36 border border-white rounded-full animate-ping"></div>
+                          <div className="absolute w-56 h-56 border border-white/30 rounded-full animate-spin-slow"></div>
                         </div>
                       )}
                       {activeProject.visualPattern === 'matrix' && (
                         <div className="tech-grid w-full h-full animate-pulse-slow"></div>
                       )}
                       {activeProject.visualPattern === 'cubes' && (
-                        <div className="absolute w-full h-full flex flex-wrap gap-4 p-4">
-                          {Array.from({ length: 32 }).map((_, i) => (
-                            <div key={i} className="w-8 h-8 rounded border border-white/30 animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
+                        <div className="absolute w-full h-full flex flex-wrap gap-3.5 p-3">
+                          {Array.from({ length: 24 }).map((_, i) => (
+                            <div key={i} className="w-7 h-7 rounded border border-white/20 animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
                           ))}
                         </div>
                       )}
                       {activeProject.visualPattern === 'curves' && (
-                        <div className="absolute inset-0 border-[20px] border-white/10 rounded-full scale-125 animate-float"></div>
+                        <div className="absolute inset-0 border-[15px] border-white/10 rounded-full scale-110 animate-float"></div>
                       )}
                       {activeProject.visualPattern === 'grid' && (
                         <div className="tech-grid-cyan w-full h-full"></div>
@@ -341,22 +341,22 @@ export default function ReelShowcase() {
                     </div>
 
                     {/* Floating top bar info */}
-                    <div className="relative flex justify-between items-center z-10 pt-4">
-                      <span className="text-[10px] font-mono bg-black/40 px-2 py-0.5 rounded-full text-white tracking-widest uppercase flex items-center gap-1.5 backdrop-blur-md">
-                        <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></span>
-                        LIVE PREVIEW
+                    <div className="relative flex justify-between items-center z-10 pt-2.5">
+                      <span className="text-[8px] font-mono bg-black/50 px-2 py-0.5 rounded-full text-white tracking-widest uppercase flex items-center gap-1 backdrop-blur-md">
+                        <span className="w-1 h-1 bg-red-500 rounded-full animate-pulse"></span>
+                        PREVIEW
                       </span>
-                      <div className="flex gap-2">
+                      <div className="flex gap-1.5">
                         <a 
                           href={activeProject.live} 
                           target="_blank" 
                           rel="noopener noreferrer"
                           onClick={(e) => { playClick(); e.stopPropagation(); }}
                           onMouseEnter={playHover}
-                          className="p-1.5 rounded-full bg-black/40 hover:bg-neon-blue hover:text-black transition-colors"
+                          className="p-1 rounded-full bg-black/50 hover:bg-neon-blue hover:text-black transition-colors"
                           title="Open Live Website"
                         >
-                          <ExternalLink className="w-3.5 h-3.5" />
+                          <ExternalLink className="w-3 h-3" />
                         </a>
                         <a 
                           href={activeProject.github} 
@@ -364,87 +364,87 @@ export default function ReelShowcase() {
                           rel="noopener noreferrer"
                           onClick={(e) => { playClick(); e.stopPropagation(); }}
                           onMouseEnter={playHover}
-                          className="p-1.5 rounded-full bg-black/40 hover:bg-neon-purple hover:text-white transition-colors"
+                          className="p-1 rounded-full bg-black/50 hover:bg-neon-purple hover:text-white transition-colors"
                           title="Open Github Code"
                         >
-                          <Github className="w-3.5 h-3.5" />
+                          <Github className="w-3 h-3" />
                         </a>
                       </div>
                     </div>
 
                     {/* Animated central project visual logo/title block */}
-                    <div className="relative flex flex-col items-center justify-center text-center py-4 z-10 group-hover:scale-105 transition-transform duration-500">
-                      <div className="w-16 h-16 rounded-2xl bg-black/50 border border-white/20 flex items-center justify-center mb-3 shadow-lg backdrop-blur-md">
-                        <Award className="w-8 h-8 text-white animate-pulse" />
+                    <div className="relative flex flex-col items-center justify-center text-center py-2 z-10 group-hover:scale-[1.02] transition-transform duration-500">
+                      <div className="w-12 h-12 rounded-xl bg-black/50 border border-white/10 flex items-center justify-center mb-2.5 shadow-lg backdrop-blur-md">
+                        <Award className="w-6 h-6 text-white animate-pulse" />
                       </div>
-                      <h4 className="text-xl font-black font-poppins text-white drop-shadow-md tracking-tight">
+                      <h4 className="text-base font-extrabold font-poppins text-white drop-shadow-md tracking-tight leading-tight">
                         {activeProject.title}
                       </h4>
-                      <p className="text-[10px] font-mono text-white/70 uppercase tracking-widest mt-1">
+                      <p className="text-[8px] font-mono text-white/60 uppercase tracking-widest mt-0.5">
                         {activeProject.subtitle}
                       </p>
                     </div>
 
                     {/* Technical badge overlay */}
-                    <div className="relative z-10 flex flex-wrap gap-1.5 max-w-[90%]">
+                    <div className="relative z-10 flex flex-wrap gap-1 max-w-[95%]">
                       {activeProject.tech.map(t => (
-                        <span key={t} className="text-[9px] font-mono bg-black/60 px-2 py-0.5 rounded text-neon-blue border border-neon-blue/10 backdrop-blur-md">
+                        <span key={t} className="text-[7.5px] font-mono bg-black/50 px-1.5 py-0.5 rounded text-neon-blue border border-neon-blue/5 backdrop-blur-md">
                           #{t.replace(/\s+/g, '')}
                         </span>
                       ))}
                     </div>
 
                     {/* Bottom gradient fade */}
-                    <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
+                    <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
                   </div>
 
-                  {/* Reel Metadata Details & Bottom Panel (simulated player details) */}
-                  <div className="h-1/3 bg-black/95 p-4 flex flex-col justify-between border-t border-white/5 relative">
+                  {/* Reel Metadata Details & Bottom Panel */}
+                  <div className="h-[38%] bg-[#030305] p-3.5 flex flex-col justify-between border-t border-white/[0.04] relative">
                     
                     {/* Main description section */}
-                    <div className="space-y-1.5">
-                      <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-neon-blue/10 border border-neon-blue/40 flex items-center justify-center font-mono text-[9px] font-bold text-neon-blue">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-5 h-5 rounded-full bg-neon-blue/10 border border-neon-blue/30 flex items-center justify-center font-mono text-[8px] font-bold text-neon-blue select-none">
                           MZ
                         </div>
-                        <span className="text-xs font-bold text-white font-poppins">codebyzakki.in</span>
-                        <span className="text-[9px] bg-neon-blue/10 text-neon-blue border border-neon-blue/30 px-1.5 py-0.2 rounded font-mono font-bold animate-pulse">DEV</span>
+                        <span className="text-[10px] font-bold text-white font-poppins">codebyzakki.in</span>
+                        <span className="text-[7.5px] bg-neon-blue/10 text-neon-blue border border-neon-blue/20 px-1 rounded font-mono font-bold select-none">PRO</span>
                       </div>
-                      <p className="text-[10px] text-text-gray font-light font-sans line-clamp-3 leading-relaxed">
+                      <p className="text-[9.5px] text-text-gray/80 font-light font-sans line-clamp-3 leading-normal">
                         {activeProject.desc}
                       </p>
                     </div>
 
                     {/* Scrolling Audio Marquee bar mimicking Instagram */}
-                    <div className="flex justify-between items-center pt-2 border-t border-white/5 font-mono text-[9px] text-text-gray">
+                    <div className="flex justify-between items-center pt-2 border-t border-white/5 font-mono text-[8px] text-text-gray/50">
                       <div className="flex items-center gap-1.5 overflow-hidden w-2/3">
-                        <span className="animate-pulse">🎵</span>
+                        <span className="animate-pulse text-[7px]">🎵</span>
                         <div className="whitespace-nowrap overflow-hidden relative w-full">
-                          <span className="inline-block animate-marquee uppercase tracking-wider">Original Audio - CodeByZakki.in</span>
+                          <span className="inline-block animate-marquee uppercase tracking-wider">Original - CodeByZakki.in</span>
                         </div>
                       </div>
-                      <span className="text-white/60 font-bold bg-white/5 px-2 py-0.5 rounded text-[8px]">
-                        SWIPE FOR MORE
+                      <span className="text-white/40 font-bold bg-white/5 px-1.5 py-0.2 rounded text-[7.5px]">
+                        SWIPE
                       </span>
                     </div>
 
                     {/* Right vertical action bar floating on phone overlay */}
-                    <div className="absolute right-4 bottom-20 flex flex-col items-center gap-4 z-20">
+                    <div className="absolute right-3.5 bottom-16 flex flex-col items-center gap-3.5 z-20">
                       
                       {/* Heart Like button */}
                       <div className="flex flex-col items-center">
                         <button
                           onClick={(e) => handleLike(activeProject.id, e)}
                           onMouseEnter={playHover}
-                          className={`p-2.5 rounded-full transition-all duration-300 shadow-md ${
+                          className={`p-2 rounded-full transition-all duration-300 shadow-md ${
                             likedStates[activeProject.id] 
-                              ? 'bg-neon-pink text-white scale-125' 
+                              ? 'bg-neon-pink text-white scale-110' 
                               : 'bg-black/60 text-white hover:text-neon-pink hover:bg-black/80'
                           }`}
                         >
-                          <Heart className={`w-4 h-4 ${likedStates[activeProject.id] ? 'fill-current' : ''}`} />
+                          <Heart className={`w-3.5 h-3.5 ${likedStates[activeProject.id] ? 'fill-current' : ''}`} />
                         </button>
-                        <span className="text-[9px] font-mono text-white/80 mt-1">
+                        <span className="text-[8px] font-mono text-white/50 mt-0.5">
                           {likedStates[activeProject.id] ? activeProject.likes + 1 : activeProject.likes}
                         </span>
                       </div>
@@ -454,11 +454,11 @@ export default function ReelShowcase() {
                         <button
                           onClick={(e) => { playClick(); e.stopPropagation(); setCommentsVisible(true); }}
                           onMouseEnter={playHover}
-                          className="p-2.5 rounded-full bg-black/60 text-white hover:text-neon-blue hover:bg-black/80 shadow-md transition-colors"
+                          className="p-2 rounded-full bg-black/60 text-white hover:text-neon-blue hover:bg-black/80 shadow-md transition-colors"
                         >
-                          <MessageCircle className="w-4 h-4" />
+                          <MessageCircle className="w-3.5 h-3.5" />
                         </button>
-                        <span className="text-[9px] font-mono text-white/80 mt-1">
+                        <span className="text-[8px] font-mono text-white/50 mt-0.5">
                           {allComments.length}
                         </span>
                       </div>
@@ -468,16 +468,16 @@ export default function ReelShowcase() {
                         <button
                           onClick={(e) => handleShare(activeProject.title, activeProject.live, e)}
                           onMouseEnter={playHover}
-                          className="p-2.5 rounded-full bg-black/60 text-white hover:text-neon-purple hover:bg-black/80 shadow-md transition-colors"
+                          className="p-2 rounded-full bg-black/60 text-white hover:text-neon-purple hover:bg-black/80 shadow-md transition-colors"
                         >
-                          <Share2 className="w-4 h-4" />
+                          <Share2 className="w-3.5 h-3.5" />
                         </button>
-                        <span className="text-[9px] font-mono text-white/80 mt-1">Share</span>
+                        <span className="text-[7.5px] font-mono text-white/40 mt-0.5">Copy</span>
                       </div>
 
                       {/* Spinning audio vinyl disc */}
-                      <div className="w-8 h-8 rounded-full border border-white/20 bg-gradient-to-br from-neon-blue to-neon-purple p-0.5 animate-spin-slow shadow-lg">
-                        <div className="w-full h-full rounded-full bg-black flex items-center justify-center text-[7px]">⚡</div>
+                      <div className="w-6 h-6 rounded-full border border-white/20 bg-gradient-to-br from-neon-blue to-neon-purple p-0.5 animate-[spin_4s_linear_infinite] shadow-lg">
+                        <div className="w-full h-full rounded-full bg-black flex items-center justify-center text-[5px]">⚡</div>
                       </div>
 
                     </div>
