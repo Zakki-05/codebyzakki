@@ -262,7 +262,7 @@ export default function Hero() {
                 <div className="absolute w-28 h-28 rounded-full border border-neon-purple/10 animate-[spin_5s_linear_infinite_reverse]"></div>
                 
                 {/* SVG profile picture avatar */}
-                <div className="w-22 h-22 rounded-full bg-[#050505] border border-white/5 flex items-center justify-center relative shadow-lg overflow-hidden glowing-ring">
+                <div className="w-24 h-24 rounded-full bg-[#050505] border border-white/5 flex items-center justify-center relative shadow-lg overflow-hidden glowing-ring">
                   <img 
                     src={PROFILE_IMG} 
                     alt="Mohammed Zakki Adnaan" 
