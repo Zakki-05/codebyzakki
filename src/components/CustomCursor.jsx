@@ -33,7 +33,10 @@ export default function CustomCursor() {
     const moveCursor = (e) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
+      setIsVisible(prev => {
+        if (!prev) return true;
+        return prev;
+      });
     };
 
     const handleMouseLeave = () => {
@@ -95,7 +98,7 @@ export default function CustomCursor() {
       document.removeEventListener('mouseenter', handleMouseEnter);
       window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, [isVisible, cursorX, cursorY]);
+  }, []);
 
   if (isMobile) return null;
 

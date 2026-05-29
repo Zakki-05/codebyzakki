@@ -4,7 +4,7 @@ import { ArrowRight, Github, Linkedin, Mail, Instagram, ChevronDown, Terminal, C
 import { useSound } from './SoundManager';
 
 // Profile image path — uses Vite's base URL resolution
-const PROFILE_IMG = new URL('/my-pic.png', import.meta.url).href;
+const PROFILE_IMG = new URL('/my-pic.jpg', import.meta.url).href;
 
 const ROLES = [
   'Frontend Developer',
@@ -175,8 +175,9 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 onClick={playClick}
                 onMouseEnter={playHover}
-                className="p-2 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
+                className="p-2.5 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
                 title="Github profile"
+                aria-label="Mohammed Zakki Adnaan's GitHub profile"
               >
                 <Github className="w-3.5 h-3.5" />
               </a>
@@ -186,8 +187,9 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 onClick={playClick}
                 onMouseEnter={playHover}
-                className="p-2 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
+                className="p-2.5 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
                 title="LinkedIn profile"
+                aria-label="Mohammed Zakki Adnaan's LinkedIn profile"
               >
                 <Linkedin className="w-3.5 h-3.5" />
               </a>
@@ -195,8 +197,9 @@ export default function Hero() {
                 href="mailto:zakkibca2023@gmail.com"
                 onClick={playClick}
                 onMouseEnter={playHover}
-                className="p-2 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
+                className="p-2.5 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
                 title="Email direct"
+                aria-label="Send email to Mohammed Zakki Adnaan"
               >
                 <Mail className="w-3.5 h-3.5" />
               </a>
@@ -206,8 +209,9 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 onClick={playClick}
                 onMouseEnter={playHover}
-                className="p-2 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
+                className="p-2.5 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
                 title="Instagram profile"
+                aria-label="Mohammed Zakki Adnaan's Instagram profile"
               >
                 <Instagram className="w-3.5 h-3.5" />
               </a>

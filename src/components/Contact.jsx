@@ -202,6 +202,7 @@ export default function Contact() {
                     onClick={playClick}
                     onMouseEnter={playHover}
                     className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/[0.01] border border-white/5 hover:border-neon-blue/20 hover:bg-white/[0.02] transition-all group"
+                    aria-label={`Visit Mohammed Zakki's ${social.label} profile`}
                   >
                     <social.icon className="w-3.5 h-3.5 text-text-gray/70 group-hover:text-neon-blue transition-colors" />
                     <span className="text-[10px] font-mono text-text-gray/80 group-hover:text-white transition-colors">{social.label}</span>
@@ -269,12 +270,13 @@ export default function Contact() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* Name Field */}
                     <div className="space-y-1.5 text-left">
-                      <label className="text-[8.5px] font-mono text-text-gray/50 uppercase tracking-widest block pl-1">
+                      <label htmlFor="contact-name" className="text-[8.5px] font-mono text-text-gray/50 uppercase tracking-widest block pl-1">
                         Your Name
                       </label>
                       <input
                         type="text"
                         name="name"
+                        id="contact-name"
                         value={formData.name}
                         onChange={handleChange}
                         onFocus={playHover}
@@ -286,12 +288,13 @@ export default function Contact() {
 
                     {/* Email Field */}
                     <div className="space-y-1.5 text-left">
-                      <label className="text-[8.5px] font-mono text-text-gray/50 uppercase tracking-widest block pl-1">
+                      <label htmlFor="contact-email" className="text-[8.5px] font-mono text-text-gray/50 uppercase tracking-widest block pl-1">
                         Your Email
                       </label>
                       <input
                         type="email"
                         name="email"
+                        id="contact-email"
                         value={formData.email}
                         onChange={handleChange}
                         onFocus={playHover}
@@ -304,12 +307,13 @@ export default function Contact() {
 
                   {/* Subject Field */}
                   <div className="space-y-1.5 text-left">
-                    <label className="text-[8.5px] font-mono text-text-gray/50 uppercase tracking-widest block pl-1">
+                    <label htmlFor="contact-subject" className="text-[8.5px] font-mono text-text-gray/50 uppercase tracking-widest block pl-1">
                       Subject
                     </label>
                     <input
                       type="text"
                       name="subject"
+                      id="contact-subject"
                       value={formData.subject}
                       onChange={handleChange}
                       onFocus={playHover}
@@ -321,11 +325,12 @@ export default function Contact() {
 
                   {/* Message Field */}
                   <div className="space-y-1.5 text-left">
-                    <label className="text-[8.5px] font-mono text-text-gray/50 uppercase tracking-widest block pl-1">
+                    <label htmlFor="contact-message" className="text-[8.5px] font-mono text-text-gray/50 uppercase tracking-widest block pl-1">
                       Message
                     </label>
                     <textarea
                       name="message"
+                      id="contact-message"
                       value={formData.message}
                       onChange={handleChange}
                       onFocus={playHover}

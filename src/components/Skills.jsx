@@ -96,7 +96,14 @@ export default function Skills() {
 
                       {/* Right: Progress level indicator */}
                       <div className="flex items-center gap-3 relative z-10 w-24 sm:w-28 flex-shrink-0">
-                        <div className="h-1 w-full bg-white/[0.03] border border-white/5 rounded-full overflow-hidden p-[0.5px]">
+                        <div 
+                          className="h-1 w-full bg-white/[0.03] border border-white/5 rounded-full overflow-hidden p-[0.5px]"
+                          role="progressbar" 
+                          aria-valuenow={skill.level} 
+                          aria-valuemin="0" 
+                          aria-valuemax="100"
+                          aria-label={`Proficiency in ${skill.name}`}
+                        >
                           <motion.div
                             initial={{ width: 0 }}
                             whileInView={{ width: `${skill.level}%` }}

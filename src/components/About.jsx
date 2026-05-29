@@ -113,7 +113,7 @@ export default function About() {
                 <div className="absolute w-full h-[1.5px] bg-white/20 shadow-[0_0_8px_rgba(255,255,255,0.3)] top-0 left-0 laser-scan-line z-20 pointer-events-none"></div>
 
                 <img 
-                  src="/my-pic.png" 
+                  src="/my-pic.jpg" 
                   alt="Mohammed Zakki Adnaan" 
                   className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500 relative z-10" 
                   onError={(e) => { e.currentTarget.style.display = 'none'; }}
@@ -128,7 +128,7 @@ export default function About() {
 
               {/* Status information and metadata logs */}
               <div className="text-center space-y-1">
-                <h4 className="text-sm font-extrabold font-poppins text-white uppercase tracking-wide">Mohammed Zakki Adnaan P</h4>
+                <h3 className="text-sm font-extrabold font-poppins text-white uppercase tracking-wide">Mohammed Zakki Adnaan P</h3>
                 <span className="text-[8.5px] font-mono text-text-gray/60 block uppercase tracking-wide">Islamiah College (Autonomous), Vaniyambadi</span>
                 <span className="text-[9px] font-mono text-neon-blue block uppercase font-bold tracking-widest">BCA DEGREE // BATCH OF 2026</span>
               </div>

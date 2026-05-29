@@ -145,20 +145,9 @@ export default function Background3D() {
       particles.rotation.y = elapsedTime * 0.02 + targetX * 0.12;
       particles.rotation.x = elapsedTime * 0.01 + targetY * 0.12;
       
-      // Parallax upward slide during page scroll
-      particles.position.y = scrollY * 0.015;
-
-      // Animate vertices position slightly like glowing cosmic waves
-      const positionAttr = geometry.attributes.position;
-      for (let i = 0; i < particleCount; i++) {
-        const xValue = positionAttr.getX(i);
-        const zValue = positionAttr.getZ(i);
-        
-        // Sine wave calculations based on distance from core and time
-        const wave = Math.sin(elapsedTime * 0.4 * speed[i] + (xValue * 0.1) + (zValue * 0.1)) * 0.25;
-        positionAttr.setY(i, initialY[i] + wave);
-      }
-      positionAttr.needsUpdate = true;
+      // Parallax upward slide during page scroll + ultra-lightweight GPU floating effect
+      particles.position.y = (scrollY * 0.015) + (Math.sin(elapsedTime * 0.3) * 1.2);
+      particles.position.x = Math.cos(elapsedTime * 0.2) * 0.8;
 
       renderer.render(scene, camera);
       animationFrameId = requestAnimationFrame(animate);

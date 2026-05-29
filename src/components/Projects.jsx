@@ -206,7 +206,8 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       onClick={(e) => { playClick(); e.stopPropagation(); }}
                       onMouseEnter={playHover}
-                      className="text-[9px] font-mono text-text-gray hover:text-white flex items-center gap-1.5 transition-colors uppercase tracking-widest font-bold"
+                      className="py-2 px-3 -my-2 -mx-3 text-[10px] font-mono text-text-gray hover:text-white flex items-center gap-1.5 transition-colors uppercase tracking-widest font-bold"
+                      aria-label={`View GitHub repository for project ${proj.title}`}
                     >
                       <Github className="w-3.5 h-3.5" />
                       Repository
@@ -218,7 +219,8 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       onClick={(e) => { playClick(); e.stopPropagation(); }}
                       onMouseEnter={playHover}
-                      className="text-[9px] font-mono text-neon-blue font-bold flex items-center gap-1 hover:text-neon-purple transition-colors uppercase tracking-widest"
+                      className="py-2 px-3 -my-2 -mx-3 text-[10px] font-mono text-neon-blue font-bold flex items-center gap-1 hover:text-neon-purple transition-colors uppercase tracking-widest"
+                      aria-label={`View live demo for project ${proj.title}`}
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                       Live Preview

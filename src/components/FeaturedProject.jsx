@@ -103,6 +103,7 @@ export default function FeaturedProject() {
                 onClick={playClick}
                 onMouseEnter={playHover}
                 className="px-5 py-2.5 rounded-full bg-white text-black hover:bg-neon-blue hover:text-black font-mono text-[10px] font-bold tracking-widest transition-all duration-300 flex items-center gap-1.5 hover:scale-105"
+                aria-label="View live application of Pernambut Connection"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
                 LIVE APPLICATION
@@ -115,6 +116,7 @@ export default function FeaturedProject() {
                 onClick={playClick}
                 onMouseEnter={playHover}
                 className="px-5 py-2.5 rounded-full border border-white/5 bg-white/[0.01] hover:border-white/10 text-white font-mono text-[10px] font-bold tracking-widest transition-all duration-300 flex items-center gap-1.5 hover:bg-white/[0.03] hover:scale-105"
+                aria-label="View client code repository of Pernambut Connection"
               >
                 <Github className="w-3.5 h-3.5" />
                 CLIENT CODE
@@ -127,6 +129,7 @@ export default function FeaturedProject() {
                 onClick={playClick}
                 onMouseEnter={playHover}
                 className="px-5 py-2.5 rounded-full border border-neon-purple/20 bg-neon-purple/[0.01] text-neon-purple font-mono text-[10px] font-bold tracking-widest transition-all duration-300 flex items-center gap-1.5 hover:bg-neon-purple hover:text-white hover:scale-105"
+                aria-label="View backend database code repository of Pernambut Connection"
               >
                 <Server className="w-3.5 h-3.5" />
                 BACKEND REPO

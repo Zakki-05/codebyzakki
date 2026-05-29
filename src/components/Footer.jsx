@@ -49,6 +49,7 @@ export default function Footer() {
               onClick={handleScrollTop}
               onMouseEnter={playHover}
               className="flex items-center gap-1.5 font-poppins text-base font-black tracking-[0.2em] text-white uppercase"
+              aria-label="Mohammed Zakki Adnaan - Go to top of page"
             >
               <span>ZAKKI</span>
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse-slow"></span>
@@ -67,8 +68,9 @@ export default function Footer() {
               rel="noopener noreferrer"
               onClick={playClick}
               onMouseEnter={playHover}
-              className="p-2.5 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
+              className="p-3 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
               title="Github direct"
+              aria-label="Mohammed Zakki Adnaan's GitHub profile"
             >
               <Github className="w-4 h-4" />
             </a>
@@ -78,8 +80,9 @@ export default function Footer() {
               rel="noopener noreferrer"
               onClick={playClick}
               onMouseEnter={playHover}
-              className="p-2.5 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
+              className="p-3 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
               title="LinkedIn direct"
+              aria-label="Mohammed Zakki Adnaan's LinkedIn profile"
             >
               <Linkedin className="w-4 h-4" />
             </a>
@@ -87,8 +90,9 @@ export default function Footer() {
               href="mailto:zakkibca2023@gmail.com"
               onClick={playClick}
               onMouseEnter={playHover}
-              className="p-2.5 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
+              className="p-3 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
               title="Email direct"
+              aria-label="Send direct email to Mohammed Zakki Adnaan"
             >
               <Mail className="w-4 h-4" />
             </a>
@@ -98,8 +102,9 @@ export default function Footer() {
               rel="noopener noreferrer"
               onClick={playClick}
               onMouseEnter={playHover}
-              className="p-2.5 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
+              className="p-3 rounded-xl bg-white/[0.01] hover:bg-neon-blue hover:text-black border border-white/5 hover:border-neon-blue text-text-gray hover:scale-105 transition-all duration-300"
               title="Instagram direct"
+              aria-label="Mohammed Zakki Adnaan's Instagram profile"
             >
               <Instagram className="w-4 h-4" />
             </a>

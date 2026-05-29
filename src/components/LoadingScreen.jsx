@@ -7,26 +7,10 @@ export default function LoadingScreen({ onComplete }) {
   const [loadingText, setLoadingText] = useState('Booting system core...');
 
   useEffect(() => {
-    // Stage-based message updates to feel like a high-tech terminal booting up
-    const textInterval = setInterval(() => {
-      if (progress < 25) {
-        setLoadingText('Initializing portfolio assets...');
-      } else if (progress < 50) {
-        setLoadingText('Loading cinematic rendering engines...');
-      } else if (progress < 75) {
-        setLoadingText('Compiling Full-Stack credentials...');
-      } else if (progress < 95) {
-        setLoadingText('Establishing secure network pathways...');
-      } else {
-        setLoadingText('Welcome to Zakki\'s universe.');
-      }
-    }, 200);
-
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          clearInterval(textInterval);
           setTimeout(() => {
             onComplete();
           }, 600); // Small pause at 100% for impact
@@ -35,15 +19,29 @@ export default function LoadingScreen({ onComplete }) {
         
         // Non-linear progress increment to feel organic & authentic
         const diff = Math.random() * 8 + 2;
-        return Math.min(Math.floor(prev + diff), 100);
+        const next = Math.min(Math.floor(prev + diff), 100);
+
+        // Stage-based message updates to feel like a high-tech terminal booting up
+        if (next < 25) {
+          setLoadingText('Initializing portfolio assets...');
+        } else if (next < 50) {
+          setLoadingText('Loading cinematic rendering engines...');
+        } else if (next < 75) {
+          setLoadingText('Compiling Full-Stack credentials...');
+        } else if (next < 95) {
+          setLoadingText('Establishing secure network pathways...');
+        } else {
+          setLoadingText("Welcome to Zakki's universe.");
+        }
+
+        return next;
       });
     }, 80);
 
     return () => {
       clearInterval(interval);
-      clearInterval(textInterval);
     };
-  }, [progress, onComplete]);
+  }, [onComplete]);
 
   return (
     <div className="fixed inset-0 bg-[#050505] z-[99999] flex flex-col items-center justify-center p-6">
