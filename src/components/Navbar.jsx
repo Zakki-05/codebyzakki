@@ -95,11 +95,21 @@ export default function Navbar() {
         />
       )}
 
-      <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled 
-          ? 'py-3.5 bg-background-primary/50 backdrop-blur-2xl border-b border-white/[0.04] shadow-[0_4px_30px_rgba(0,0,0,0.5)]' 
-          : 'py-6 bg-transparent'
-      }`}>
+      <header 
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+          isOpen
+            ? 'py-3.5'
+            : scrolled 
+              ? 'py-3.5 bg-background-primary/50 backdrop-blur-2xl border-b border-white/[0.04] shadow-[0_4px_30px_rgba(0,0,0,0.5)]' 
+              : 'py-6 bg-transparent'
+        }`}
+        style={isOpen ? { 
+          backgroundColor: 'rgba(10, 10, 12, 0.96)', 
+          borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)'
+        } : {}}
+      >
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           
           {/* Logo brand */}
