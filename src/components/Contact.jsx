@@ -34,8 +34,11 @@ const SOCIAL_LINKS = [
   { icon: Mail, label: 'Email', href: 'mailto:zakkibca2023@gmail.com' }
 ];
 
-// ⚡ Web3Forms Access Key — Get yours free at https://web3forms.com
-const WEB3FORMS_ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE';
+// ⚡ EmailJS Configuration — Get yours at https://www.emailjs.com
+// Replace these placeholders with your actual EmailJS keys to connect the pipeline!
+const EMAILJS_SERVICE_ID = 'service_your_id';
+const EMAILJS_TEMPLATE_ID = 'template_your_id';
+const EMAILJS_PUBLIC_KEY = 'your_public_key';
 
 export default function Contact() {
   const { playHover, playClick, playSuccess } = useSound();
@@ -62,32 +65,48 @@ export default function Contact() {
     setIsSending(true);
     setSubmitError('');
 
+    // Check if real keys are configured. If not, run in interactive demo mode.
+    if (EMAILJS_SERVICE_ID === 'service_your_id' || EMAILJS_PUBLIC_KEY === 'your_public_key') {
+      await new Promise(resolve => setTimeout(resolve, 1200));
+      setIsSubmitted(true);
+      playSuccess();
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      }, 5000);
+      setIsSending(false);
+      return;
+    }
+
     try {
       const payload = {
-        name: formData.name,
-        email: formData.email,
-        _subject: formData.subject || `Portfolio Contact from ${formData.name}`,
-        message: formData.message,
+        service_id: EMAILJS_SERVICE_ID,
+        template_id: EMAILJS_TEMPLATE_ID,
+        user_id: EMAILJS_PUBLIC_KEY,
+        template_params: {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject || `Portfolio Contact from ${formData.name}`,
+          message: formData.message,
+        }
       };
 
-      const response = await fetch('https://formsubmit.co/ajax/zakkibca2023@gmail.com', {
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
 
-      const result = await response.json();
-
-      if (result.success === 'true' || result.success === true || response.ok) {
+      if (response.ok) {
         setIsSubmitted(true);
         playSuccess();
-        // Reset after showing success
         setTimeout(() => {
           setIsSubmitted(false);
           setFormData({ name: '', email: '', subject: '', message: '' });
         }, 5000);
       } else {
-        setSubmitError(result.message || 'Something went wrong. Please try again.');
+        const text = await response.text();
+        setSubmitError(text || 'Something went wrong. Please check your EmailJS credentials.');
       }
     } catch (error) {
       setSubmitError('Network error. Please check your connection and try again.');
@@ -362,7 +381,7 @@ export default function Contact() {
 
                   {/* Bottom fine print */}
                   <p className="text-[7.5px] font-mono text-text-gray/40 text-center tracking-widest uppercase pt-2">
-                    // encrypted pipeline routed via Web3Forms REST
+                    // secure communication pipe routed via EmailJS REST
                   </p>
                 </form>
               )}

@@ -87,7 +87,7 @@ export default function Services() {
                 transition={{ delay: idx * 0.05, type: 'spring', stiffness: 200, damping: 22 }}
                 onClick={playClick}
                 onMouseEnter={playHover}
-                className="p-8 rounded-[32px] glass-card border-white/5 flex flex-col items-start text-left h-[260px] justify-between group cursor-pointer relative overflow-hidden hover:scale-[1.02]"
+                className="p-8 rounded-[32px] glass-card flex flex-col items-start text-left h-[260px] justify-between group cursor-pointer relative overflow-hidden hover:scale-[1.02]"
                 style={{
                   transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
                 }}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Mail, Instagram, ChevronDown, Terminal, Cpu, ShieldAlert, Zap, Download } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Mail, Instagram, ChevronDown, Terminal, Cpu, ShieldAlert, Zap, Download, Database } from 'lucide-react';
 import { useSound } from './SoundManager';
 
 // Profile image path — uses Vite's base URL resolution
@@ -114,16 +114,16 @@ export default function Hero() {
 
             {/* Giant Title Name */}
             <h1 className="text-5xl sm:text-7xl font-extrabold font-poppins tracking-tight text-white leading-[1.05]">
-              Mohammed <br />
+              Mohammad <br />
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-neon-blue to-neon-purple drop-shadow-sm font-black">
-                Zakki Adnaan P
+                Zakki Adnaan
               </span>
             </h1>
 
             {/* Professional Tagline */}
             <div className="space-y-2 text-left">
               <h2 className="font-mono text-xs sm:text-sm text-neon-blue uppercase tracking-[0.2em] font-bold">
-                Frontend Developer | React.js Developer
+                Frontend Developer | React Developer
               </h2>
               <p className="font-poppins text-lg sm:text-2xl text-white font-extrabold tracking-wide uppercase leading-tight">
                 Building Responsive and Modern Web Applications
@@ -139,12 +139,12 @@ export default function Hero() {
           {/* Action Call to Buttons */}
           <div className="flex flex-wrap gap-3.5">
             <a
-              href="#reels-showcase"
-              onClick={(e) => handleScrollClick(e, '#reels-showcase')}
+              href="#projects"
+              onClick={(e) => handleScrollClick(e, '#projects')}
               onMouseEnter={playHover}
               className="px-6 py-3 rounded-full bg-white text-black hover:bg-neon-blue hover:text-black font-mono text-[10px] font-bold tracking-widest transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105"
             >
-              EXPLORE REELS
+              VIEW PROJECTS
               <ArrowRight className="w-3.5 h-3.5" />
             </a>
             
@@ -154,7 +154,7 @@ export default function Hero() {
               onMouseEnter={playHover}
               className="px-6 py-3 rounded-full border border-white/5 bg-white/[0.01] hover:border-white/10 text-white font-mono text-[10px] font-bold tracking-widest transition-all duration-300 flex items-center justify-center gap-2 hover:bg-white/[0.03] hover:scale-105"
             >
-              HIRE ME
+              CONTACT ME
             </a>
 
             <a
@@ -231,6 +231,47 @@ export default function Hero() {
           <div className="absolute w-[240px] h-[240px] rounded-full border border-dashed border-neon-blue/5 animate-spin-slow pointer-events-none"></div>
           <div className="absolute w-[320px] h-[320px] rounded-full border border-dashed border-neon-purple/5 animate-[spin_30s_linear_infinite] pointer-events-none"></div>
 
+          {/* Floating Tech Badges */}
+          <motion.div
+            animate={{ y: [-10, 10, -10] }}
+            transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
+            className="absolute -top-6 -right-6 p-2.5 rounded-2xl glass-panel border-white/5 z-20 flex items-center gap-1.5 shadow-lg select-none pointer-events-none"
+            style={{ transform: 'translateZ(60px)' }}
+          >
+            <Cpu className="w-3.5 h-3.5 text-[#61dafb]" />
+            <span className="text-[8px] font-mono font-bold tracking-widest">REACT</span>
+          </motion.div>
+
+          <motion.div
+            animate={{ y: [8, -8, 8] }}
+            transition={{ repeat: Infinity, duration: 4.5, ease: 'easeInOut' }}
+            className="absolute top-12 -left-10 p-2.5 rounded-2xl glass-panel border-white/5 z-20 flex items-center gap-1.5 shadow-lg select-none pointer-events-none"
+            style={{ transform: 'translateZ(50px)' }}
+          >
+            <Terminal className="w-3.5 h-3.5 text-[#f7df1e]" />
+            <span className="text-[8px] font-mono font-bold tracking-widest">JS</span>
+          </motion.div>
+
+          <motion.div
+            animate={{ y: [-6, 6, -6] }}
+            transition={{ repeat: Infinity, duration: 3.8, ease: 'easeInOut' }}
+            className="absolute -bottom-6 -left-6 p-2.5 rounded-2xl glass-panel border-white/5 z-20 flex items-center gap-1.5 shadow-lg select-none pointer-events-none"
+            style={{ transform: 'translateZ(40px)' }}
+          >
+            <Zap className="w-3.5 h-3.5 text-[#06b6d4]" />
+            <span className="text-[8px] font-mono font-bold tracking-widest">TAILWIND</span>
+          </motion.div>
+
+          <motion.div
+            animate={{ y: [6, -6, 6] }}
+            transition={{ repeat: Infinity, duration: 4.2, ease: 'easeInOut' }}
+            className="absolute bottom-12 -right-10 p-2.5 rounded-2xl glass-panel border-white/5 z-20 flex items-center gap-1.5 shadow-lg select-none pointer-events-none"
+            style={{ transform: 'translateZ(55px)' }}
+          >
+            <Database className="w-3.5 h-3.5 text-[#092e20]" />
+            <span className="text-[8px] font-mono font-bold tracking-widest">DJANGO</span>
+          </motion.div>
+
           {/* Interactive Card container */}
           <div
             ref={cardRef}
@@ -269,7 +310,7 @@ export default function Hero() {
                 <div className="w-24 h-24 aspect-square rounded-full bg-[#050505] border border-white/5 flex items-center justify-center relative shadow-lg overflow-hidden glowing-ring shrink-0 flex-shrink-0">
                   <img 
                     src={PROFILE_IMG} 
-                    alt="Mohammed Zakki Adnaan" 
+                    alt="Mohammad Zakki Adnaan" 
                     className="w-full h-full object-cover rounded-full relative z-10" 
                     loading="eager"
                     onError={(e) => {
@@ -299,7 +340,7 @@ export default function Hero() {
                 <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
                 <span className="text-[7.5px] text-white/30 ml-1">react_kernel.json</span>
               </div>
-              <p className="text-text-gray/80"><span className="text-neon-purple">const</span> developer = <span className="text-white">"Mohammed Zakki"</span>;</p>
+              <p className="text-text-gray/80"><span className="text-neon-purple">const</span> developer = <span className="text-white">"Mohammad Zakki"</span>;</p>
               <p className="text-text-gray/80"><span className="text-neon-purple">const</span> stack = [<span className="text-neon-blue">"React"</span>, <span className="text-neon-blue">"Tailwind"</span>, <span className="text-neon-blue">"Django"</span>];</p>
               <p className="text-white/20">// Connection established successfully</p>
             </div>

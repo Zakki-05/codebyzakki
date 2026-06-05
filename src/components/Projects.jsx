@@ -174,7 +174,7 @@ export default function Projects() {
                 onMouseLeave={handleMouseLeave}
                 onMouseEnter={() => { playHover(); setHoveredIndex(idx); }}
                 onClick={playClick}
-                className="rounded-[24px] glass-card p-5 border-white/5 flex flex-col justify-between min-h-[500px] relative select-none cursor-grab active:cursor-grabbing hover:border-white/10"
+                className="rounded-[24px] glass-card p-5 flex flex-col justify-between min-h-[500px] relative select-none cursor-grab active:cursor-grabbing"
                 style={{
                   transition: 'transform 0.15s ease-out, box-shadow 0.15s ease-out',
                   transformStyle: 'preserve-3d'

@@ -149,6 +149,12 @@ export default function Background3D() {
       particles.position.y = (scrollY * 0.015) + (Math.sin(elapsedTime * 0.3) * 1.2);
       particles.position.x = Math.cos(elapsedTime * 0.2) * 0.8;
 
+      // Adjust particle materials based on active theme
+      const isLight = document.documentElement.classList.contains('light');
+      material.opacity = isLight ? 0.25 : 0.60;
+      material.size = isLight ? 0.48 : 0.65;
+      material.blending = isLight ? THREE.NormalBlending : THREE.AdditiveBlending;
+
       renderer.render(scene, camera);
       animationFrameId = requestAnimationFrame(animate);
     };

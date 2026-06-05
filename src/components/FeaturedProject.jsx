@@ -149,7 +149,7 @@ export default function FeaturedProject() {
               ref={showcaseRef}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
-              className="w-full max-w-lg h-[330px] rounded-[24px] glass-card border-white/[0.03] overflow-hidden flex flex-col relative select-none cursor-grab active:cursor-grabbing"
+              className="w-full max-w-lg h-[330px] rounded-[24px] glass-card overflow-hidden flex flex-col relative select-none cursor-grab active:cursor-grabbing"
               style={{
                 transition: 'transform 0.15s ease-out',
                 transformStyle: 'preserve-3d'

@@ -77,7 +77,7 @@ export default function Achievements() {
                 transition={{ delay: idx * 0.1, type: 'spring', stiffness: 200, damping: 20 }}
                 onClick={playClick}
                 onMouseEnter={playHover}
-                className="p-6 rounded-[24px] glass-card border-white/5 flex flex-col justify-between hover:border-white/10 group cursor-pointer relative"
+                className="p-6 rounded-[24px] glass-card flex flex-col justify-between group cursor-pointer relative"
               >
                 {/* Accent glow on hover */}
                 <div className="absolute inset-0 rounded-[24px] border border-neon-blue/0 group-hover:border-white/5 transition-all duration-300 pointer-events-none" />

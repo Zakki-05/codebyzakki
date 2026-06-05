@@ -87,7 +87,7 @@ export default function Testimonials() {
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: -50, scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 220, damping: 24 }}
-              className="w-full rounded-[32px] glass-card p-8 md:p-12 border-white/5 relative overflow-hidden flex flex-col justify-between"
+              className="w-full rounded-[32px] glass-card p-8 md:p-12 relative overflow-hidden flex flex-col justify-between"
             >
               
               {/* Glowing decorative Quote Icon in corner */}

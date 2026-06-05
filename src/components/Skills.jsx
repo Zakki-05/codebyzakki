@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Palette, Sparkles, Wind, Database, Link, GitBranch, Smartphone, Layers, Terminal, Grid } from 'lucide-react';
+import { Code, Palette, Sparkles, Wind, Database, Link, GitBranch, Smartphone, Layers, Terminal, Grid, Globe, Server } from 'lucide-react';
 import { useSound } from './SoundManager';
 
 const SKILL_CATEGORIES = [
@@ -12,8 +12,8 @@ const SKILL_CATEGORIES = [
       { name: 'HTML5 Platform', icon: Code, levelText: 'Advanced', color: 'from-[#e34f26] to-[#f06529]', shadow: 'rgba(240,101,41,0.1)' },
       { name: 'CSS3 Styling', icon: Palette, levelText: 'Advanced', color: 'from-[#1572b6] to-[#33a9dc]', shadow: 'rgba(21,114,182,0.1)' },
       { name: 'Tailwind CSS', icon: Wind, levelText: 'Advanced', color: 'from-[#06b6d4] to-[#3b82f6]', shadow: 'rgba(6,182,212,0.1)' },
-      { name: 'Responsive Design', icon: Smartphone, levelText: 'Advanced', color: 'from-[#10b981] to-[#059669]', shadow: 'rgba(16,185,129,0.1)' },
-      { name: 'UI/UX Visuals', icon: Layers, levelText: 'Intermediate', color: 'from-[#00f0ff] to-[#8b5cf6]', shadow: 'rgba(0,240,255,0.1)' }
+      { name: 'Bootstrap Grids', icon: Grid, levelText: 'Intermediate', color: 'from-[#7952b3] to-[#9b66cc]', shadow: 'rgba(121,82,179,0.1)' },
+      { name: 'Responsive Design', icon: Smartphone, levelText: 'Advanced', color: 'from-[#10b981] to-[#059669]', shadow: 'rgba(16,185,129,0.1)' }
     ]
   },
   {
@@ -26,8 +26,14 @@ const SKILL_CATEGORIES = [
   {
     title: 'Tools',
     skills: [
-      { name: 'Git & Github CD', icon: GitBranch, levelText: 'Intermediate', color: 'from-[#f05032] to-[#ff6b4a]', shadow: 'rgba(240,80,50,0.1)' },
-      { name: 'Bootstrap Grids', icon: Grid, levelText: 'Intermediate', color: 'from-[#7952b3] to-[#9b66cc]', shadow: 'rgba(121,82,179,0.1)' }
+      { name: 'Git & Github', icon: GitBranch, levelText: 'Intermediate', color: 'from-[#f05032] to-[#ff6b4a]', shadow: 'rgba(240,80,50,0.1)' }
+    ]
+  },
+  {
+    title: 'Deployment',
+    skills: [
+      { name: 'Netlify Hosting', icon: Globe, levelText: 'Intermediate', color: 'from-[#00c8c8] to-[#008080]', shadow: 'rgba(0,200,200,0.1)' },
+      { name: 'Render Deploy', icon: Server, levelText: 'Intermediate', color: 'from-[#4646ec] to-[#1010b0]', shadow: 'rgba(70,70,236,0.1)' }
     ]
   }
 ];
@@ -59,7 +65,7 @@ export default function Skills() {
         </div>
 
         {/* Categorized Skills Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {SKILL_CATEGORIES.map((cat, catIdx) => (
             <div key={cat.title} className="space-y-6">
               
@@ -81,7 +87,7 @@ export default function Skills() {
                       transition={{ delay: skillIdx * 0.05 + catIdx * 0.1, type: 'spring', stiffness: 200, damping: 20 }}
                       onClick={playClick}
                       onMouseEnter={playHover}
-                      className="p-4 rounded-xl glass-card border-white/5 flex items-center justify-between group cursor-pointer relative overflow-hidden"
+                      className="p-4 rounded-xl glass-card flex items-center justify-between group cursor-pointer relative overflow-hidden"
                     >
                       {/* Subtle hover background accent */}
                       <div className="absolute inset-0 bg-white/[0.005] group-hover:bg-white/[0.015] transition-all duration-300 pointer-events-none" />

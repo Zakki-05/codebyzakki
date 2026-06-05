@@ -5,68 +5,44 @@ import { useSound } from './SoundManager';
 
 const TIMELINE = [
   {
-    title: 'Completed Class XII',
-    date: 'June 2023',
-    desc: 'Graduated from Islamiah Higher Secondary School, Pernambut, under the Tamil Nadu State Board.',
-    icon: School,
+    title: 'React.js Web Applications',
+    date: 'Ongoing Experience',
+    desc: 'Architected and built multiple responsive frontend applications with React.js. Utilized Hooks, Context, State, and Framer Motion to craft high-fidelity dynamic interfaces.',
+    icon: Code,
     color: 'border-neon-blue bg-neon-blue/10 text-neon-blue',
     shadow: 'rgba(0, 240, 255, 0.2)'
   },
   {
-    title: 'Began BCA Degree',
-    date: 'August 2023',
-    desc: 'Joined Islamiah College (Autonomous), Vaniyambadi, to pursue a Bachelor of Computer Applications.',
-    icon: GraduationCap,
+    title: 'REST API Integrations',
+    date: 'Full Stack Integration',
+    desc: 'Integrated modern React client dashboards with Python Django and Django REST framework API endpoints, implementing secure JWT tokens and local data caching layers.',
+    icon: Blocks,
     color: 'border-neon-purple bg-neon-purple/10 text-neon-purple',
     shadow: 'rgba(139, 92, 246, 0.2)'
   },
   {
-    title: 'Flask Micro-Framework',
-    date: 'September 2024',
-    desc: 'Completed a technical workshop on Python-based web development using Flask at Sacred Heart College.',
-    icon: Code,
+    title: 'Responsive UI Development',
+    date: 'Liquid Breakpoint Grid Systems',
+    desc: 'Developed mobile-first, cross-browser compatible layouts conforming instantly to any viewport breakpoint (320px, 375px, 768px, 1024px, 1440px+).',
+    icon: Search,
     color: 'border-neon-pink bg-neon-pink/10 text-neon-pink',
     shadow: 'rgba(236, 72, 153, 0.2)'
   },
   {
-    title: 'Frontend Developer Intern',
-    date: 'July 2025',
-    desc: 'Applied HTML5, CSS3, and JavaScript principles at AspiraSys to build functional web components and interactive layouts.',
+    title: 'Deployment & CI/CD Orchestration',
+    date: 'Cloud Infrastructure',
+    desc: 'Orchestrated direct live application environments using Netlify, Render, and Vercel. Synchronized continuous deployment hooks connected with GitHub repositories.',
     icon: Rocket,
     color: 'border-emerald-400 bg-emerald-400/10 text-emerald-400',
     shadow: 'rgba(16, 185, 129, 0.2)'
   },
   {
-    title: 'Industrial Training',
-    date: 'Sep 2025 - Oct 2025',
-    desc: 'Completed a 6-week intensive Web Development, AI Tools & Deployment Platforms training program in Chennai.',
-    icon: Blocks,
+    title: 'Frontend Developer Intern (AspiraSys)',
+    date: 'July 2025',
+    desc: 'Collaborated on code review guidelines, designed modular UI components, and integrated clean JavaScript codebases to increase rendering performance.',
+    icon: Award,
     color: 'border-neon-blue bg-neon-blue/10 text-neon-blue',
     shadow: 'rgba(0, 240, 255, 0.2)'
-  },
-  {
-    title: 'First Place Winner',
-    date: 'December 2025',
-    desc: 'Secured 1st Place in the Pirates Pursuits event at the TECH-FRENZY 2K25 National Level Technical Symposium.',
-    icon: Sparkles,
-    color: 'border-neon-purple bg-neon-purple/10 text-neon-purple',
-    shadow: 'rgba(139, 92, 246, 0.2)'
-  },
-  {
-    title: 'Third Prize Winner',
-    date: 'December 2025',
-    desc: 'Won 3rd Prize in the ADZ - AP event hosted at the Sacred Heart College IT Symposium.',
-    icon: Award,
-    color: 'border-neon-pink bg-neon-pink/10 text-neon-pink',
-    shadow: 'rgba(236, 72, 153, 0.2)'
-  },
-  {
-    title: 'Frontend Developer Projects',
-    date: 'Present Day',
-    desc: 'Built 5+ responsive web applications, developed React-based user interfaces, integrated REST APIs, and managed deployments using Netlify and Render.',
-    icon: Search,
-    color: 'border-emerald-400 bg-emerald-400/10 text-emerald-400 animate-pulse',
-    shadow: 'rgba(16, 185, 129, 0.3)'
   }
 ];
 
@@ -131,7 +107,7 @@ export default function Experience() {
                       transition={{ type: 'spring', stiffness: 200, damping: 22 }}
                       onMouseEnter={playHover}
                       onClick={playClick}
-                      className="p-6 rounded-[24px] glass-card border-white/5 hover:border-white/10 hover:scale-[1.01] cursor-pointer relative"
+                      className="p-6 rounded-[24px] glass-card hover:scale-[1.01] cursor-pointer relative"
                     >
                       {/* Interactive glowing highlight */}
                       <div className="absolute inset-0 rounded-[24px] border border-neon-blue/0 hover:border-neon-blue/15 transition-colors" />

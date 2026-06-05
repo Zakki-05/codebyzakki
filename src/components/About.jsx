@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { User, Award, Shield, CheckCircle, Cpu, Network, Compass, Sparkles } from 'lucide-react';
+import { User, Award, Shield, CheckCircle, Cpu, Network, Compass, Sparkles, GraduationCap, Briefcase, Zap, BookOpen } from 'lucide-react';
 import { useSound } from './SoundManager';
 
 const STATS = [
@@ -114,7 +114,7 @@ export default function About() {
 
                 <img 
                   src="/my-pic.jpg" 
-                  alt="Mohammed Zakki Adnaan" 
+                  alt="Mohammad Zakki Adnaan" 
                   className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500 relative z-10" 
                   onError={(e) => { e.currentTarget.style.display = 'none'; }}
                 />
@@ -128,7 +128,7 @@ export default function About() {
 
               {/* Status information and metadata logs */}
               <div className="text-center space-y-1">
-                <h3 className="text-sm font-extrabold font-poppins text-white uppercase tracking-wide">Mohammed Zakki Adnaan P</h3>
+                <h3 className="text-sm font-extrabold font-poppins text-white uppercase tracking-wide">Mohammad Zakki Adnaan</h3>
                 <span className="text-[8.5px] font-mono text-text-gray/60 block uppercase tracking-wide">Islamiah College (Autonomous), Vaniyambadi</span>
                 <span className="text-[9px] font-mono text-neon-blue block uppercase font-bold tracking-widest">BCA DEGREE // BATCH OF 2026</span>
               </div>
@@ -161,83 +161,142 @@ export default function About() {
           </div>
         </div>
 
-        {/* Right Side: Text & Stats Bento Layout */}
-        <div className="lg:col-span-7 space-y-8 text-left">
+        {/* Right Side: Bento Grid Layout */}
+        <div className="lg:col-span-7 space-y-6 text-left">
           
-          {/* Section title block */}
-          <div className="space-y-4">
+          {/* Section header */}
+          <div className="space-y-3">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-neon-purple/20 bg-neon-purple/[0.02] text-neon-purple text-[10px] font-mono tracking-widest uppercase">
-              <Sparkles className="w-3 h-3" />
+              <Sparkles className="w-3 h-3 animate-pulse" />
               BIOGRAPHICAL_DOSSIER
             </div>
-            <h2 className="text-3xl md:text-5xl font-extrabold font-poppins tracking-tight text-white uppercase">
+            <h2 className="text-3xl md:text-5xl font-extrabold font-poppins tracking-tight text-white uppercase leading-none">
               ABOUT ME
             </h2>
-            <p className="text-text-gray text-xs md:text-sm font-light leading-relaxed font-sans max-w-2xl">
-              I am an engineered Frontend Developer specializing in translating creative visual wireframes into fast, secure, and clean web applications. With my Bachelor of Computer Applications (BCA) foundation, a complete AspiraSys frontend internship, and extensive training in Chennai, I create bulletproof React user spaces and integrate highly performant Python Django REST APIs.
-            </p>
           </div>
 
-          {/* Stats grid section */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {STATS.map((stat, idx) => {
-              const Icon = stat.icon;
-              return (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.08, type: 'spring', stiffness: 200, damping: 20 }}
-                  onClick={playClick}
-                  onMouseEnter={playHover}
-                  className="p-5 rounded-2xl glass-card border-white/5 flex items-center gap-4 group cursor-pointer relative"
-                >
-                  
-                  {/* Subtle hover glow ring inside */}
-                  <div className="absolute inset-0 rounded-2xl border border-neon-blue/0 group-hover:border-white/5 transition-all duration-300" />
-                  
-                  {/* Stat Icon badge */}
-                  <div className="p-2.5 rounded-xl bg-white/[0.01] border border-white/5 text-text-gray group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300">
-                    <Icon className="w-4.5 h-4.5" />
-                  </div>
-
-                  {/* Stat details */}
-                  <div className="space-y-0.5 text-left">
-                    <div className="flex items-baseline">
-                      <Counter value={stat.value} suffix={stat.suffix} />
-                    </div>
-                    <p className="text-[10px] font-mono text-text-gray/60 tracking-wider uppercase font-semibold">
-                      {stat.label}
-                    </p>
-                  </div>
-
-                </motion.div>
-              );
-            })}
-          </div>
-
-          {/* Why Hire Me? Section */}
-          <div className="pt-8 border-t border-white/5 space-y-4">
-            <h3 className="font-poppins text-lg font-bold text-white uppercase tracking-wide flex items-center gap-2">
-              <span className="w-1.5 h-3 bg-neon-blue rounded-full"></span>
-              Why Hire Me?
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs md:text-sm font-sans font-light text-text-gray">
-              {[
-                'Strong HTML, CSS & JavaScript Fundamentals',
-                'React.js Development Experience',
-                'Responsive Web Design',
-                'REST API Integration',
-                'Git & GitHub Workflow',
-                'Fast Learner and Team Player'
-              ].map((point, idx) => (
-                <div key={idx} className="flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.01] border border-white/5 hover:border-white/10 transition-colors">
-                  <span className="text-neon-blue font-bold">✔</span>
-                  <span className="text-white/80">{point}</span>
+          {/* Bento Cards Container */}
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-5">
+            
+            {/* Card 1: Professional Intro & Career Objective (Span 4) */}
+            <div className="md:col-span-4 p-6 rounded-[24px] glass-card space-y-4 flex flex-col justify-between">
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-neon-blue font-mono text-[9px] tracking-wider uppercase font-bold">
+                  <User className="w-3.5 h-3.5" />
+                  // CAREER_OBJECTIVE
                 </div>
-              ))}
+                <h3 className="font-poppins text-lg font-bold text-white tracking-wide">
+                  Frontend & React Developer
+                </h3>
+                <p className="text-text-gray text-xs md:text-sm font-light leading-relaxed font-sans">
+                  I specialize in translating creative visual wireframes into fast, secure, and clean web applications. With my Bachelor of Computer Applications foundation, a completed AspiraSys frontend internship, and intensive training, I build bulletproof React user spaces and integrate highly performant Python Django REST APIs.
+                </p>
+              </div>
+              <p className="text-neon-purple/90 text-xs font-medium font-sans">
+                Target Roles: Frontend Developer, React Developer in Bangalore & Chennai.
+              </p>
             </div>
+
+            {/* Card 2: Quick Metrics / Stats Grid (Span 2) */}
+            <div className="md:col-span-2 p-5 rounded-[24px] glass-card grid grid-cols-2 gap-4 items-center">
+              {STATS.map((stat) => {
+                const Icon = stat.icon;
+                return (
+                  <div key={stat.label} className="space-y-1">
+                    <div className="w-8 h-8 rounded-lg bg-white/[0.02] border border-white/5 text-text-gray flex items-center justify-center">
+                      <Icon className="w-3.5 h-3.5" />
+                    </div>
+                    <div className="text-left">
+                      <Counter value={stat.value} suffix={stat.suffix} />
+                      <p className="text-[7.5px] font-mono text-text-gray/50 tracking-wider uppercase leading-tight mt-0.5 animate-pulse">
+                        {stat.label.split(' ')[0]}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Card 3: Education Timeline (Span 3) */}
+            <div className="md:col-span-3 p-6 rounded-[24px] glass-card space-y-4 text-left">
+              <div className="flex items-center gap-2 text-neon-blue font-mono text-[9px] tracking-wider uppercase font-bold">
+                <GraduationCap className="w-3.5 h-3.5" />
+                // EDUCATION_TIMELINE
+              </div>
+              <div className="space-y-3">
+                <div className="relative pl-4 border-l border-white/10">
+                  <div className="absolute -left-[4.5px] top-1 w-2 h-2 rounded-full bg-neon-purple" />
+                  <span className="text-[9px] font-mono text-neon-purple font-bold">2023 - 2026</span>
+                  <h4 className="text-xs font-bold text-white font-poppins tracking-wide">BCA Graduate</h4>
+                  <p className="text-[10px] text-text-gray font-light mt-0.5 leading-normal">
+                    Islamiah College (Autonomous), Vaniyambadi. Completed BCA with strong fundamentals in software engineering & web systems.
+                  </p>
+                </div>
+                <div className="relative pl-4 border-l border-white/0">
+                  <div className="absolute -left-[4.5px] top-1 w-2 h-2 rounded-full bg-white/20" />
+                  <span className="text-[9px] font-mono text-white/40">2023</span>
+                  <h4 className="text-xs font-bold text-white/40 font-poppins tracking-wide">Class XII Graduate</h4>
+                  <p className="text-[10px] text-white/30 font-light mt-0.5">
+                    Islamiah Higher Secondary School, Pernambut.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 4: Personal Strengths (Span 3) */}
+            <div className="md:col-span-3 p-6 rounded-[24px] glass-card space-y-4 text-left">
+              <div className="flex items-center gap-2 text-neon-blue font-mono text-[9px] tracking-wider uppercase font-bold">
+                <Zap className="w-3.5 h-3.5" />
+                // CORE_STRENGTHS
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-[10px] text-text-gray font-sans font-light">
+                {[
+                  'Visual Precision',
+                  'Modular Systems',
+                  'REST Integration',
+                  'Fast Adaptability',
+                  'Git Collaboration',
+                  'Responsive Design'
+                ].map((point) => (
+                  <div key={point} className="flex items-center gap-1.5 p-2 rounded-xl bg-white/[0.01] border border-white/5 hover:border-white/10 transition-colors">
+                    <span className="text-neon-purple font-bold">✓</span>
+                    <span className="text-white/80 font-medium">{point}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Card 5: Experience Highlights (Span 6) */}
+            <div className="md:col-span-6 p-6 rounded-[24px] glass-card space-y-4 text-left">
+              <div className="flex items-center gap-2 text-neon-purple font-mono text-[9px] tracking-wider uppercase font-bold">
+                <Briefcase className="w-3.5 h-3.5" />
+                // EXPERIENCE_HIGHLIGHTS
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="p-3.5 rounded-xl bg-white/[0.01] border border-white/5 hover:border-white/10 transition-all">
+                  <span className="text-[9px] font-mono text-neon-blue font-bold">JULY 2025</span>
+                  <h4 className="text-xs font-bold text-white font-poppins mt-1">AspiraSys Internship</h4>
+                  <p className="text-[10px] text-text-gray mt-1 leading-normal font-sans font-light">
+                    Built interactive layouts, responsive web components and handled Git reviews.
+                  </p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-white/[0.01] border border-white/5 hover:border-white/10 transition-all">
+                  <span className="text-[9px] font-mono text-neon-purple font-bold">SEP - OCT 2025</span>
+                  <h4 className="text-xs font-bold text-white font-poppins mt-1">Industrial Training</h4>
+                  <p className="text-[10px] text-text-gray mt-1 leading-normal font-sans font-light">
+                    6-week intensive web dev, AI integration & deployment training in Chennai.
+                  </p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-white/[0.01] border border-white/5 hover:border-white/10 transition-all">
+                  <span className="text-[9px] font-mono text-emerald-400 font-bold">DECEMBER 2025</span>
+                  <h4 className="text-xs font-bold text-white font-poppins mt-1">Symposium Laurels</h4>
+                  <p className="text-[10px] text-text-gray mt-1 leading-normal font-sans font-light">
+                    Won 1st Place in Pirates Pursuits & 3rd Prize in ADZ-AP IT Symposiums.
+                  </p>
+                </div>
+              </div>
+            </div>
+
           </div>
 
         </div>
