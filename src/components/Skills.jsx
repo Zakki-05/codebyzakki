@@ -7,27 +7,27 @@ const SKILL_CATEGORIES = [
   {
     title: 'Core Architecture',
     skills: [
-      { name: 'React JS', icon: Terminal, level: 90, color: 'from-[#61dafb] to-[#1fc8f8]', shadow: 'rgba(97,218,251,0.1)' },
-      { name: 'JavaScript (ES6+)', icon: Sparkles, level: 92, color: 'from-[#f7df1e] to-[#f0db4f]', shadow: 'rgba(247,223,30,0.1)' },
-      { name: 'HTML5 Platform', icon: Code, level: 95, color: 'from-[#e34f26] to-[#f06529]', shadow: 'rgba(240,101,41,0.1)' },
-      { name: 'CSS3 Styling', icon: Palette, level: 90, color: 'from-[#1572b6] to-[#33a9dc]', shadow: 'rgba(21,114,182,0.1)' }
+      { name: 'React JS', icon: Terminal, levelText: 'Intermediate', color: 'from-[#61dafb] to-[#1fc8f8]', shadow: 'rgba(97,218,251,0.1)' },
+      { name: 'JavaScript (ES6+)', icon: Sparkles, levelText: 'Intermediate', color: 'from-[#f7df1e] to-[#f0db4f]', shadow: 'rgba(247,223,30,0.1)' },
+      { name: 'HTML5 Platform', icon: Code, levelText: 'Advanced', color: 'from-[#e34f26] to-[#f06529]', shadow: 'rgba(240,101,41,0.1)' },
+      { name: 'CSS3 Styling', icon: Palette, levelText: 'Advanced', color: 'from-[#1572b6] to-[#33a9dc]', shadow: 'rgba(21,114,182,0.1)' }
     ]
   },
   {
     title: 'Frameworks & Design',
     skills: [
-      { name: 'Tailwind CSS', icon: Wind, level: 95, color: 'from-[#06b6d4] to-[#3b82f6]', shadow: 'rgba(6,182,212,0.1)' },
-      { name: 'Bootstrap Grids', icon: Grid, level: 85, color: 'from-[#7952b3] to-[#9b66cc]', shadow: 'rgba(121,82,179,0.1)' },
-      { name: 'UI/UX Visuals', icon: Layers, level: 88, color: 'from-[#00f0ff] to-[#8b5cf6]', shadow: 'rgba(0,240,255,0.1)' },
-      { name: 'Responsive Design', icon: Smartphone, level: 95, color: 'from-[#10b981] to-[#059669]', shadow: 'rgba(16,185,129,0.1)' }
+      { name: 'Tailwind CSS', icon: Wind, levelText: 'Advanced', color: 'from-[#06b6d4] to-[#3b82f6]', shadow: 'rgba(6,182,212,0.1)' },
+      { name: 'Bootstrap Grids', icon: Grid, levelText: 'Intermediate', color: 'from-[#7952b3] to-[#9b66cc]', shadow: 'rgba(121,82,179,0.1)' },
+      { name: 'UI/UX Visuals', icon: Layers, levelText: 'Intermediate', color: 'from-[#00f0ff] to-[#8b5cf6]', shadow: 'rgba(0,240,255,0.1)' },
+      { name: 'Responsive Design', icon: Smartphone, levelText: 'Advanced', color: 'from-[#10b981] to-[#059669]', shadow: 'rgba(16,185,129,0.1)' }
     ]
   },
   {
     title: 'Integrations & Backends',
     skills: [
-      { name: 'Django Framework', icon: Database, level: 80, color: 'from-[#092e20] to-[#12583c]', shadow: 'rgba(9,46,32,0.1)' },
-      { name: 'REST API Caching', icon: Link, level: 85, color: 'from-[#8b5cf6] to-[#ec4899]', shadow: 'rgba(139,92,246,0.1)' },
-      { name: 'Git & Github CD', icon: GitBranch, level: 88, color: 'from-[#f05032] to-[#ff6b4a]', shadow: 'rgba(240,80,50,0.1)' }
+      { name: 'Django Framework', icon: Database, levelText: 'Beginner', color: 'from-[#092e20] to-[#12583c]', shadow: 'rgba(9,46,32,0.1)' },
+      { name: 'REST API Caching', icon: Link, levelText: 'Intermediate', color: 'from-[#8b5cf6] to-[#ec4899]', shadow: 'rgba(139,92,246,0.1)' },
+      { name: 'Git & Github CD', icon: GitBranch, levelText: 'Intermediate', color: 'from-[#f05032] to-[#ff6b4a]', shadow: 'rgba(240,80,50,0.1)' }
     ]
   }
 ];
@@ -81,16 +81,23 @@ export default function Skills() {
                       transition={{ delay: skillIdx * 0.05 + catIdx * 0.1, type: 'spring', stiffness: 200, damping: 20 }}
                       onClick={playClick}
                       onMouseEnter={playHover}
-                      className="p-4 rounded-xl glass-card border-white/5 flex items-center gap-3 group cursor-pointer relative overflow-hidden"
+                      className="p-4 rounded-xl glass-card border-white/5 flex items-center justify-between group cursor-pointer relative overflow-hidden"
                     >
                       {/* Subtle hover background accent */}
                       <div className="absolute inset-0 bg-white/[0.005] group-hover:bg-white/[0.015] transition-all duration-300 pointer-events-none" />
 
                       {/* Icon and Name */}
-                      <div className="p-2 rounded-lg bg-white/[0.02] border border-white/5 text-text-gray group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300 relative z-10">
-                        <Icon className="w-4 h-4" />
+                      <div className="flex items-center gap-3 relative z-10">
+                        <div className="p-2 rounded-lg bg-white/[0.02] border border-white/5 text-text-gray group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300">
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <span className="font-poppins text-xs font-semibold text-white tracking-wide">{skill.name}</span>
                       </div>
-                      <span className="font-poppins text-xs font-semibold text-white tracking-wide relative z-10">{skill.name}</span>
+
+                      {/* Level Badge */}
+                      <span className="font-mono text-[9px] text-neon-blue font-bold tracking-widest px-2 py-0.5 rounded border border-neon-blue/20 bg-neon-blue/5 relative z-10 uppercase">
+                        {skill.levelText}
+                      </span>
                     </motion.div>
                   );
                 })}

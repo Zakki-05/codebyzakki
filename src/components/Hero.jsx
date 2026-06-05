@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Mail, Instagram, ChevronDown, Terminal, Cpu, ShieldAlert, Zap } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Mail, Instagram, ChevronDown, Terminal, Cpu, ShieldAlert, Zap, Download } from 'lucide-react';
 import { useSound } from './SoundManager';
 
 // Profile image path — uses Vite's base URL resolution
@@ -120,11 +120,14 @@ export default function Hero() {
               </span>
             </h1>
 
-            {/* Sub-role typing engine */}
-            <div className="h-8 flex items-center font-mono text-sm md:text-lg text-neon-blue uppercase tracking-[0.25em] font-medium">
-              <span>{`> `}</span>
-              <span className="ml-2">{displayedRole}</span>
-              <span className="w-2 h-4.5 bg-neon-blue ml-1.5 animate-pulse"></span>
+            {/* Professional Tagline */}
+            <div className="space-y-2 text-left">
+              <h2 className="font-mono text-xs sm:text-sm text-neon-blue uppercase tracking-[0.2em] font-bold">
+                Frontend Developer | React.js Developer
+              </h2>
+              <p className="font-poppins text-lg sm:text-2xl text-white font-extrabold tracking-wide uppercase leading-tight">
+                Building Responsive and Modern Web Applications
+              </p>
             </div>
 
             {/* Summary description paragraph */}
@@ -161,7 +164,8 @@ export default function Hero() {
               onClick={playClick}
               className="px-6 py-3 rounded-full border border-neon-purple/20 bg-neon-purple/[0.03] text-neon-purple font-mono text-[10px] font-bold tracking-widest hover:bg-neon-purple hover:text-white transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105"
             >
-              RESUME.PDF
+              <Download className="w-3 h-3" />
+              DOWNLOAD RESUME (PDF)
             </a>
           </div>
 

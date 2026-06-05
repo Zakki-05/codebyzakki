@@ -5,6 +5,12 @@ import { useSound } from './SoundManager';
 
 const TESTIMONIALS = [
   {
+    quote: "Zakki consistently delivered responsive and user-friendly interfaces during our project collaboration.",
+    name: "Mohamed Suhail A",
+    role: "Project Teammate & BCA Classmate",
+    org: "Islamiah College (Autonomous)"
+  },
+  {
     quote: "Working with Mohammed Zakki Adnaan was an absolute game changer. He took our outdated community directory requirements and engineered 'Pernambut Connection'—a highly animated, lightning-fast platform that our town loves. His React work is clean, robust, and beautiful.",
     name: "Ahmed Kareem",
     role: "Founder & Community Lead",

@@ -64,16 +64,13 @@ export default function Contact() {
 
     try {
       const payload = {
-        access_key: WEB3FORMS_ACCESS_KEY,
         name: formData.name,
         email: formData.email,
-        subject: formData.subject || `Portfolio Contact from ${formData.name}`,
+        _subject: formData.subject || `Portfolio Contact from ${formData.name}`,
         message: formData.message,
-        from_name: 'Portfolio Contact Form',
-        botcheck: '', // Honeypot spam protection
       };
 
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('https://formsubmit.co/ajax/zakkibca2023@gmail.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload),
@@ -81,7 +78,7 @@ export default function Contact() {
 
       const result = await response.json();
 
-      if (result.success) {
+      if (result.success === 'true' || result.success === true || response.ok) {
         setIsSubmitted(true);
         playSuccess();
         // Reset after showing success

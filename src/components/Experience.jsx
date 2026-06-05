@@ -61,9 +61,9 @@ const TIMELINE = [
     shadow: 'rgba(236, 72, 153, 0.2)'
   },
   {
-    title: 'Seeking Frontend Roles',
+    title: 'Frontend Developer Projects',
     date: 'Present Day',
-    desc: 'Ready to contribute as a Frontend Developer to engineer next-generation responsive systems and full-stack Django interfaces.',
+    desc: 'Built 5+ responsive web applications, developed React-based user interfaces, integrated REST APIs, and managed deployments using Netlify and Render.',
     icon: Search,
     color: 'border-emerald-400 bg-emerald-400/10 text-emerald-400 animate-pulse',
     shadow: 'rgba(16, 185, 129, 0.3)'

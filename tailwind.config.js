@@ -4,25 +4,26 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
         background: {
-          primary: '#030303',      // Absolute luxury dark background
-          secondary: '#09090b',    // Premium zinc-950
-          card: 'rgba(255, 255, 255, 0.02)', // Ultra-light Vercel card fill
-          cardHover: 'rgba(255, 255, 255, 0.05)'
+          primary: 'var(--bg-primary)',
+          secondary: 'var(--bg-secondary)',
+          card: 'var(--card-bg)',
+          cardHover: 'var(--card-hover)'
         },
         neon: {
-          blue: '#00f0ff',        // Cyan-400 / electric blue
-          purple: '#8b5cf6',      // Violet-500 / warm slate purple
-          pink: '#ec4899',        // Rose-500
-          teal: '#10b981'         // Emerald-500
+          blue: 'var(--neon-blue)',
+          purple: 'var(--neon-purple)',
+          pink: 'var(--neon-pink)',
+          teal: 'var(--neon-teal)'
         },
         text: {
-          white: '#fafafa',       // Sleek off-white (zinc-50)
-          gray: '#8e9196',        // Muted gray-zinc-400 for high-end text readability
-          dark: '#3f3f46'         // Dark zinc-700 for dividers/sub-headers
+          white: 'var(--text-white)',
+          gray: 'var(--text-gray)',
+          dark: 'var(--text-dark)'
         }
       },
       fontFamily: {

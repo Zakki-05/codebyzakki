@@ -43,21 +43,20 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 pb-8 border-b border-white/[0.03]">
           
           {/* Logo brand */}
-          <div className="flex flex-col items-center md:items-start space-y-1.5 text-center md:text-left">
-            <a 
-              href="#home"
-              onClick={handleScrollTop}
-              onMouseEnter={playHover}
-              className="flex items-center gap-1.5 font-poppins text-base font-black tracking-[0.2em] text-white uppercase"
-              aria-label="Mohammed Zakki Adnaan - Go to top of page"
-            >
-              <span>ZAKKI</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse-slow"></span>
-              <span className="text-[9px] font-mono text-neon-purple font-bold">DEV</span>
-            </a>
-            <p className="text-[9px] font-mono text-text-gray/80 uppercase tracking-widest">
-              Pernambut, Tamil Nadu, India // BCA '26
+          <div className="flex flex-col items-center md:items-start space-y-2 text-center md:text-left">
+            <h3 className="font-poppins text-lg font-extrabold text-white tracking-wide uppercase">
+              Mohammad Zakki Adnaan
+            </h3>
+            <p className="text-[10px] font-mono text-neon-blue font-bold uppercase tracking-wider">
+              Frontend Developer | React.js Developer
             </p>
+            <a 
+              href="mailto:zakkibca2023@gmail.com" 
+              onClick={playClick}
+              className="text-xs text-text-gray hover:text-white transition-colors font-mono"
+            >
+              Email: zakkibca2023@gmail.com
+            </a>
           </div>
 
           {/* Quick social links */}
@@ -132,7 +131,7 @@ export default function Footer() {
           
           <div className="flex items-center gap-2">
             <Sparkles className="w-3.5 h-3.5 text-neon-blue animate-spin-slow" />
-            <span>© {new Date().getFullYear()} Mohammed Zakki Adnaan P. All rights reserved.</span>
+            <span>© 2026 All Rights Reserved</span>
           </div>
 
           <a

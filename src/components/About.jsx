@@ -217,6 +217,29 @@ export default function About() {
             })}
           </div>
 
+          {/* Why Hire Me? Section */}
+          <div className="pt-8 border-t border-white/5 space-y-4">
+            <h3 className="font-poppins text-lg font-bold text-white uppercase tracking-wide flex items-center gap-2">
+              <span className="w-1.5 h-3 bg-neon-blue rounded-full"></span>
+              Why Hire Me?
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs md:text-sm font-sans font-light text-text-gray">
+              {[
+                'Strong HTML, CSS & JavaScript Fundamentals',
+                'React.js Development Experience',
+                'Responsive Web Design',
+                'REST API Integration',
+                'Git & GitHub Workflow',
+                'Fast Learner and Team Player'
+              ].map((point, idx) => (
+                <div key={idx} className="flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.01] border border-white/5 hover:border-white/10 transition-colors">
+                  <span className="text-neon-blue font-bold">✔</span>
+                  <span className="text-white/80">{point}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
 
       </div>

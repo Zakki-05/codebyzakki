@@ -34,26 +34,80 @@ html.lenis {
   pointer-events: none;
 }
 
+:root {
+  --bg-primary: #030303;
+  --bg-secondary: #09090b;
+  --card-bg: rgba(255, 255, 255, 0.02);
+  --card-hover: rgba(255, 255, 255, 0.05);
+  
+  --neon-blue: #00f0ff;
+  --neon-purple: #8b5cf6;
+  --neon-pink: #ec4899;
+  --neon-teal: #10b981;
+  
+  --text-white: #fafafa;
+  --text-gray: #8e9196;
+  --text-dark: #3f3f46;
+  
+  --border-color: rgba(255, 255, 255, 0.04);
+  --border-hover-color: rgba(255, 255, 255, 0.08);
+  --glass-card-bg: rgba(9, 9, 11, 0.3);
+  --glass-card-hover-bg: rgba(18, 18, 24, 0.4);
+  --bg-grid-color: rgba(255, 255, 255, 0.01);
+  --shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+:root.light {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --card-bg: rgba(15, 23, 42, 0.02);
+  --card-hover: rgba(15, 23, 42, 0.04);
+  
+  --neon-blue: #0284c7;
+  --neon-purple: #7c3aed;
+  --neon-pink: #db2777;
+  --neon-teal: #059669;
+  
+  --text-white: #0f172a;
+  --text-gray: #475569;
+  --text-dark: #cbd5e1;
+  
+  --border-color: rgba(15, 23, 42, 0.08);
+  --border-hover-color: rgba(15, 23, 42, 0.15);
+  --glass-card-bg: rgba(255, 255, 255, 0.75);
+  --glass-card-hover-bg: rgba(255, 255, 255, 0.9);
+  --bg-grid-color: rgba(15, 23, 42, 0.02);
+  --shadow-color: rgba(15, 23, 42, 0.05);
+}
+
+/* Override hardcoded border utility classes dynamically */
+.border-white\/5 {
+  border-color: var(--border-color) !important;
+}
+.border-white\/10 {
+  border-color: var(--border-hover-color) !important;
+}
+
 /* Glassmorphism Panel styles */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.01);
+  background: var(--card-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
 }
 
 .glass-card {
-  background: rgba(9, 9, 11, 0.3);
+  background: var(--glass-card-bg);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 30px var(--shadow-color);
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
-  border-color: rgba(255, 255, 255, 0.08);
-  background: rgba(18, 18, 24, 0.4);
+  border-color: var(--border-hover-color);
+  background: var(--glass-card-hover-bg);
   box-shadow: 0 10px 40px -10px rgba(0, 240, 255, 0.08);
 }
 
@@ -92,8 +146,8 @@ html.lenis {
 .tech-grid {
   background-size: 50px 50px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+    linear-gradient(to right, var(--bg-grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--bg-grid-color) 1px, transparent 1px);
 }
 
 .tech-grid-cyan {

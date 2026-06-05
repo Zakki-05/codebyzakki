@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Volume2, VolumeX, Send } from 'lucide-react';
+import { Menu, X, Volume2, VolumeX, Send, Sun, Moon, Download } from 'lucide-react';
 import { useSound } from './SoundManager';
 
 const NAV_LINKS = [
@@ -20,6 +20,24 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('#home');
   
   const { isMuted, toggleMute, playHover, playClick } = useSound();
+
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return document.documentElement.classList.contains('light') ? 'light' : 'dark';
+    }
+    return 'dark';
+  });
+
+  const toggleTheme = () => {
+    playClick();
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme);
+    if (nextTheme === 'light') {
+      document.documentElement.classList.add('light');
+    } else {
+      document.documentElement.classList.remove('light');
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -114,7 +132,7 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Action Utilities (Audio, Socials, Mobile toggle) */}
+          {/* Action Utilities (Audio, Theme Toggle, Socials, Mobile toggle) */}
           <div className="flex items-center gap-3">
             
             {/* Audio Toggle Synthesizer */}
@@ -136,6 +154,30 @@ export default function Navbar() {
                 <span className="absolute -inset-1 rounded-full border border-neon-blue/20 animate-ping pointer-events-none" />
               )}
             </button>
+
+            {/* Dark/Light Mode Switcher */}
+            <button
+              onClick={toggleTheme}
+              onMouseEnter={playHover}
+              className="p-2.5 rounded-full border border-white/5 bg-white/5 text-text-gray hover:border-white/10 hover:text-white transition-all duration-300"
+              title={theme === 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
+              aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+            >
+              {theme === 'dark' ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
+            </button>
+
+            {/* Resume Button */}
+            <a
+              href="/MOHAMMED_ZAKKI_ADNAAN_P_Resume_2026.pdf"
+              download="MOHAMMED_ZAKKI_ADNAAN_P_Resume_2026.pdf"
+              onMouseEnter={playHover}
+              onClick={playClick}
+              className="hidden sm:flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-neon-purple/20 bg-neon-purple/[0.03] text-neon-purple text-[10px] font-mono tracking-widest uppercase transition-all duration-300 hover:scale-105 hover:bg-neon-purple hover:text-white"
+              aria-label="Download Resume PDF"
+            >
+              <Download className="w-3 h-3" />
+              RESUME
+            </a>
 
             {/* Quick Contact Button */}
             <a
@@ -185,10 +227,21 @@ export default function Navbar() {
             ))}
             
             <a
+              href="/MOHAMMED_ZAKKI_ADNAAN_P_Resume_2026.pdf"
+              download="MOHAMMED_ZAKKI_ADNAAN_P_Resume_2026.pdf"
+              onMouseEnter={playHover}
+              onClick={playClick}
+              className="flex items-center gap-2 px-8 py-2.5 rounded-full border border-neon-purple/20 bg-neon-purple/[0.03] text-neon-purple font-bold tracking-widest uppercase transition-all duration-300 w-full max-w-xs justify-center text-[11px] hover:bg-neon-purple hover:text-white"
+            >
+              <Download className="w-3.5 h-3.5" />
+              DOWNLOAD RESUME
+            </a>
+
+            <a
               href="#contact"
               onClick={(e) => handleLinkClick(e, '#contact')}
               onMouseEnter={playHover}
-              className="flex items-center gap-2 px-8 py-2.5 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple text-black font-bold tracking-widest uppercase transition-all duration-300 w-full max-w-xs justify-center shadow-lg mt-3 text-[11px]"
+              className="flex items-center gap-2 px-8 py-2.5 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple text-black font-bold tracking-widest uppercase transition-all duration-300 w-full max-w-xs justify-center shadow-lg text-[11px]"
             >
               <Send className="w-3.5 h-3.5" />
               HIRE ME

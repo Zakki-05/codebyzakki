@@ -14,7 +14,9 @@ const TechnicalHighlights = React.lazy(() => import('./components/TechnicalHighl
 const ReelShowcase = React.lazy(() => import('./components/ReelShowcase'));
 const FeaturedProject = React.lazy(() => import('./components/FeaturedProject'));
 const Projects = React.lazy(() => import('./components/Projects'));
+const GithubContributions = React.lazy(() => import('./components/GithubContributions'));
 const Experience = React.lazy(() => import('./components/Experience'));
+const Achievements = React.lazy(() => import('./components/Achievements'));
 const Services = React.lazy(() => import('./components/Services'));
 const Testimonials = React.lazy(() => import('./components/Testimonials'));
 const Contact = React.lazy(() => import('./components/Contact'));
@@ -96,7 +98,9 @@ function CoreApp() {
               <ReelShowcase />
               <FeaturedProject />
               <Projects />
+              <GithubContributions />
               <Experience />
+              <Achievements />
               <Services />
               <Testimonials />
               <Contact />
