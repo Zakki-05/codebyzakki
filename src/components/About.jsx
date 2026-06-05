@@ -1,308 +1,231 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { User, Award, Shield, CheckCircle, Cpu, Network, Compass, Sparkles, GraduationCap, Briefcase, Zap, BookOpen } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
+import { Calendar, GraduationCap, Compass, CheckCircle2, Award, Zap } from 'lucide-react';
 import { useSound } from './SoundManager';
 
-const STATS = [
-  { label: 'Projects Completed', value: 12, suffix: '+', icon: CheckCircle, color: 'text-neon-blue' },
-  { label: 'Technologies Learned', value: 10, suffix: '+', icon: Cpu, color: 'text-neon-purple' },
-  { label: 'Internships Completed', value: 1, suffix: ' (AspiraSys)', icon: Award, color: 'text-neon-pink' },
-  { label: 'Symposium Prizes Won', value: 2, suffix: '', icon: Network, color: 'text-emerald-400' }
-];
-
-// Reusable Counter component that ticks up when entering the viewport
-function Counter({ value, suffix, duration = 1.5 }) {
+// Animated Stats Counter component
+function Counter({ value, duration = 2.5 }) {
   const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   useEffect(() => {
-    if (!isInView) return;
+    const controls = animate(0, value, {
+      duration,
+      ease: 'easeOut',
+      onUpdate: (latest) => setCount(Math.floor(latest))
+    });
+    return () => controls.stop();
+  }, [value, duration]);
 
-    let start = 0;
-    const end = value;
-    if (start === end) return;
-
-    const totalMiliseconds = duration * 1000;
-    const incrementTime = Math.max(Math.floor(totalMiliseconds / end), 20);
-
-    const timer = setInterval(() => {
-      start += 1;
-      setCount(start);
-      if (start >= end) {
-        clearInterval(timer);
-      }
-    }, incrementTime);
-
-    return () => clearInterval(timer);
-  }, [isInView, value, duration]);
-
-  return (
-    <span ref={ref} className="font-mono text-3xl font-black text-white">
-      {count}{suffix}
-    </span>
-  );
+  return <span>{count}</span>;
 }
 
 export default function About() {
   const { playHover, playClick } = useSound();
-  const leftPanelRef = useRef(null);
-
-  // High performance custom 3D card tilt handler for the left HUD graphic
-  const handleMouseMove = (e) => {
-    if (!leftPanelRef.current) return;
-    const card = leftPanelRef.current;
-    const box = card.getBoundingClientRect();
-    const x = e.clientX - box.left - box.width / 2;
-    const y = e.clientY - box.top - box.height / 2;
-    const factorX = x / (box.width / 2);
-    const factorY = y / (box.height / 2);
-
-    card.style.transform = `perspective(800px) rotateX(${-factorY * 12}deg) rotateY(${factorX * 12}deg) scale3d(1.01, 1.01, 1.01)`;
-  };
-
-  const handleMouseLeave = () => {
-    if (!leftPanelRef.current) return;
-    leftPanelRef.current.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-  };
 
   return (
-    <section id="about" className="relative py-28 px-6 overflow-hidden bg-[#030303]">
-      
-      {/* Background blur highlight */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-neon-purple/[0.02] rounded-full blur-[120px] pointer-events-none"></div>
+          <section id="about" className="relative py-20 px-6 overflow-hidden bg-transparent">
+      {/* Background Radial Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] ambient-glow opacity-30 pointer-events-none z-0"></div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      <div className="max-w-6xl mx-auto relative z-10 space-y-16">
         
-        {/* Left Side: Cinematic Developer HUD Panel */}
-        <div className="lg:col-span-5 flex justify-center">
-          <div
-            ref={leftPanelRef}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            className="w-full max-w-sm rounded-[24px] glass-card p-5 border-white/[0.03] relative overflow-hidden select-none cursor-grab active:cursor-grabbing"
-            style={{ 
-              transition: 'transform 0.15s ease-out',
-              transformStyle: 'preserve-3d'
-            }}
+        {/* Section Header */}
+        <div className="text-center space-y-4 max-w-xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-[10px] font-mono tracking-[0.25em] text-theme-accent uppercase font-bold"
           >
-            {/* Top diagnostic line */}
-            <div className="flex justify-between items-center pb-3 border-b border-white/5" style={{ transform: 'translateZ(20px)' }}>
-              <div className="flex items-center gap-1.5 font-mono text-[8px] text-text-gray/50 uppercase tracking-widest">
-                <Compass className="w-3 h-3 text-neon-blue animate-spin-slow" />
-                <span>metadata // diagnostics</span>
-              </div>
-              <span className="text-[8px] font-mono text-neon-purple font-bold tracking-widest uppercase">ENCRYPTED</span>
-            </div>
-
-            {/* Simulated interactive HUD graphic mapping */}
-            <div 
-              className="py-8 flex flex-col items-center justify-center relative space-y-4"
-              style={{ transform: 'translateZ(40px)' }}
-            >
-              
-              {/* High-tech vertical Card Photo Frame */}
-              <div className="relative w-52 h-64 rounded-[20px] bg-[#050505] border border-white/5 flex items-center justify-center shadow-2xl overflow-hidden group glowing-ring">
-                {/* Tech corner brackets */}
-                <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-white/10 z-20"></div>
-                <div className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-white/10 z-20"></div>
-                <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-white/10 z-20"></div>
-                <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-white/10 z-20"></div>
-                
-                {/* Cyber laser scanner animation line */}
-                <div className="absolute w-full h-[1.5px] bg-white/20 shadow-[0_0_8px_rgba(255,255,255,0.3)] top-0 left-0 laser-scan-line z-20 pointer-events-none"></div>
-
-                <img 
-                  src="/my-pic.jpg" 
-                  alt="Mohammad Zakki Adnaan" 
-                  className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500 relative z-10" 
-                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                />
-                
-                {/* Fallback structural avatar view */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/[0.01] z-0">
-                  <User className="w-12 h-12 text-white/10 group-hover:text-neon-blue/20 transition-colors" />
-                  <span className="text-[8px] font-mono text-text-gray/40 mt-2 tracking-widest">COMPILE_AVATAR</span>
-                </div>
-              </div>
-
-              {/* Status information and metadata logs */}
-              <div className="text-center space-y-1">
-                <h3 className="text-sm font-extrabold font-poppins text-white uppercase tracking-wide">Mohammad Zakki Adnaan</h3>
-                <span className="text-[8.5px] font-mono text-text-gray/60 block uppercase tracking-wide">Islamiah College (Autonomous), Vaniyambadi</span>
-                <span className="text-[9px] font-mono text-neon-blue block uppercase font-bold tracking-widest">BCA DEGREE // BATCH OF 2026</span>
-              </div>
-
-            </div>
-
-            {/* Bottom mini status block */}
-            <div 
-              className="p-3 bg-black/40 rounded-xl border border-white/5 font-mono text-[9px] text-text-gray space-y-1.5 text-left"
-              style={{ transform: 'translateZ(30px)' }}
-            >
-              <div className="flex justify-between text-white/30 text-[8px] uppercase tracking-widest border-b border-white/5 pb-1">
-                <span>SYSTEM_DIAGNOSTICS</span>
-                <span className="text-emerald-500 font-bold">ONLINE</span>
-              </div>
-              <div className="flex justify-between">
-                <span>ORIGIN:</span>
-                <span className="text-white">Pernambut, Tamil Nadu, IN</span>
-              </div>
-              <div className="flex justify-between">
-                <span>DEV_INDEX:</span>
-                <span className="text-white">EXCEPTIONAL</span>
-              </div>
-              <div className="flex justify-between">
-                <span>CORE_DRIVE:</span>
-                <span className="text-neon-purple font-bold">CREATIVE_INTELLIGENCE</span>
-              </div>
-            </div>
-
-          </div>
+            01 // ABOUT ME
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl md:text-4xl font-extrabold text-theme-text"
+          >
+            Design Philosophy & Journey
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-xs sm:text-sm text-theme-textSec leading-relaxed"
+          >
+            Discover the career path, education milestones, and tech objectives driving my design decisions.
+          </motion.p>
         </div>
 
-        {/* Right Side: Bento Grid Layout */}
-        <div className="lg:col-span-7 space-y-6 text-left">
+        {/* Bento Grid Container */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
-          {/* Section header */}
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-neon-purple/20 bg-neon-purple/[0.02] text-neon-purple text-[10px] font-mono tracking-widest uppercase">
-              <Sparkles className="w-3 h-3 animate-pulse" />
-              BIOGRAPHICAL_DOSSIER
-            </div>
-            <h2 className="text-3xl md:text-5xl font-extrabold font-poppins tracking-tight text-white uppercase leading-none">
-              ABOUT ME
-            </h2>
-          </div>
-
-          {/* Bento Cards Container */}
-          <div className="grid grid-cols-1 md:grid-cols-6 gap-5">
-            
-            {/* Card 1: Professional Intro & Career Objective (Span 4) */}
-            <div className="md:col-span-4 p-6 rounded-[24px] glass-card space-y-4 flex flex-col justify-between">
-              <div className="space-y-3">
-                <div className="flex items-center gap-2 text-neon-blue font-mono text-[9px] tracking-wider uppercase font-bold">
-                  <User className="w-3.5 h-3.5" />
-                  // CAREER_OBJECTIVE
-                </div>
-                <h3 className="font-poppins text-lg font-bold text-white tracking-wide">
-                  Frontend & React Developer
-                </h3>
-                <p className="text-text-gray text-xs md:text-sm font-light leading-relaxed font-sans">
-                  I specialize in translating creative visual wireframes into fast, secure, and clean web applications. With my Bachelor of Computer Applications foundation, a completed AspiraSys frontend internship, and intensive training, I build bulletproof React user spaces and integrate highly performant Python Django REST APIs.
-                </p>
+          {/* Card 1: Professional Summary (Span 2) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            onMouseEnter={playHover}
+            className="md:col-span-2 glass-card-premium rounded-2xl p-6 md:p-8 flex flex-col justify-between"
+          >
+            <div className="space-y-4">
+              <div className="flex items-center gap-2.5 text-theme-accent">
+                <Compass className="w-5 h-5" />
+                <span className="font-mono text-xs uppercase tracking-widest font-bold">PROFESSIONAL SUMMARY</span>
               </div>
-              <p className="text-neon-purple/90 text-xs font-medium font-sans">
-                Target Roles: Frontend Developer, React Developer in Bangalore & Chennai.
+              <h3 className="text-xl md:text-2xl font-bold tracking-tight text-theme-text">
+                Crafting interfaces that bridge technology and users.
+              </h3>
+              <p className="text-xs md:text-sm text-theme-textSec leading-relaxed font-light">
+                As a Frontend Developer specializing in React.js and modern Web Standards, I craft responsive interfaces that make web interactions fluid and delightful. I focus on semantic markup, responsive design principles, and clean CSS architectures to build products that look stunning and perform fast.
               </p>
             </div>
+            
+            {/* Core Badges */}
+            <div className="flex flex-wrap gap-2 pt-6">
+              {['Visual Precision', 'Responsive Logic', 'Clean Architectures', 'Git workflows'].map(badge => (
+                <span 
+                  key={badge}
+                  className="px-3 py-1 rounded-full border border-theme-border bg-theme-bgSec text-[10px] font-mono text-theme-textSec"
+                >
+                  {badge}
+                </span>
+              ))}
+            </div>
+          </motion.div>
 
-            {/* Card 2: Quick Metrics / Stats Grid (Span 2) */}
-            <div className="md:col-span-2 p-5 rounded-[24px] glass-card grid grid-cols-2 gap-4 items-center">
-              {STATS.map((stat) => {
-                const Icon = stat.icon;
-                return (
-                  <div key={stat.label} className="space-y-1">
-                    <div className="w-8 h-8 rounded-lg bg-white/[0.02] border border-white/5 text-text-gray flex items-center justify-center">
-                      <Icon className="w-3.5 h-3.5" />
-                    </div>
-                    <div className="text-left">
-                      <Counter value={stat.value} suffix={stat.suffix} />
-                      <p className="text-[7.5px] font-mono text-text-gray/50 tracking-wider uppercase leading-tight mt-0.5 animate-pulse">
-                        {stat.label.split(' ')[0]}
-                      </p>
-                    </div>
+          {/* Card 2: Quick Stats Counter (Span 1) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            onMouseEnter={playHover}
+            className="md:col-span-1 glass-card-premium rounded-2xl p-6 md:p-8 flex flex-col justify-between bg-gradient-to-br from-theme-card to-theme-accentGlow"
+          >
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-theme-accent">
+                <Zap className="w-4 h-4" />
+                <span className="font-mono text-xs uppercase tracking-widest font-bold">METRICS</span>
+              </div>
+              <h3 className="text-sm font-semibold text-theme-textSec">Production Statistics</h3>
+            </div>
+
+            <div className="space-y-6 py-4">
+              <div className="flex items-baseline justify-between border-b border-theme-border pb-2">
+                <span className="text-xs font-mono text-theme-textSec">PROJECTS COMPLETE</span>
+                <span className="text-3xl font-black font-mono text-theme-accent">
+                  <Counter value={10} />+
+                </span>
+              </div>
+
+              <div className="flex items-baseline justify-between border-b border-theme-border pb-2">
+                <span className="text-xs font-mono text-theme-textSec">SKILLS LEARNED</span>
+                <span className="text-3xl font-black font-mono text-theme-accent">
+                  <Counter value={15} />+
+                </span>
+              </div>
+
+              <div className="flex items-baseline justify-between">
+                <span className="text-xs font-mono text-theme-textSec">HOURS CODING</span>
+                <span className="text-3xl font-black font-mono text-theme-accent">
+                  <Counter value={1200} duration={3} />+
+                </span>
+              </div>
+            </div>
+
+            <span className="text-[9px] font-mono text-theme-textMuted uppercase tracking-wider">
+              Updated Live from Production Logs
+            </span>
+          </motion.div>
+
+          {/* Card 3: Education & Timeline (Span 1) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            onMouseEnter={playHover}
+            className="md:col-span-1 glass-card-premium rounded-2xl p-6 md:p-8 flex flex-col justify-between"
+          >
+            <div className="space-y-4">
+              <div className="flex items-center gap-2.5 text-theme-accent">
+                <GraduationCap className="w-5 h-5" />
+                <span className="font-mono text-xs uppercase tracking-widest font-bold">EDUCATION</span>
+              </div>
+
+              <div className="space-y-4">
+                <div className="border-l-2 border-theme-accent/35 pl-4 relative space-y-1.5">
+                  <div className="absolute w-2 h-2 rounded-full bg-theme-accent -left-[5px] top-1.5" />
+                  <span className="text-[10px] font-mono text-theme-accent font-bold">2023 - 2026</span>
+                  <h4 className="text-xs font-bold text-theme-text uppercase tracking-wider">BCA GRADUATE</h4>
+                  <p className="text-[11px] text-theme-textSec font-light">
+                    Islamiah College (Autonomous), Vaniyambadi. Completed comprehensive training in application development, database management, and object-oriented architectures.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 text-[10px] font-mono text-theme-textMuted border-t border-theme-border/60 pt-4 mt-6">
+              <Calendar className="w-3.5 h-3.5" />
+              <span>BATCH OF 2026</span>
+            </div>
+          </motion.div>
+
+          {/* Card 4: Career Journey & Goals (Span 2) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            onMouseEnter={playHover}
+            className="md:col-span-2 glass-card-premium rounded-2xl p-6 md:p-8 flex flex-col justify-between"
+          >
+            <div className="space-y-4">
+              <div className="flex items-center gap-2.5 text-theme-accent">
+                <Award className="w-5 h-5" />
+                <span className="font-mono text-xs uppercase tracking-widest font-bold">JOURNEY & GOALS</span>
+              </div>
+              <h3 className="text-xl font-bold tracking-tight text-theme-text">
+                Continuous growth, modern tools, and user experience.
+              </h3>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs md:text-sm text-theme-textSec leading-relaxed font-light">
+                <div className="space-y-2.5">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-theme-accent mt-0.5 shrink-0" />
+                    <span><strong>Internship:</strong> Gained real-world insights at AspiraSys working on responsive styling and component assembly.</span>
                   </div>
-                );
-              })}
-            </div>
-
-            {/* Card 3: Education Timeline (Span 3) */}
-            <div className="md:col-span-3 p-6 rounded-[24px] glass-card space-y-4 text-left">
-              <div className="flex items-center gap-2 text-neon-blue font-mono text-[9px] tracking-wider uppercase font-bold">
-                <GraduationCap className="w-3.5 h-3.5" />
-                // EDUCATION_TIMELINE
-              </div>
-              <div className="space-y-3">
-                <div className="relative pl-4 border-l border-white/10">
-                  <div className="absolute -left-[4.5px] top-1 w-2 h-2 rounded-full bg-neon-purple" />
-                  <span className="text-[9px] font-mono text-neon-purple font-bold">2023 - 2026</span>
-                  <h4 className="text-xs font-bold text-white font-poppins tracking-wide">BCA Graduate</h4>
-                  <p className="text-[10px] text-text-gray font-light mt-0.5 leading-normal">
-                    Islamiah College (Autonomous), Vaniyambadi. Completed BCA with strong fundamentals in software engineering & web systems.
-                  </p>
-                </div>
-                <div className="relative pl-4 border-l border-white/0">
-                  <div className="absolute -left-[4.5px] top-1 w-2 h-2 rounded-full bg-white/20" />
-                  <span className="text-[9px] font-mono text-white/40">2023</span>
-                  <h4 className="text-xs font-bold text-white/40 font-poppins tracking-wide">Class XII Graduate</h4>
-                  <p className="text-[10px] text-white/30 font-light mt-0.5">
-                    Islamiah Higher Secondary School, Pernambut.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 4: Personal Strengths (Span 3) */}
-            <div className="md:col-span-3 p-6 rounded-[24px] glass-card space-y-4 text-left">
-              <div className="flex items-center gap-2 text-neon-blue font-mono text-[9px] tracking-wider uppercase font-bold">
-                <Zap className="w-3.5 h-3.5" />
-                // CORE_STRENGTHS
-              </div>
-              <div className="grid grid-cols-2 gap-2 text-[10px] text-text-gray font-sans font-light">
-                {[
-                  'Visual Precision',
-                  'Modular Systems',
-                  'REST Integration',
-                  'Fast Adaptability',
-                  'Git Collaboration',
-                  'Responsive Design'
-                ].map((point) => (
-                  <div key={point} className="flex items-center gap-1.5 p-2 rounded-xl bg-white/[0.01] border border-white/5 hover:border-white/10 transition-colors">
-                    <span className="text-neon-purple font-bold">✓</span>
-                    <span className="text-white/80 font-medium">{point}</span>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-theme-accent mt-0.5 shrink-0" />
+                    <span><strong>API Integration:</strong> Building applications connected to robust Django and REST server backends.</span>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Card 5: Experience Highlights (Span 6) */}
-            <div className="md:col-span-6 p-6 rounded-[24px] glass-card space-y-4 text-left">
-              <div className="flex items-center gap-2 text-neon-purple font-mono text-[9px] tracking-wider uppercase font-bold">
-                <Briefcase className="w-3.5 h-3.5" />
-                // EXPERIENCE_HIGHLIGHTS
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="p-3.5 rounded-xl bg-white/[0.01] border border-white/5 hover:border-white/10 transition-all">
-                  <span className="text-[9px] font-mono text-neon-blue font-bold">JULY 2025</span>
-                  <h4 className="text-xs font-bold text-white font-poppins mt-1">AspiraSys Internship</h4>
-                  <p className="text-[10px] text-text-gray mt-1 leading-normal font-sans font-light">
-                    Built interactive layouts, responsive web components and handled Git reviews.
-                  </p>
                 </div>
-                <div className="p-3.5 rounded-xl bg-white/[0.01] border border-white/5 hover:border-white/10 transition-all">
-                  <span className="text-[9px] font-mono text-neon-purple font-bold">SEP - OCT 2025</span>
-                  <h4 className="text-xs font-bold text-white font-poppins mt-1">Industrial Training</h4>
-                  <p className="text-[10px] text-text-gray mt-1 leading-normal font-sans font-light">
-                    6-week intensive web dev, AI integration & deployment training in Chennai.
-                  </p>
-                </div>
-                <div className="p-3.5 rounded-xl bg-white/[0.01] border border-white/5 hover:border-white/10 transition-all">
-                  <span className="text-[9px] font-mono text-emerald-400 font-bold">DECEMBER 2025</span>
-                  <h4 className="text-xs font-bold text-white font-poppins mt-1">Symposium Laurels</h4>
-                  <p className="text-[10px] text-text-gray mt-1 leading-normal font-sans font-light">
-                    Won 1st Place in Pirates Pursuits & 3rd Prize in ADZ-AP IT Symposiums.
-                  </p>
+                
+                <div className="space-y-2.5">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-theme-accent mt-0.5 shrink-0" />
+                    <span><strong>Target Roles:</strong> Actively targeting React, Javascript and Frontend developer roles in Bangalore and Chennai.</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-theme-accent mt-0.5 shrink-0" />
+                    <span><strong>Vision:</strong> Striving to build scalable frontend architectures that scale smoothly.</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-          </div>
+            <div className="text-[10px] font-mono text-theme-textMuted border-t border-theme-border/60 pt-4 mt-6 flex justify-between">
+              <span>LOCATION: BANGALORE / CHENNAI</span>
+              <span>DEV_JOURNEY // LEVEL_1</span>
+            </div>
+          </motion.div>
 
         </div>
 
       </div>
-
     </section>
   );
 }

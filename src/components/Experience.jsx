@@ -1,48 +1,36 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { School, GraduationCap, Code, Rocket, Blocks, Award, Network, Search, Sparkles } from 'lucide-react';
+import { Code, Rocket, Blocks, Award, Sparkles } from 'lucide-react';
 import { useSound } from './SoundManager';
 
 const TIMELINE = [
   {
-    title: 'React.js Web Applications',
-    date: 'Ongoing Experience',
-    desc: 'Architected and built multiple responsive frontend applications with React.js. Utilized Hooks, Context, State, and Framer Motion to craft high-fidelity dynamic interfaces.',
+    title: 'React Web Applications',
+    subtitle: 'Frontend Engineering',
+    desc: 'Architected multiple single-page React environments using custom hooks, central states, and Framer Motion for high-fidelity responsive layouts.',
     icon: Code,
-    color: 'border-neon-blue bg-neon-blue/10 text-neon-blue',
-    shadow: 'rgba(0, 240, 255, 0.2)'
+    accent: '#38bdf8'
   },
   {
     title: 'REST API Integrations',
-    date: 'Full Stack Integration',
-    desc: 'Integrated modern React client dashboards with Python Django and Django REST framework API endpoints, implementing secure JWT tokens and local data caching layers.',
+    subtitle: 'Full-Stack Integration',
+    desc: 'Connected React client dashboards with Python Django and SQLite servers. Integrated JSON Web Tokens (JWT) for secure authentication middleware.',
     icon: Blocks,
-    color: 'border-neon-purple bg-neon-purple/10 text-neon-purple',
-    shadow: 'rgba(139, 92, 246, 0.2)'
-  },
-  {
-    title: 'Responsive UI Development',
-    date: 'Liquid Breakpoint Grid Systems',
-    desc: 'Developed mobile-first, cross-browser compatible layouts conforming instantly to any viewport breakpoint (320px, 375px, 768px, 1024px, 1440px+).',
-    icon: Search,
-    color: 'border-neon-pink bg-neon-pink/10 text-neon-pink',
-    shadow: 'rgba(236, 72, 153, 0.2)'
-  },
-  {
-    title: 'Deployment & CI/CD Orchestration',
-    date: 'Cloud Infrastructure',
-    desc: 'Orchestrated direct live application environments using Netlify, Render, and Vercel. Synchronized continuous deployment hooks connected with GitHub repositories.',
-    icon: Rocket,
-    color: 'border-emerald-400 bg-emerald-400/10 text-emerald-400',
-    shadow: 'rgba(16, 185, 129, 0.2)'
+    accent: '#8b5cf6'
   },
   {
     title: 'Frontend Developer Intern (AspiraSys)',
-    date: 'July 2025',
-    desc: 'Collaborated on code review guidelines, designed modular UI components, and integrated clean JavaScript codebases to increase rendering performance.',
+    subtitle: 'Professional Internship',
+    desc: 'Collaborated with senior engineers on frontend templates, optimized asset delivery speeds, and configured modular React interface components.',
     icon: Award,
-    color: 'border-neon-blue bg-neon-blue/10 text-neon-blue',
-    shadow: 'rgba(0, 240, 255, 0.2)'
+    accent: '#ec4899'
+  },
+  {
+    title: 'Deployment & CI/CD Pipelines',
+    subtitle: 'Cloud Operations',
+    desc: 'Synchronized version-controlled codebases with Netlify and Render. Implemented continuous deployment workflows connected to GitHub repositories.',
+    icon: Rocket,
+    accent: '#10b981'
   }
 ];
 
@@ -50,34 +38,48 @@ export default function Experience() {
   const { playHover, playClick } = useSound();
 
   return (
-    <section id="journey" className="relative py-28 px-6 overflow-hidden">
-      
-      {/* Background drifting glow */}
-      <div className="absolute top-[50%] right-[-10%] w-[400px] h-[400px] bg-neon-blue/5 rounded-full blur-[150px] pointer-events-none z-0" />
+    <section id="experience" className="relative py-28 px-6 overflow-hidden bg-transparent">
+      {/* Background Radial Glow */}
+      <div className="absolute top-[40%] left-[-10%] w-[350px] h-[350px] ambient-glow opacity-20 pointer-events-none z-0"></div>
 
-      <div className="max-w-4xl mx-auto relative z-10">
+      <div className="max-w-4xl mx-auto relative z-10 space-y-16">
         
-        {/* Title Header */}
-        <div className="text-center mb-24">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-blue/20 bg-neon-blue/5 text-neon-blue text-xs font-mono tracking-widest uppercase mb-4 animate-pulse-slow">
-            <Sparkles className="w-3.5 h-3.5" />
-            CHRONOLOGICAL_LOG
-          </div>
-          <h2 className="text-4xl md:text-6xl font-black font-poppins tracking-tight text-white mb-4 uppercase">
-            MY JOURNEY
-          </h2>
-          <p className="text-text-gray max-w-xl mx-auto text-sm md:text-base font-light font-sans">
-            A linear progression detailing the milestones, technologies, academic foundations, and projects engineered throughout my developer career.
-          </p>
+        {/* Section Header */}
+        <div className="text-center space-y-4 max-w-xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-[10px] font-mono tracking-[0.25em] text-theme-accent uppercase font-bold"
+          >
+            04 // EXPERIENCE
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl md:text-4xl font-extrabold text-theme-text"
+          >
+            Development Milestones
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-xs sm:text-sm text-theme-textSec leading-relaxed"
+          >
+            A vertical trace of projects, team integrations, and cloud operations accomplished.
+          </motion.p>
         </div>
 
-        {/* Timeline Core Track & nodes */}
-        <div className="relative">
+        {/* Timeline Track */}
+        <div className="relative pt-8 pl-6 md:pl-0">
           
-          {/* Vertical Glowing Line Track */}
-          <div className="absolute left-[20px] md:left-1/2 md:-translate-x-1/2 top-4 bottom-4 w-[2px] bg-gradient-to-b from-neon-blue via-neon-purple to-neon-pink opacity-45 shadow-[0_0_10px_rgba(0,240,255,0.3)] pointer-events-none" />
+          {/* Vertical Grid Line */}
+          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[1px] bg-theme-border/60 pointer-events-none" />
 
-          {/* Timeline Nodes */}
           <div className="space-y-12">
             {TIMELINE.map((item, idx) => {
               const Icon = item.icon;
@@ -90,43 +92,43 @@ export default function Experience() {
                     isEven ? 'md:flex-row-reverse' : ''
                   } relative`}
                 >
-                  
-                  {/* 1. Timeline Center Pulse Dot badge */}
-                  <div className="absolute left-[20px] md:left-1/2 -translate-x-1/2 top-1.5 z-20 flex items-center justify-center pointer-events-none">
-                    <div className="w-10 h-10 rounded-full bg-black border-2 border-solid flex items-center justify-center shadow-lg relative" style={{ borderColor: item.color.split(' ')[0].replace('border-', '') }}>
-                      <Icon className="w-4 h-4 text-white animate-pulse" />
+                  {/* Timeline Node Center Circle */}
+                  <div className="absolute left-6 md:left-1/2 -translate-x-[12px] md:-translate-x-[16px] top-1 z-20 pointer-events-none">
+                    <div 
+                      className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-theme-bgSec border border-theme-border flex items-center justify-center shadow-lg"
+                      style={{ borderColor: item.accent }}
+                    >
+                      <Icon className="w-3.5 h-3.5" style={{ color: item.accent }} />
                     </div>
                   </div>
 
-                  {/* 2. Content card block */}
-                  <div className={`w-full md:w-5/12 pl-12 md:pl-0 ${isEven ? 'md:pl-8 text-left' : 'md:pr-8 md:text-right'}`}>
-                    <motion.div
-                      initial={{ opacity: 0, x: isEven ? 50 : -50, y: 20 }}
-                      whileInView={{ opacity: 1, x: 0, y: 0 }}
-                      viewport={{ once: true, margin: '-100px' }}
-                      transition={{ type: 'spring', stiffness: 200, damping: 22 }}
-                      onMouseEnter={playHover}
-                      onClick={playClick}
-                      className="p-6 rounded-[24px] glass-card hover:scale-[1.01] cursor-pointer relative"
-                    >
-                      {/* Interactive glowing highlight */}
-                      <div className="absolute inset-0 rounded-[24px] border border-neon-blue/0 hover:border-neon-blue/15 transition-colors" />
+                  {/* Spacer Column */}
+                  <div className="hidden md:block w-1/2"></div>
 
-                      {/* Header metadata details */}
-                      <span className="text-[10px] font-mono text-neon-blue font-bold tracking-widest uppercase block mb-1">
-                        {item.date}
-                      </span>
-                      <h3 className="text-lg font-bold font-poppins text-white tracking-tight">
-                        {item.title}
-                      </h3>
-                      <p className="text-xs text-text-gray leading-relaxed font-sans font-light mt-2">
+                  {/* Card Block */}
+                  <motion.div
+                    initial={{ opacity: 0, x: isEven ? -20 : 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ type: 'spring', stiffness: 150, damping: 20 }}
+                    onMouseEnter={playHover}
+                    onClick={playClick}
+                    className="w-full md:w-[45%] pl-6 md:pl-0 space-y-3"
+                  >
+                    <div className="glass-card-premium rounded-2xl p-6 space-y-3">
+                      <div className="space-y-1">
+                        <span className="font-mono text-[9px] uppercase tracking-widest font-bold" style={{ color: item.accent }}>
+                          {item.subtitle}
+                        </span>
+                        <h4 className="text-base font-bold text-theme-text">
+                          {item.title}
+                        </h4>
+                      </div>
+                      <p className="text-xs text-theme-textSec leading-relaxed font-light">
                         {item.desc}
                       </p>
-                    </motion.div>
-                  </div>
-
-                  {/* Empty spacer side for alignment grid */}
-                  <div className="hidden md:block w-5/12" />
+                    </div>
+                  </motion.div>
 
                 </div>
               );
@@ -136,7 +138,6 @@ export default function Experience() {
         </div>
 
       </div>
-
     </section>
   );
 }

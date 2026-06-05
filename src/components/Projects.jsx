@@ -1,306 +1,359 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink, Github, Terminal, ShoppingBag, GraduationCap, Coffee, BookOpen, Network, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, Github, Terminal, ShoppingBag, GraduationCap, ChevronDown, CheckCircle2, AlertCircle } from 'lucide-react';
 import { useSound } from './SoundManager';
 
-const PROJECTS = [
+const PROJECTS_DATA = [
   {
+    id: 'pernambut-connection',
+    title: 'Pernambut Connection',
+    subtitle: 'Community Hub & Directory',
+    overview: 'A highly secure community coordination engine. This portal bridges regional announcements, golden-credential verification loops, citizen support networks, and dynamic municipal schedules on a custom, fast UI.',
+    tech: ['React.js', 'Tailwind CSS', 'Django REST', 'SQLite', 'JWT'],
+    features: [
+      'Token-based secure authentication flow',
+      'Regional citizen registry with GOLD status loops',
+      'Dynamic donation trackers and announcements',
+      'Sub-60fps fluid page translations'
+    ],
+    challenge: 'Designing a dynamic, high-capacity client directory filters matching multi-criteria queries with instant rendering speeds.',
+    live: 'https://pernambut-connection.netlify.app/',
+    github: 'https://github.com/Zakki-05',
+    accentColor: '#38bdf8', // Sky
+    icon: Terminal,
+    mockupType: 'dashboard'
+  },
+  {
+    id: 'pernambut-hub',
     title: 'Pernambut Hub',
     subtitle: 'Civic Issue Reporting System',
-    desc: 'Developed a full-stack civic reporting web application using Django, implementing secure authentication, database CRUD operations, and cross-browser rendering deployed on Render.',
-    problemSolved: 'Simplifies public grievance reporting and municipal database tracking.',
-    features: ['Authentication', 'Database CRUD', 'Render Deployment'],
+    overview: 'A full-stack civic reporting web application simplifying public grievance reports and municipal database tracking with secure CRUD structures.',
     tech: ['Python Django', 'HTML5', 'CSS3', 'JavaScript'],
-    icon: Terminal,
+    features: [
+      'Authentication middleware for citizen accounts',
+      'Grievance database CRUD operations',
+      'Cross-browser optimized layouts',
+      'Optimized backend response times'
+    ],
+    challenge: 'Optimizing relational queries on SQLite database to maintain sub-150ms server responses on Render free tier.',
     live: 'https://pernambut-hub.onrender.com/',
     github: 'https://github.com/Zakki-05',
-    color: 'from-[#00f0ff] to-[#8b5cf6]',
-    shadow: 'rgba(0, 240, 255, 0.15)',
-    filterTags: ['Django', 'JavaScript']
+    accentColor: '#8b5cf6', // Violet
+    icon: AlertCircle,
+    mockupType: 'grievances'
   },
   {
-    title: 'Tech Zone Ecommerce',
-    subtitle: 'Electronics Storefront Application',
-    desc: 'Developed a responsive e-commerce web application for selling smartphones, smartwatches, and earbuds. Designed custom categorization lists, pagination controls, and active sessions scaling.',
-    problemSolved: 'Provides a responsive, smooth interface for electronic sales.',
-    features: ['Active Sessions', 'Custom Categorization', 'Pagination Controls'],
-    tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Web Design'],
-    icon: ShoppingBag,
-    live: 'https://tech-zone-zakki-05.netlify.app/',
-    github: 'https://github.com/Zakki-05',
-    color: 'from-[#8b5cf6] to-[#ec4899]',
-    shadow: 'rgba(139, 92, 246, 0.15)',
-    filterTags: ['JavaScript']
-  },
-  {
+    id: 'al-huda-school',
     title: 'Al Huda Islamic School',
     subtitle: 'Educational Institution Portal',
-    desc: 'Created a multi-page educational school website showcasing academic curriculum structures, dynamic image galleries, and event notice layouts optimized for mobile and desktop screens.',
-    problemSolved: 'Displays school notice boards and curriculum structures digitally.',
-    features: ['Dynamic Image Gallery', 'Event Notice Boards', 'Mobile Optimization'],
+    overview: 'A multi-page educational school website showcasing notice layouts, dynamic notices and notice boards, and curriculum grids.',
     tech: ['HTML5', 'CSS3', 'JavaScript', 'Clean Architecture'],
-    icon: GraduationCap,
+    features: [
+      'Mobile-first responsive notice board grid',
+      'Interactive notice lists and media galleries',
+      'Fully accessible semantic structure',
+      'Near-perfect Lighthouse optimization score'
+    ],
+    challenge: 'Achieving responsive visual grids and high performance scores by optimizing image assets and minimizing JavaScript dependencies.',
     live: 'https://al-huda-islamic-school.netlify.app/',
     github: 'https://github.com/Zakki-05',
-    color: 'from-[#ec4899] to-[#00f0ff]',
-    shadow: 'rgba(236, 72, 153, 0.15)',
-    filterTags: ['JavaScript']
+    accentColor: '#ec4899', // Pink
+    icon: GraduationCap,
+    mockupType: 'school'
   },
   {
-    title: 'Al Br Cafe',
-    subtitle: 'Modern Cafe Web Application',
-    desc: 'Custom-developed a responsive single-page restaurant platform featuring a seamless customer reservation system, Bootstrap grids, and mobile-first visual branding blocks.',
-    problemSolved: 'Offers customers online cafe menu browsing and reservation bookings.',
-    features: ['Booking System', 'Bootstrap Grids', 'Branding Blocks'],
-    tech: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap Framework'],
-    icon: Coffee,
-    live: 'https://github.com/Zakki-05',
+    id: 'tech-zone',
+    title: 'Tech Zone Ecommerce',
+    subtitle: 'Electronics Storefront Application',
+    overview: 'A high-fidelity electronics storefront selling smartphones, watches, and accessories. Features session summaries, cart calculations, and responsive visual blocks.',
+    tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Web Design'],
+    features: [
+      'Pagination control lists and sort filters',
+      'Local session persistence for cart checkouts',
+      'Modern glass product grids',
+      'Fast responsive product detail modules'
+    ],
+    challenge: 'Building a dynamic client-side inventory filter and order totals summary module using lightweight vanilla script code.',
+    live: 'https://tech-zone-zakki-05.netlify.app/',
     github: 'https://github.com/Zakki-05',
-    color: 'from-[#f59e0b] to-[#ec4899]',
-    shadow: 'rgba(245, 158, 11, 0.15)',
-    filterTags: ['JavaScript']
-  },
-  {
-    title: 'Library Management System',
-    subtitle: 'Database Transaction Hub',
-    desc: 'A secure relational management backend streamlining book borrowing workflows, QR code transactions, and clean inventory dashboards.',
-    problemSolved: 'Automates manual book issue, return, and inventory management logs.',
-    features: ['Relational Database Schemas', 'QR Code Transactions', 'Inventory Dashboard'],
-    tech: ['Python Django', 'SQLite', 'Bootstrap', 'QR API'],
-    icon: BookOpen,
-    live: 'https://github.com/Zakki-05/library-management-zakki-05',
-    github: 'https://github.com/Zakki-05/library-management-zakki-05',
-    color: 'from-[#10b981] to-[#00f0ff]',
-    shadow: 'rgba(16, 185, 129, 0.15)',
-    filterTags: ['Django']
-  },
-  {
-    title: 'Pernambut Connects Admin',
-    subtitle: 'Relational Control Panel',
-    desc: 'An advanced operational administrator dashboard managing local announcements, verified GOLD status credentials, custom prayer timings, and citizen donation charts.',
-    problemSolved: 'Provides administrators with verified regional citizen management tools.',
-    features: ['Verified Status Loops', 'Local Announcements', 'Citizen Donation Charts'],
-    tech: ['React JS', 'Django REST', 'Recharts', 'Tailwind CSS'],
-    icon: Network,
-    live: 'https://github.com/Zakki-05',
-    github: 'https://github.com/Zakki-05',
-    color: 'from-[#00f0ff] to-[#ec4899]',
-    shadow: 'rgba(0, 240, 255, 0.15)',
-    filterTags: ['React', 'Django']
+    accentColor: '#10b981', // Green
+    icon: ShoppingBag,
+    mockupType: 'storefront'
   }
 ];
 
 export default function Projects() {
   const { playHover, playClick } = useSound();
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [activeFilter, setActiveFilter] = useState('All');
+  const [expandedId, setExpandedId] = useState(null);
 
-  // Card Tilt Handler utilizing mouse coordinates
-  const handleMouseMove = (e, index) => {
-    const card = e.currentTarget;
-    const box = card.getBoundingClientRect();
-    const x = e.clientX - box.left - box.width / 2;
-    const y = e.clientY - box.top - box.height / 2;
-    const factorX = x / (box.width / 2);
-    const factorY = y / (box.height / 2);
-
-    card.style.transform = `perspective(800px) rotateX(${-factorY * 10}deg) rotateY(${factorX * 10}deg) scale3d(1.02, 1.02, 1.02)`;
-    card.style.boxShadow = `0 15px 35px -5px ${PROJECTS[index].shadow}`;
+  const toggleExpand = (id) => {
+    playClick();
+    if (expandedId === id) {
+      setExpandedId(null);
+    } else {
+      setExpandedId(id);
+    }
   };
-
-  const handleMouseLeave = (e) => {
-    const card = e.currentTarget;
-    card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-    card.style.boxShadow = '0 8px 32px 0 rgba(0, 0, 0, 0.37)';
-    setHoveredIndex(null);
-  };
-
-  const filteredProjects = PROJECTS.filter(proj => {
-    if (activeFilter === 'All') return true;
-    return proj.filterTags && proj.filterTags.includes(activeFilter);
-  });
 
   return (
-    <section id="projects" className="relative py-28 px-6 overflow-hidden bg-[#030303]">
-      
-      {/* Background radial glow */}
-      <div className="absolute top-[40%] left-[-10%] w-[450px] h-[450px] rounded-full bg-neon-purple/5 blur-[150px] pointer-events-none z-0" />
+    <section id="projects" className="relative py-28 px-6 overflow-hidden bg-transparent">
+      {/* Background Radial Glow */}
+      <div className="absolute top-[20%] left-[-10%] w-[450px] h-[450px] ambient-glow opacity-25 pointer-events-none z-0"></div>
 
-      <div className="max-w-7xl mx-auto relative z-10 space-y-16">
+      <div className="max-w-6xl mx-auto relative z-10 space-y-16">
         
-        {/* Title Block */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div className="text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-purple/20 bg-neon-purple/5 text-neon-purple text-xs font-mono tracking-widest uppercase mb-4 animate-pulse-slow">
-              <Sparkles className="w-3.5 h-3.5" />
-              PRODUCT_DIRECTORY
-            </div>
-            <h2 className="text-4xl md:text-6xl font-black font-poppins tracking-tight text-white uppercase leading-none">
-              ADDITIONAL PROJECTS
-            </h2>
-            <p className="text-text-gray max-w-xl text-sm md:text-base font-light font-sans mt-4">
-              A comprehensive showcase of creative portals, landing layouts, and database systems displaying versatile frontend capability.
-            </p>
-          </div>
-
-          {/* Project Filters */}
-          <div className="flex flex-wrap gap-2 justify-start md:justify-end shrink-0">
-            {['All', 'React', 'JavaScript', 'Django'].map(filter => (
-              <button
-                key={filter}
-                onClick={() => { playClick(); setActiveFilter(filter); }}
-                onMouseEnter={playHover}
-                className={`px-4 py-1.5 rounded-full border text-[10px] font-mono tracking-widest uppercase transition-all duration-300 ${
-                  activeFilter === filter
-                    ? 'bg-neon-blue border-neon-blue text-black font-bold shadow-[0_0_12px_rgba(0,240,255,0.2)] scale-105'
-                    : 'bg-white/[0.01] border-white/5 text-text-gray hover:border-white/10 hover:text-white'
-                }`}
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
+        {/* Section Header */}
+        <div className="text-center space-y-4 max-w-xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-[10px] font-mono tracking-[0.25em] text-theme-accent uppercase font-bold"
+          >
+            03 // PORTFOLIO
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl md:text-4xl font-extrabold text-theme-text"
+          >
+            Featured Production Works
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-xs sm:text-sm text-theme-textSec leading-relaxed"
+          >
+            Hover and click to expand technical blueprints, architecture choices, and challenges solved for each platform.
+          </motion.p>
         </div>
 
-        {/* Projects Cards Grid wrapper */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((proj, idx) => {
-            const Icon = proj.icon;
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {PROJECTS_DATA.map((project, idx) => {
+            const Icon = project.icon;
+            const isExpanded = expandedId === project.id;
             
             return (
-              <div
-                key={proj.title}
-                onMouseMove={(e) => handleMouseMove(e, idx)}
-                onMouseLeave={handleMouseLeave}
-                onMouseEnter={() => { playHover(); setHoveredIndex(idx); }}
-                onClick={playClick}
-                className="rounded-[24px] glass-card p-5 flex flex-col justify-between min-h-[500px] relative select-none cursor-grab active:cursor-grabbing"
-                style={{
-                  transition: 'transform 0.15s ease-out, box-shadow 0.15s ease-out',
-                  transformStyle: 'preserve-3d'
-                }}
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="glass-card-premium rounded-2xl overflow-hidden flex flex-col justify-between"
               >
                 
-                {/* 1. Card Image Mockup Viewport */}
-                <div 
-                  className={`h-[150px] rounded-2xl bg-[#09090b] border border-white/5 p-4 flex flex-col justify-between overflow-hidden relative group/mock`}
-                  style={{ transform: 'translateZ(20px)' }}
-                >
-                  {/* Grid Lines inside Mockup */}
-                  <div className="absolute inset-0 tech-grid opacity-10 pointer-events-none" />
-
-                  {/* Top Bar details */}
-                  <div className="flex justify-between items-center relative z-10">
-                    <span className="text-[7.5px] font-mono bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded text-white/50 tracking-widest uppercase">
-                      BUILD.LOG // v1.0
-                    </span>
-                    <Icon className="w-3.5 h-3.5 text-white/30 group-hover/mock:text-neon-blue transition-colors animate-pulse" />
-                  </div>
-
-                  {/* Core Icon illustration */}
-                  <div className="flex-1 flex items-center justify-center relative z-10 group-hover/mock:scale-105 transition-transform duration-500">
-                    <div className="w-11 h-11 rounded-xl bg-black border border-white/5 flex items-center justify-center shadow-lg relative">
-                      {/* Subtly glowing top line on hover */}
-                      <div className="absolute inset-x-0 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-neon-blue/40 to-transparent opacity-0 group-hover/mock:opacity-100 transition-opacity" />
-                      <Icon className="w-4 h-4 text-white" />
+                {/* 1. Live Interactive CSS Mockup Frame */}
+                <div className="h-44 sm:h-48 bg-slate-950 border-b border-theme-border relative p-3 flex flex-col justify-between select-none">
+                  
+                  {/* Browser top pill */}
+                  <div className="flex items-center justify-between border-b border-white/[0.04] pb-2">
+                    <div className="flex gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-red-500/60" />
+                      <div className="w-2 h-2 rounded-full bg-yellow-500/60" />
+                      <div className="w-2 h-2 rounded-full bg-green-500/60" />
                     </div>
+                    <div className="bg-slate-900 border border-white/5 rounded px-4 py-0.5 text-[9px] text-slate-500 font-mono w-48 text-center truncate">
+                      {project.live.replace('https://', '')}
+                    </div>
+                    <div className="w-8"></div>
                   </div>
 
-                  {/* Bottom details block */}
-                  <div className="relative z-10 flex justify-between items-center text-[8px] font-mono text-white/30">
-                    <span>STATE: STABLE</span>
-                    <span>READY</span>
+                  {/* Dynamic CSS Mockups inside Browser */}
+                  <div className="flex-1 flex items-center justify-center pt-2 font-mono text-[9px] text-slate-400 overflow-hidden">
+                    
+                    {/* A. Dashboard Mockup */}
+                    {project.mockupType === 'dashboard' && (
+                      <div className="grid grid-cols-3 gap-2 w-full max-w-sm">
+                        <div className="bg-slate-900 border border-white/5 rounded p-2 flex flex-col justify-between h-24">
+                          <span className="text-[8px] text-slate-500">CITIZENS</span>
+                          <span className="text-sm font-bold text-white font-sans">1,402</span>
+                          <div className="w-full h-1 bg-sky-500/20 rounded"><div className="h-full bg-[#38bdf8] w-2/3 rounded"></div></div>
+                        </div>
+                        <div className="bg-slate-900 border border-white/5 rounded p-2 flex flex-col justify-between h-24">
+                          <span className="text-[8px] text-slate-500">VOLUNTEERS</span>
+                          <span className="text-sm font-bold text-white font-sans">89</span>
+                          <div className="w-full h-1 bg-violet-500/20 rounded"><div className="h-full bg-violet-500 w-1/2 rounded"></div></div>
+                        </div>
+                        <div className="bg-slate-900 border border-white/5 rounded p-2 flex flex-col justify-between h-24 relative overflow-hidden">
+                          <span className="text-[8px] text-slate-500">STATUS</span>
+                          <span className="text-[9px] font-bold text-emerald-400 font-mono">LIVE_SECURE</span>
+                          <div className="absolute -bottom-4 right-[-10px] w-12 h-12 bg-emerald-500/10 rounded-full animate-ping pointer-events-none"></div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* B. Grievances Ticket Mockup */}
+                    {project.mockupType === 'grievances' && (
+                      <div className="space-y-1.5 w-full max-w-xs">
+                        <div className="bg-slate-900 border border-white/5 rounded p-1.5 flex justify-between items-center">
+                          <span>#104: Main Street Drainage Block</span>
+                          <span className="px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-500 text-[8px] font-bold">UNDER REVIEW</span>
+                        </div>
+                        <div className="bg-slate-900 border border-white/5 rounded p-1.5 flex justify-between items-center">
+                          <span>#103: Park Street Light Malfunction</span>
+                          <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 text-[8px] font-bold">SOLVED</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* C. School Course notices Grid */}
+                    {project.mockupType === 'school' && (
+                      <div className="grid grid-cols-2 gap-2 w-full max-w-xs">
+                        <div className="bg-slate-900 border border-white/5 rounded p-2 text-left space-y-1">
+                          <div className="w-8 h-1 bg-pink-500 rounded"></div>
+                          <span className="text-white font-bold block">Notice Board</span>
+                          <span className="text-[8px] text-slate-500 block">Admissions open for batch 2026</span>
+                        </div>
+                        <div className="bg-slate-900 border border-white/5 rounded p-2 text-left space-y-1">
+                          <div className="w-8 h-1 bg-sky-500 rounded"></div>
+                          <span className="text-white font-bold block">Gallery</span>
+                          <span className="text-[8px] text-slate-500 block">Annual Sports Meet album updated</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* D. Storefront Grid */}
+                    {project.mockupType === 'storefront' && (
+                      <div className="flex items-center gap-3 w-full max-w-xs">
+                        <div className="bg-slate-900 border border-white/5 rounded p-2 text-center flex-1 space-y-1">
+                          <span className="text-white block font-bold">Smartwatch Neo</span>
+                          <span className="text-[8px] text-[#10b981] font-mono">$199.00</span>
+                        </div>
+                        <div className="bg-slate-900 border border-white/5 rounded p-2 text-center flex-1 space-y-1">
+                          <span className="text-white block font-bold">Earbuds Pro</span>
+                          <span className="text-[8px] text-[#10b981] font-mono">$89.00</span>
+                        </div>
+                      </div>
+                    )}
+
                   </div>
 
-                  {/* Subtle vector lines design */}
-                  <div className="absolute -right-4 -bottom-4 w-20 h-20 border border-white/5 rounded-full scale-110 pointer-events-none" />
                 </div>
 
-                {/* 2. Text Details */}
-                <div className="flex-1 flex flex-col justify-between pt-4 space-y-3.5" style={{ transform: 'translateZ(30px)' }}>
-                  
-                  {/* Metadata and Title */}
-                  <div className="space-y-2 text-left">
-                    <div className="flex justify-between items-center">
-                      <span className="text-[9px] font-mono text-neon-blue uppercase tracking-widest font-bold">
-                        {proj.subtitle}
+                {/* 2. Project Card Info */}
+                <div className="p-6 md:p-8 space-y-4 flex-1 flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2" style={{ color: project.accentColor }}>
+                      <Icon className="w-4 h-4" />
+                      <span className="font-mono text-[10px] uppercase tracking-widest font-bold">
+                        {project.subtitle}
                       </span>
                     </div>
-                    <h3 className="text-base font-extrabold font-poppins text-white tracking-wide leading-tight">
-                      {proj.title}
+                    <h3 className="text-xl font-bold tracking-tight text-theme-text">
+                      {project.title}
                     </h3>
-                    <p className="text-[10px] text-text-gray/70 leading-relaxed font-sans font-light">
-                      {proj.desc}
+                    <p className="text-xs md:text-sm text-theme-textSec leading-relaxed font-light">
+                      {project.overview}
                     </p>
-
-                    {/* Problem Solved */}
-                    <div className="text-[10px] text-white/80 leading-normal font-sans pt-0.5">
-                      <strong className="text-neon-purple font-semibold">Problem Solved: </strong>
-                      {proj.problemSolved}
-                    </div>
-
-                    {/* Key Features */}
-                    <div className="space-y-0.5">
-                      <span className="text-[8px] font-mono text-text-gray/50 uppercase tracking-widest block font-bold">Key Features:</span>
-                      <div className="flex flex-wrap gap-x-2.5 gap-y-0.5">
-                        {proj.features.map(f => (
-                          <span key={f} className="text-[9px] text-emerald-400 font-sans flex items-center gap-1 font-medium">
-                            <span className="text-neon-teal text-[8px]">✔</span> {f}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
                   </div>
 
                   {/* Tech stack badges */}
-                  <div className="flex flex-wrap gap-1">
-                    {proj.tech.map(t => (
-                      <span key={t} className="text-[8px] font-mono bg-white/[0.01] border border-white/5 px-2 py-0.5 rounded text-white/80">
-                        {t}
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {project.tech.map((tag) => (
+                      <span 
+                        key={tag}
+                        className="text-[9.5px] font-mono bg-theme-bgSec border border-theme-border px-2 py-0.5 rounded-full text-theme-textSec font-semibold"
+                      >
+                        {tag}
                       </span>
                     ))}
                   </div>
 
-                  {/* Action buttons footer */}
-                  <div className="flex justify-between items-center pt-3 border-t border-white/[0.03]">
-                    
-                    <a
-                      href={proj.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => { playClick(); e.stopPropagation(); }}
+                  {/* Accordion expand button */}
+                  <div className="pt-4 border-t border-theme-border/60 flex items-center justify-between">
+                    <button
+                      onClick={() => toggleExpand(project.id)}
                       onMouseEnter={playHover}
-                      className="py-2 px-3 -my-2 -mx-3 text-[10px] font-mono text-text-gray hover:text-white flex items-center gap-1.5 transition-colors uppercase tracking-widest font-bold"
-                      aria-label={`View GitHub repository for project ${proj.title}`}
+                      className="flex items-center gap-1.5 text-[10px] font-mono tracking-widest text-theme-textSec hover:text-theme-text font-bold transition-colors"
                     >
-                      <Github className="w-3.5 h-3.5" />
-                      Repository
-                    </a>
+                      TECHNICAL DETAILS 
+                      <motion.div
+                        animate={{ rotate: isExpanded ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <ChevronDown className="w-3.5 h-3.5" />
+                      </motion.div>
+                    </button>
 
-                    <a
-                      href={proj.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => { playClick(); e.stopPropagation(); }}
-                      onMouseEnter={playHover}
-                      className="py-2 px-3 -my-2 -mx-3 text-[10px] font-mono text-neon-blue font-bold flex items-center gap-1 hover:text-neon-purple transition-colors uppercase tracking-widest"
-                      aria-label={`View live demo for project ${proj.title}`}
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                      Live Preview
-                    </a>
-
+                    {/* Quick Link icons */}
+                    <div className="flex items-center gap-3">
+                      <a 
+                        href={project.github}
+                        target="_blank"
+                        rel="noreferrer"
+                        onMouseEnter={playHover}
+                        onClick={playClick}
+                        className="p-1.5 rounded-full border border-theme-border hover:border-theme-borderHover text-theme-textSec hover:text-theme-text transition-colors"
+                        title="GitHub Codebase"
+                      >
+                        <Github className="w-3.5 h-3.5" />
+                      </a>
+                      <a 
+                        href={project.live}
+                        target="_blank"
+                        rel="noreferrer"
+                        onMouseEnter={playHover}
+                        onClick={playClick}
+                        className="p-1.5 rounded-full border border-theme-border hover:border-theme-borderHover text-theme-textSec hover:text-theme-text transition-colors"
+                        title="Live Site"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    </div>
                   </div>
+
+                  {/* Collapsible Architecture Details */}
+                  <AnimatePresence initial={false}>
+                    {isExpanded && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: 'easeInOut' }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pt-4 space-y-4 text-xs leading-relaxed border-t border-theme-border/60 mt-4 text-theme-textSec font-light">
+                          
+                          {/* Key features list */}
+                          <div className="space-y-2">
+                            <span className="font-mono text-[9px] uppercase tracking-widest text-theme-accent font-bold block">// KEY FEATURES</span>
+                            <div className="grid grid-cols-1 gap-1.5 pl-1">
+                              {project.features.map((feat) => (
+                                <div key={feat} className="flex items-start gap-2 text-theme-textSec">
+                                  <CheckCircle2 className="w-3.5 h-3.5 text-theme-accent shrink-0 mt-0.5" />
+                                  <span className="text-[11px]">{feat}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Challenges solved */}
+                          <div className="space-y-1">
+                            <span className="font-mono text-[9px] uppercase tracking-widest text-theme-accent font-bold block">// CHALLENGE SOLVED</span>
+                            <p className="text-[11px] pl-1 font-light italic">
+                              "{project.challenge}"
+                            </p>
+                          </div>
+
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
 
                 </div>
 
-              </div>
+              </motion.div>
             );
           })}
         </div>
 
       </div>
-
     </section>
   );
 }

@@ -8,22 +8,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: {
-          primary: 'var(--bg-primary)',
-          secondary: 'var(--bg-secondary)',
+        theme: {
+          bg: 'var(--bg-primary)',
+          bgSec: 'var(--bg-secondary)',
           card: 'var(--card-bg)',
-          cardHover: 'var(--card-hover)'
-        },
-        neon: {
-          blue: 'var(--neon-blue)',
-          purple: 'var(--neon-purple)',
-          pink: 'var(--neon-pink)',
-          teal: 'var(--neon-teal)'
-        },
-        text: {
-          white: 'var(--text-white)',
-          gray: 'var(--text-gray)',
-          dark: 'var(--text-dark)'
+          cardHover: 'var(--card-hover)',
+          accent: 'var(--accent)',
+          accentGlow: 'var(--accent-glow)',
+          accentSec: 'var(--accent-secondary)',
+          text: 'var(--text-primary)',
+          textSec: 'var(--text-secondary)',
+          textMuted: 'var(--text-muted)',
+          border: 'var(--border-color)',
+          borderHover: 'var(--border-hover)'
         }
       },
       fontFamily: {
@@ -32,25 +29,23 @@ export default {
         satoshi: ['Space Grotesk', 'Inter', 'sans-serif']
       },
       backgroundImage: {
-        'futuristic-gradient': 'linear-gradient(135deg, #00f0ff, #8b5cf6)',
-        'neon-glow': 'radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.08) 0%, rgba(139, 92, 246, 0.05) 50%, transparent 100%)',
-        'dark-radial': 'radial-gradient(circle at center, #09090b 0%, #030303 100%)'
+        'futuristic-gradient': 'linear-gradient(135deg, var(--accent), var(--accent-secondary))',
+        'neon-glow': 'radial-gradient(circle at 50% 50%, var(--accent-glow) 0%, transparent 100%)'
       },
       animation: {
-        'spin-slow': 'spin 20s linear infinite',
+        'spin-slow': 'spin 25s linear infinite',
         'float': 'float 6s ease-in-out infinite',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'glow-pulse': 'glow-pulse 2s ease-in-out infinite alternate',
-        'border-flow': 'border-flow 4s linear infinite',
+        'glow-pulse': 'glow-pulse 2.5s ease-in-out infinite alternate',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-          '50%': { transform: 'translateY(-10px) rotate(1deg)' }
+          '50%': { transform: 'translateY(-12px) rotate(1.5deg)' }
         },
         'glow-pulse': {
-          '0%': { boxShadow: '0 0 10px rgba(0, 240, 255, 0.15), 0 0 20px rgba(139, 92, 246, 0.05)' },
-          '100%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.35), 0 0 35px rgba(139, 92, 246, 0.15)' }
+          '0%': { boxShadow: '0 0 10px rgba(56, 189, 248, 0.1), 0 0 20px rgba(139, 92, 246, 0.05)' },
+          '100%': { boxShadow: '0 0 25px rgba(56, 189, 248, 0.3), 0 0 45px rgba(139, 92, 246, 0.15)' }
         }
       }
     },

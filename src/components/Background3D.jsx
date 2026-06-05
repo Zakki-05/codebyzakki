@@ -1,194 +1,246 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { useTheme } from '../ThemeContext';
 
 export default function Background3D() {
   const containerRef = useRef(null);
+  const { theme } = useTheme();
+  const themeRef = useRef(theme);
+
+  // Sync theme changes with animation loop without re-triggering useEffect
+  useEffect(() => {
+    themeRef.current = theme;
+  }, [theme]);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // 1. Core Variables & Dimensions
     const width = window.innerWidth;
     const height = window.innerHeight;
 
-    // 2. Setup Scene & Camera
+    // 1. Scene setup
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 100);
-    camera.position.z = 30;
+    camera.position.z = 25;
 
-    // 3. Setup WebGL Renderer
-    const renderer = new THREE.WebGLRenderer({ 
-      canvas: containerRef.current, 
-      alpha: true, 
-      antialias: true 
+    // 2. Renderer
+    const renderer = new THREE.WebGLRenderer({
+      canvas: containerRef.current,
+      alpha: true,
+      antialias: true
     });
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // 4. Generate Glowing Dot Particle Texture in-memory (to avoid external file loading)
-    const createCircleTexture = () => {
-      const canvas = document.createElement('canvas');
-      canvas.width = 64;
-      canvas.height = 64;
-      const ctx = canvas.getContext('2d');
-      
-      const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-      gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
-      gradient.addColorStop(0.2, 'rgba(0, 240, 255, 0.8)');
-      gradient.addColorStop(0.5, 'rgba(139, 92, 246, 0.4)');
-      gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, 64, 64);
-      
-      const texture = new THREE.CanvasTexture(canvas);
-      texture.premultiplyAlpha = false;
-      return texture;
-    };
-
-    const particleTexture = createCircleTexture();
-
-    // 5. Generate Particles
-    const particleCount = 1800;
+    // 3. Build Particles (Constellation Nodes)
+    const particleCount = 120;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
-    const colors = new Float32Array(particleCount * 3);
-    const initialY = new Float32Array(particleCount); // For wave animation oscillation
-    const speed = new Float32Array(particleCount); // Speeds for individual waves
+    const velocities = [];
 
-    const colorCyan = new THREE.Color('#00f0ff');
-    const colorPurple = new THREE.Color('#8b5cf6');
-    const colorPink = new THREE.Color('#ec4899');
+    // Coordinates bounding box
+    const xRange = 40;
+    const yRange = 30;
+    const zRange = 20;
 
     for (let i = 0; i < particleCount; i++) {
-      // Coordinate generation within a box bounds
-      const x = (Math.random() - 0.5) * 80;
-      const y = (Math.random() - 0.5) * 60;
-      const z = (Math.random() - 0.5) * 50;
+      positions[i * 3] = (Math.random() - 0.5) * xRange;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * yRange;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * zRange;
 
-      positions[i * 3] = x;
-      positions[i * 3 + 1] = y;
-      positions[i * 3 + 2] = z;
-
-      initialY[i] = y;
-      speed[i] = 0.5 + Math.random() * 2;
-
-      // Dynamic Color blending based on placement
-      const mixRatio = Math.random();
-      let finalColor;
-      if (mixRatio < 0.4) {
-        finalColor = colorCyan;
-      } else if (mixRatio < 0.8) {
-        finalColor = colorPurple;
-      } else {
-        finalColor = colorPink;
-      }
-
-      colors[i * 3] = finalColor.r;
-      colors[i * 3 + 1] = finalColor.g;
-      colors[i * 3 + 2] = finalColor.b;
+      velocities.push({
+        x: (Math.random() - 0.5) * 0.03,
+        y: (Math.random() - 0.5) * 0.03,
+        z: (Math.random() - 0.5) * 0.03
+      });
     }
 
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
-    // 6. Particle Shader Material
-    const material = new THREE.PointsMaterial({
-      size: 0.65,
-      sizeAttenuation: true,
-      map: particleTexture,
-      transparent: true,
-      alphaTest: 0.001,
-      depthWrite: false,
-      blending: THREE.AdditiveBlending,
-      vertexColors: true
-    });
-
-    const particles = new THREE.Points(geometry, material);
-    scene.add(particles);
-
-    // 7. Mouse and Scroll Interactions
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetX = 0;
-    let targetY = 0;
-    let scrollY = 0;
-    let targetScrollY = 0;
-
-    const handleMouseMove = (e) => {
-      mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-      mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+    // Circle sprite generator for soft points
+    const createDotTexture = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 16;
+      canvas.height = 16;
+      const ctx = canvas.getContext('2d');
+      const grad = ctx.createRadialGradient(8, 8, 0, 8, 8, 8);
+      grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+      grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 16, 16);
+      return new THREE.CanvasTexture(canvas);
     };
 
-    const handleScroll = () => {
-      targetScrollY = window.scrollY;
+    const dotTexture = createDotTexture();
+    const pointsMaterial = new THREE.PointsMaterial({
+      size: 0.45,
+      map: dotTexture,
+      transparent: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending
+    });
+
+    const pointCloud = new THREE.Points(geometry, pointsMaterial);
+    scene.add(pointCloud);
+
+// Add subtle 3D centerpiece
+const torusKnot = new THREE.Mesh(
+  new THREE.TorusKnotGeometry(5, 1.5, 100, 16),
+  new THREE.MeshStandardMaterial({
+    color: themeRef.current === 'light' ? 0xdddddd : 0xffffff,
+    metalness: 0.6,
+    roughness: 0.4,
+    transparent: true,
+    opacity: 0.6,
+    envMapIntensity: 0.8,
+  })
+);
+scene.add(torusKnot);
+
+// Lighting
+const ambient = new THREE.AmbientLight(0xffffff, 0.5);
+const directional = new THREE.DirectionalLight(0xffffff, 0.7);
+directional.position.set(5, 5, 5);
+scene.add(ambient, directional);
+
+    // 4. Connective Lines between Nodes
+    const lineMaterial = new THREE.LineBasicMaterial({
+      color: 0x38bdf8,
+      transparent: true,
+      opacity: 0.15,
+      depthWrite: false
+    });
+
+    const lineGeometry = new THREE.BufferGeometry();
+    const linePositions = new Float32Array(particleCount * particleCount * 6);
+    lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+    const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+    scene.add(lines);
+
+    // 5. Parallax Mouse Tilting variables
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetMouseX = 0;
+    let targetMouseY = 0;
+
+    const handleMouseMove = (e) => {
+      targetMouseX = (e.clientX - window.innerWidth / 2) * 0.015;
+      targetMouseY = (e.clientY - window.innerHeight / 2) * 0.015;
     };
 
     window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('scroll', handleScroll);
 
-    // 8. Animation Loop
-    const clock = new THREE.Clock();
+    // 6. Handle Resizing
+    const handleResize = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    };
+    window.addEventListener('resize', handleResize);
+
+    // 7. Animation Loop
     let animationFrameId;
+    const posAttribute = geometry.getAttribute('position');
 
     const animate = () => {
-      const elapsedTime = clock.getElapsedTime();
+      animationFrameId = requestAnimationFrame(animate);
 
-      // Smooth mouse follow (lerping)
-      targetX += (mouseX - targetX) * 0.05;
-      targetY += (mouseY - targetY) * 0.05;
-      
-      // Smooth scroll follow (lerping)
-      scrollY += (targetScrollY - scrollY) * 0.05;
+      // Interpolate mouse parallax
+      mouseX += (targetMouseX - mouseX) * 0.05;
+      mouseY += (targetMouseY - mouseY) * 0.05;
 
-      // Apply rotation based on mouse coordinates & scroll progress
-      particles.rotation.y = elapsedTime * 0.02 + targetX * 0.12;
-      particles.rotation.x = elapsedTime * 0.01 + targetY * 0.12;
-      
-      // Parallax upward slide during page scroll + ultra-lightweight GPU floating effect
-      particles.position.y = (scrollY * 0.015) + (Math.sin(elapsedTime * 0.3) * 1.2);
-      particles.position.x = Math.cos(elapsedTime * 0.2) * 0.8;
+      // Rotate group
+      pointCloud.rotation.y = mouseX * 0.05 + 0.01 * performance.now() * 0.001;
+      pointCloud.rotation.x = mouseY * 0.05;
+      lines.rotation.y = pointCloud.rotation.y;
+      lines.rotation.x = pointCloud.rotation.x;
 
+      // Update positions
+      const positionsArray = posAttribute.array;
+      for (let i = 0; i < particleCount; i++) {
+        // Apply velocity
+        positionsArray[i * 3] += velocities[i].x;
+        positionsArray[i * 3 + 1] += velocities[i].y;
+        positionsArray[i * 3 + 2] += velocities[i].z;
 
+        // Boundary reflection
+        if (Math.abs(positionsArray[i * 3]) > xRange / 2) velocities[i].x *= -1;
+        if (Math.abs(positionsArray[i * 3 + 1]) > yRange / 2) velocities[i].y *= -1;
+        if (Math.abs(positionsArray[i * 3 + 2]) > zRange / 2) velocities[i].z *= -1;
+      }
+      posAttribute.needsUpdate = true;
+
+      // Rebuild lines between close points
+      let lineIndex = 0;
+      const linePosArray = lineGeometry.getAttribute('position').array;
+      const maxDistance = 9;
+
+      for (let i = 0; i < particleCount; i++) {
+        const x1 = positionsArray[i * 3];
+        const y1 = positionsArray[i * 3 + 1];
+        const z1 = positionsArray[i * 3 + 2];
+
+        for (let j = i + 1; j < particleCount; j++) {
+          const x2 = positionsArray[j * 3];
+          const y2 = positionsArray[j * 3 + 1];
+          const z2 = positionsArray[j * 3 + 2];
+
+          const dist = Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2 + (z1 - z2) ** 2);
+          if (dist < maxDistance) {
+            linePosArray[lineIndex++] = x1;
+            linePosArray[lineIndex++] = y1;
+            linePosArray[lineIndex++] = z1;
+
+            linePosArray[lineIndex++] = x2;
+            linePosArray[lineIndex++] = y2;
+            linePosArray[lineIndex++] = z2;
+          }
+        }
+      }
+
+      lineGeometry.getAttribute('position').needsUpdate = true;
+      lineGeometry.setDrawRange(0, lineIndex);
+
+      // Theme color mapping adjustment
+      if (themeRef.current === 'light') {
+        pointsMaterial.color.setHex(0x0284c7); // sky-600
+        lineMaterial.color.setHex(0x0284c7);
+        lineMaterial.opacity = 0.07;
+        pointsMaterial.blending = THREE.NormalBlending;
+      } else {
+        pointsMaterial.color.setHex(0x38bdf8); // sky-400
+        lineMaterial.color.setHex(0x38bdf8);
+        lineMaterial.opacity = 0.12;
+        pointsMaterial.blending = THREE.AdditiveBlending;
+      }
 
       renderer.render(scene, camera);
-      animationFrameId = requestAnimationFrame(animate);
     };
 
     animate();
 
-    // 9. Window Resize Management
-    const handleResize = () => {
-      const newWidth = window.innerWidth;
-      const newHeight = window.innerHeight;
-      
-      camera.aspect = newWidth / newHeight;
-      camera.updateProjectionMatrix();
-      
-      renderer.setSize(newWidth, newHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    // 10. Clean-up WebGL instances on Unmount
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
-      
-      geometry.dispose();
-      material.dispose();
-      particleTexture.dispose();
       renderer.dispose();
+      geometry.dispose();
+      lineGeometry.dispose();
+// Dispose torus knot
+torusKnot.geometry.dispose();
+torusKnot.material.dispose();
+      dotTexture.dispose();
+      pointsMaterial.dispose();
+      lineMaterial.dispose();
     };
   }, []);
 
   return (
     <canvas 
       ref={containerRef} 
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-[1] opacity-60 bg-transparent"
+      className="fixed inset-0 w-full h-full pointer-events-none z-0 block transition-all"
     />
   );
 }

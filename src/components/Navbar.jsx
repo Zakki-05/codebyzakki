@@ -1,57 +1,49 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Volume2, VolumeX, Send, Download } from 'lucide-react';
+import { Menu, X, Volume2, VolumeX, Sun, Moon } from 'lucide-react';
 import { useSound } from './SoundManager';
+import { useTheme } from '../ThemeContext';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const NAV_LINKS = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
-  { label: 'Reels', href: '#reels-showcase' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Services', href: '#services' },
-  { label: 'Journey', href: '#journey' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Achievements', href: '#achievements' },
   { label: 'Contact', href: '#contact' }
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('#home');
   
   const { isMuted, toggleMute, playHover, playClick } = useSound();
+  const { theme, toggleTheme } = useTheme();
 
-
-
-
+  // Handle body scroll locking
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('mobile-menu-open');
     } else {
-      document.body.style.overflow = '';
+      document.body.classList.remove('mobile-menu-open');
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.classList.remove('mobile-menu-open');
     };
   }, [isOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
-      // 1. Detect scroll height for background blurring
-      if (window.scrollY > 40) {
+      if (window.scrollY > 50) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
 
-      // 2. Scroll Progress calculation
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalHeight > 0) {
-        setScrollProgress((window.scrollY / totalHeight) * 100);
-      }
-
-      // 3. Active Section detection
-      const scrollPosition = window.scrollY + 250; // offset for better response
+      // Detect active section on scroll
+      const scrollPosition = window.scrollY + 120;
       for (const link of NAV_LINKS) {
         const el = document.querySelector(link.href);
         if (el) {
@@ -75,8 +67,7 @@ export default function Navbar() {
     
     const target = document.querySelector(href);
     if (target) {
-      // Small offset for fixed navbar
-      const yOffset = -80;
+      const yOffset = -70;
       const y = target.getBoundingClientRect().top + window.scrollY + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
       setActiveSection(href);
@@ -85,174 +76,123 @@ export default function Navbar() {
 
   return (
     <>
-      {/* 1. Global Page Scroll Progress Line */}
-      <div className="fixed top-0 left-0 h-[2.5px] bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink z-[9999] transition-all duration-100" style={{ width: `${scrollProgress}%` }} />
-
-      {/* Mobile Menu Backdrop Overlay */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
-
+      {/* Floating Pill Nav Container */}
       <header 
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-          isOpen
-            ? 'py-3.5'
-            : scrolled 
-              ? 'py-3.5 bg-background-primary/50 backdrop-blur-2xl border-b border-white/[0.04] shadow-[0_4px_30px_rgba(0,0,0,0.5)]' 
-              : 'py-6 bg-transparent'
-        }`}
-        style={isOpen ? { 
-          backgroundColor: 'rgba(10, 10, 12, 0.96)', 
-          borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)'
-        } : {}}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4 px-4 md:px-8`}
       >
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          
+        <div 
+          className={`max-w-5xl mx-auto px-6 py-2.5 rounded-full flex justify-between items-center transition-all duration-300 ${
+            scrolled 
+              ? 'glass-panel shadow-[0_10px_30px_rgba(0,0,0,0.15)] scale-[0.98]' 
+              : 'bg-transparent'
+          }`}
+        >
           {/* Logo brand */}
           <a 
             href="#home" 
             onClick={(e) => handleLinkClick(e, '#home')}
             onMouseEnter={playHover}
-            className="flex items-center gap-1.5 font-poppins text-base font-black tracking-[0.2em] text-white hover:opacity-90 transition-opacity"
-            aria-label="Mohammed Zakki Adnaan - Go to home section"
+            className="flex items-center gap-1.5 font-sans text-sm font-black tracking-widest text-theme-text"
           >
             <span>ZAKKI</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse-slow"></span>
-            <span className="text-[9px] font-mono text-neon-purple font-bold tracking-widest">DEV</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-theme-accent animate-pulse-slow"></span>
+            <span className="text-[9px] font-mono text-theme-textSec tracking-tighter">DEV</span>
           </a>
 
-          {/* Desktop Navigation links */}
-          <nav className="hidden lg:flex items-center gap-7">
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex items-center gap-6">
             {NAV_LINKS.map(link => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
                 onMouseEnter={playHover}
-                className={`text-[11px] font-mono uppercase tracking-widest transition-colors duration-300 relative group py-1 ${
-                  activeSection === link.href ? 'text-white font-bold' : 'text-text-gray hover:text-white'
+                className={`text-[10px] font-mono uppercase tracking-widest transition-colors py-1 ${
+                  activeSection === link.href ? 'text-theme-accent font-bold' : 'text-theme-textSec hover:text-theme-text'
                 }`}
               >
                 {link.label}
-                <span className={`absolute bottom-0 left-0 h-[1.5px] bg-neon-blue transition-all duration-300 ${
-                  activeSection === link.href ? 'w-full' : 'w-0 group-hover:w-full'
-                }`} />
               </a>
             ))}
           </nav>
 
-          {/* Action Utilities (Audio, Socials, Mobile toggle) */}
-          <div className="flex items-center gap-3">
+          {/* Action Utilities (Audio, Theme Toggle, Mobile Toggle) */}
+          <div className="flex items-center gap-2">
             
-            {/* Audio Toggle Synthesizer */}
+            {/* Audio Toggle */}
             <button
               onClick={() => { toggleMute(); playClick(); }}
               onMouseEnter={playHover}
-              className={`p-2.5 rounded-full border transition-all duration-300 relative group ${
+              className={`p-2 rounded-full border transition-all duration-300 relative ${
                 !isMuted 
-                  ? 'bg-neon-blue/5 border-neon-blue/20 text-neon-blue shadow-[0_0_12px_rgba(0,240,255,0.15)]' 
-                  : 'bg-white/5 border-white/5 text-text-gray hover:border-white/10 hover:text-white'
+                  ? 'bg-theme-accent/5 border-theme-accent/20 text-theme-accent' 
+                  : 'bg-theme-card border-theme-border text-theme-textMuted hover:border-theme-borderHover hover:text-theme-text'
               }`}
-              title={isMuted ? 'Unmute Futuristic Synthesizer SFX' : 'Mute Synthesizer SFX'}
-              aria-label={isMuted ? 'Unmute background music and sound effects' : 'Mute background music and sound effects'}
+              title={isMuted ? 'Unmute BGM & SFX' : 'Mute BGM & SFX'}
+              aria-label="Toggle music"
             >
               {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 animate-pulse" />}
-              
-              {/* Dynamic Sound Radar Rings */}
-              {!isMuted && (
-                <span className="absolute -inset-1 rounded-full border border-neon-blue/20 animate-ping pointer-events-none" />
-              )}
             </button>
 
+            {/* Theme Toggle Switch */}
+            <button
+              onClick={() => { toggleTheme(); playClick(); }}
+              onMouseEnter={playHover}
+              className="p-2 rounded-full border bg-theme-card border-theme-border text-theme-textSec hover:text-theme-text hover:border-theme-borderHover transition-all duration-300"
+              title={theme === 'dark' ? 'Activate Light Mode' : 'Activate Dark Mode'}
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <Sun className="w-3.5 h-3.5 text-yellow-500" /> : <Moon className="w-3.5 h-3.5 text-indigo-500" />}
+            </button>
 
-
-
-            {/* Mobile Menu Hamburg Toggle */}
+            {/* Mobile Menu Hamburger */}
             <button
               onClick={() => { playClick(); setIsOpen(!isOpen); }}
               onMouseEnter={playHover}
-              className="lg:hidden p-2.5 rounded-lg bg-white/5 border border-white/5 text-white hover:bg-white/10 transition-colors"
-              aria-label="Toggle navigation menu"
-              aria-expanded={isOpen}
-              aria-controls="mobile-nav-menu"
+              className="md:hidden p-2 rounded-full bg-theme-card border border-theme-border text-theme-text hover:bg-theme-cardHover transition-colors"
+              aria-label="Toggle menu"
             >
-              {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+              {isOpen ? <X className="w-3.5 h-3.5" /> : <Menu className="w-3.5 h-3.5" />}
             </button>
 
           </div>
-
-        </div>
-
-        {/* Mobile Navigation Drawer */}
-        <div 
-          id="mobile-nav-menu" 
-          className={`lg:hidden absolute top-full left-0 w-full transition-all duration-300 origin-top overflow-hidden z-40 ${
-            isOpen ? 'scale-y-100 opacity-100 py-6 shadow-[0_10px_40px_rgba(0,0,0,0.8)]' : 'scale-y-0 opacity-0 py-0 pointer-events-none'
-          }`} 
-          style={{ 
-            maxHeight: '85vh',
-            backgroundColor: 'rgba(10, 10, 12, 0.96)',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)'
-          }}
-        >
-          <div className="flex flex-col items-center gap-5 px-6 font-mono text-xs tracking-widest">
-            {NAV_LINKS.map(link => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href)}
-                onMouseEnter={playHover}
-                className="uppercase transition-colors py-1.5 hover:text-white"
-                style={{
-                  color: activeSection === link.href ? '#a78bfa' : '#8e9196',
-                  fontWeight: activeSection === link.href ? '700' : '400'
-                }}
-              >
-                {link.label}
-              </a>
-            ))}
-            
-            <a
-              href="/New_MOHAMMED_ZAKKI_ADNAAN_P_2026-06-02.pdf"
-              download="New_MOHAMMED_ZAKKI_ADNAAN_P_2026-06-02.pdf"
-              onMouseEnter={playHover}
-              onClick={playClick}
-              className="flex items-center gap-2 px-8 py-2.5 rounded-full border transition-all duration-300 w-full max-w-xs justify-center text-[11px] hover:scale-105"
-              style={{
-                border: '1px solid rgba(139, 92, 246, 0.3)',
-                backgroundColor: 'rgba(139, 92, 246, 0.03)',
-                color: '#a78bfa',
-                fontWeight: '700'
-              }}
-            >
-              <Download className="w-3.5 h-3.5" />
-              DOWNLOAD RESUME
-            </a>
-
-            <a
-              href="#contact"
-              onClick={(e) => handleLinkClick(e, '#contact')}
-              onMouseEnter={playHover}
-              className="flex items-center gap-2 px-8 py-2.5 rounded-full transition-all duration-300 w-full max-w-xs justify-center shadow-lg text-[11px] hover:scale-105"
-              style={{
-                backgroundImage: 'linear-gradient(to right, #00f0ff, #8b5cf6)',
-                color: '#000000',
-                fontWeight: '700'
-              }}
-            >
-              <Send className="w-3.5 h-3.5" />
-              HIRE ME
-            </a>
-          </div>
         </div>
       </header>
+
+      {/* Full-screen Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-theme-bg/95 backdrop-blur-xl z-40 flex flex-col justify-center items-center md:hidden"
+          >
+            {/* Fine Grid Background */}
+            <div className="absolute inset-0 linear-grid opacity-10 pointer-events-none"></div>
+
+            <nav className="flex flex-col items-center gap-6 z-10 text-center font-mono">
+              {NAV_LINKS.map((link, idx) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.05, duration: 0.3 }}
+                  onClick={(e) => handleLinkClick(e, link.href)}
+                  onMouseEnter={playHover}
+                  className={`text-sm uppercase tracking-[0.2em] transition-colors py-2 ${
+                    activeSection === link.href ? 'text-theme-accent font-bold text-lg' : 'text-theme-textSec hover:text-theme-text'
+                  }`}
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

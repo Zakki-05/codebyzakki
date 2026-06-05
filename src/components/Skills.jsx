@@ -1,39 +1,39 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Palette, Sparkles, Wind, Database, Link, GitBranch, Smartphone, Layers, Terminal, Grid, Globe, Server } from 'lucide-react';
+import { Code, Sparkles, Database, GitBranch, Terminal, Globe, Server, Cpu } from 'lucide-react';
 import { useSound } from './SoundManager';
 
 const SKILL_CATEGORIES = [
   {
-    title: 'Frontend',
+    title: 'Frontend Development',
     skills: [
-      { name: 'React JS', icon: Terminal, levelText: 'Intermediate', color: 'from-[#61dafb] to-[#1fc8f8]', shadow: 'rgba(97,218,251,0.1)' },
-      { name: 'JavaScript (ES6+)', icon: Sparkles, levelText: 'Intermediate', color: 'from-[#f7df1e] to-[#f0db4f]', shadow: 'rgba(247,223,30,0.1)' },
-      { name: 'HTML5 Platform', icon: Code, levelText: 'Advanced', color: 'from-[#e34f26] to-[#f06529]', shadow: 'rgba(240,101,41,0.1)' },
-      { name: 'CSS3 Styling', icon: Palette, levelText: 'Advanced', color: 'from-[#1572b6] to-[#33a9dc]', shadow: 'rgba(21,114,182,0.1)' },
-      { name: 'Tailwind CSS', icon: Wind, levelText: 'Advanced', color: 'from-[#06b6d4] to-[#3b82f6]', shadow: 'rgba(6,182,212,0.1)' },
-      { name: 'Bootstrap Grids', icon: Grid, levelText: 'Intermediate', color: 'from-[#7952b3] to-[#9b66cc]', shadow: 'rgba(121,82,179,0.1)' },
-      { name: 'Responsive Design', icon: Smartphone, levelText: 'Advanced', color: 'from-[#10b981] to-[#059669]', shadow: 'rgba(16,185,129,0.1)' }
+      { name: 'React JS', icon: Terminal, level: 85, color: '#61dafb' },
+      { name: 'JavaScript (ES6+)', icon: Sparkles, level: 80, color: '#f7df1e' },
+      { name: 'HTML5 Platform', icon: Code, level: 90, color: '#e34f26' },
+      { name: 'CSS3 Styling', icon: Cpu, level: 90, color: '#1572b6' },
+      { name: 'Tailwind CSS', icon: Server, level: 90, color: '#06b6d4' },
+      { name: 'Bootstrap Grids', icon: Database, level: 75, color: '#7952b3' }
     ]
   },
   {
-    title: 'Backend',
+    title: 'Backend Systems',
     skills: [
-      { name: 'Django Framework', icon: Database, levelText: 'Beginner', color: 'from-[#092e20] to-[#12583c]', shadow: 'rgba(9,46,32,0.1)' },
-      { name: 'REST API Caching', icon: Link, levelText: 'Intermediate', color: 'from-[#8b5cf6] to-[#ec4899]', shadow: 'rgba(139,92,246,0.1)' }
+      { name: 'Django Framework', icon: Database, level: 60, color: '#092e20' },
+      { name: 'REST APIs', icon: Globe, level: 75, color: '#8b5cf6' }
     ]
   },
   {
-    title: 'Tools',
+    title: 'Tools & Workflows',
     skills: [
-      { name: 'Git & Github', icon: GitBranch, levelText: 'Intermediate', color: 'from-[#f05032] to-[#ff6b4a]', shadow: 'rgba(240,80,50,0.1)' }
+      { name: 'Git Versioning', icon: GitBranch, level: 80, color: '#f05032' },
+      { name: 'GitHub Ecosystem', icon: GitBranch, level: 85, color: '#181717' }
     ]
   },
   {
-    title: 'Deployment',
+    title: 'Hosting & Deployment',
     skills: [
-      { name: 'Netlify Hosting', icon: Globe, levelText: 'Intermediate', color: 'from-[#00c8c8] to-[#008080]', shadow: 'rgba(0,200,200,0.1)' },
-      { name: 'Render Deploy', icon: Server, levelText: 'Intermediate', color: 'from-[#4646ec] to-[#1010b0]', shadow: 'rgba(70,70,236,0.1)' }
+      { name: 'Netlify Hosting', icon: Globe, level: 80, color: '#00c8c8' },
+      { name: 'Render Deploy', icon: Server, level: 70, color: '#4646ec' }
     ]
   }
 ];
@@ -42,26 +42,40 @@ export default function Skills() {
   const { playHover, playClick } = useSound();
 
   return (
-    <section id="skills" className="relative py-28 px-6 overflow-hidden tech-grid bg-[#030303]">
-      
-      {/* Background drift lighting blobs */}
-      <div className="absolute top-[30%] right-[-10%] w-[350px] h-[350px] rounded-full bg-neon-blue/[0.02] blur-[120px] pointer-events-none z-0"></div>
-      <div className="absolute bottom-[30%] left-[-10%] w-[350px] h-[350px] rounded-full bg-neon-purple/[0.02] blur-[120px] pointer-events-none z-0"></div>
+    <section id="skills" className="relative py-28 px-6 overflow-hidden bg-transparent">
+      {/* Background radial highlight */}
+      <div className="absolute top-[30%] right-[-10%] w-[400px] h-[400px] ambient-glow opacity-20 pointer-events-none z-0"></div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10 space-y-16">
         
-        {/* Title details */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-neon-blue/20 bg-neon-blue/[0.02] text-neon-blue text-[10px] font-mono tracking-widest uppercase mb-4 animate-pulse-slow">
-            <Terminal className="w-3 h-3" />
-            ENGINE_COMPILER // STACK
-          </div>
-          <h2 className="text-3xl md:text-5xl font-extrabold font-poppins tracking-tight text-white mb-4 uppercase">
-            SKILL MATRICES
-          </h2>
-          <p className="text-text-gray max-w-xl mx-auto text-xs md:text-sm font-light font-sans leading-relaxed">
-            A structured mapping of technologies, structural frameworks, and creative user spaces representing my production engineering stack.
-          </p>
+        {/* Title Details */}
+        <div className="text-center space-y-4 max-w-xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-[10px] font-mono tracking-[0.25em] text-theme-accent uppercase font-bold"
+          >
+            02 // SKILLSET
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl md:text-4xl font-extrabold text-theme-text"
+          >
+            Core Technical Matrix
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-xs sm:text-sm text-theme-textSec leading-relaxed"
+          >
+            My engineering stack for building fluid single-page interfaces and responsive deployment pipelines.
+          </motion.p>
         </div>
 
         {/* Categorized Skills Grid */}
@@ -69,12 +83,12 @@ export default function Skills() {
           {SKILL_CATEGORIES.map((cat, catIdx) => (
             <div key={cat.title} className="space-y-6">
               
-              {/* Category Header Label */}
-              <h3 className="font-mono text-[10px] tracking-widest text-text-gray/50 uppercase text-left pl-1 pb-2 border-b border-white/[0.03]">
+              {/* Category Label */}
+              <h3 className="font-mono text-[10px] tracking-widest text-theme-textMuted uppercase pl-1 pb-2 border-b border-theme-border/60">
                 // 0{catIdx + 1} : {cat.title}
               </h3>
 
-              {/* Skills list cards */}
+              {/* Skills List */}
               <div className="space-y-4">
                 {cat.skills.map((skill, skillIdx) => {
                   const Icon = skill.icon;
@@ -87,34 +101,39 @@ export default function Skills() {
                       transition={{ delay: skillIdx * 0.05 + catIdx * 0.1, type: 'spring', stiffness: 200, damping: 20 }}
                       onClick={playClick}
                       onMouseEnter={playHover}
-                      className="p-4 rounded-xl glass-card flex items-center justify-between group cursor-pointer relative overflow-hidden"
+                      className="p-4 rounded-xl glass-card-premium flex flex-col justify-between group cursor-pointer relative overflow-hidden"
                     >
-                      {/* Subtle hover background accent */}
-                      <div className="absolute inset-0 bg-white/[0.005] group-hover:bg-white/[0.015] transition-all duration-300 pointer-events-none" />
-
-                      {/* Icon and Name */}
-                      <div className="flex items-center gap-3 relative z-10">
-                        <div className="p-2 rounded-lg bg-white/[0.02] border border-white/5 text-text-gray group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300">
-                          <Icon className="w-4 h-4" />
+                      <div className="flex items-center gap-3 justify-between w-full">
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 rounded-lg bg-theme-bgSec border border-theme-border text-theme-textSec group-hover:bg-theme-accent group-hover:text-[#020617] group-hover:border-theme-accent transition-all duration-300">
+                            <Icon className="w-3.5 h-3.5" />
+                          </div>
+                          <span className="text-xs font-bold text-theme-text group-hover:text-theme-accent transition-colors duration-300 font-sans">
+                            {skill.name}
+                          </span>
                         </div>
-                        <span className="font-poppins text-xs font-semibold text-white tracking-wide">{skill.name}</span>
+                        
                       </div>
 
-                      {/* Level Badge */}
-                      <span className="font-mono text-[9px] text-neon-blue font-bold tracking-widest px-2 py-0.5 rounded border border-neon-blue/20 bg-neon-blue/5 relative z-10 uppercase">
-                        {skill.levelText}
-                      </span>
+                      {/* Micro visual progress scale */}
+                      <div className="mt-3.5 h-[1.5px] w-full bg-theme-border/60 rounded-full overflow-hidden">
+                        <motion.div 
+                          className="h-full bg-gradient-to-r from-theme-accent to-theme-accentSec"
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${skill.level}%` }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.1, duration: 1, ease: 'easeOut' }}
+                        />
+                      </div>
                     </motion.div>
                   );
                 })}
               </div>
-
             </div>
           ))}
         </div>
 
       </div>
-
     </section>
   );
 }
