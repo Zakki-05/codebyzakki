@@ -81,42 +81,16 @@ export default function Skills() {
                       transition={{ delay: skillIdx * 0.05 + catIdx * 0.1, type: 'spring', stiffness: 200, damping: 20 }}
                       onClick={playClick}
                       onMouseEnter={playHover}
-                      className="p-4 rounded-xl glass-card border-white/5 flex items-center justify-between group cursor-pointer relative overflow-hidden"
+                      className="p-4 rounded-xl glass-card border-white/5 flex items-center gap-3 group cursor-pointer relative overflow-hidden"
                     >
                       {/* Subtle hover background accent */}
                       <div className="absolute inset-0 bg-white/[0.005] group-hover:bg-white/[0.015] transition-all duration-300 pointer-events-none" />
 
-                      {/* Left: Icon and Name */}
-                      <div className="flex items-center gap-3 relative z-10">
-                        <div className="p-2 rounded-lg bg-white/[0.02] border border-white/5 text-text-gray group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300">
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <span className="font-poppins text-xs font-semibold text-white tracking-wide">{skill.name}</span>
+                      {/* Icon and Name */}
+                      <div className="p-2 rounded-lg bg-white/[0.02] border border-white/5 text-text-gray group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300 relative z-10">
+                        <Icon className="w-4 h-4" />
                       </div>
-
-                      {/* Right: Progress level indicator */}
-                      <div className="flex items-center gap-3 relative z-10 w-24 sm:w-28 flex-shrink-0">
-                        <div 
-                          className="h-1 w-full bg-white/[0.03] border border-white/5 rounded-full overflow-hidden p-[0.5px]"
-                          role="progressbar" 
-                          aria-valuenow={skill.level} 
-                          aria-valuemin="0" 
-                          aria-valuemax="100"
-                          aria-label={`Proficiency in ${skill.name}`}
-                        >
-                          <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${skill.level}%` }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1, duration: 1, ease: 'easeOut' }}
-                            className={`h-full bg-gradient-to-r ${skill.color} rounded-full`}
-                          />
-                        </div>
-                        <span className="font-mono text-[9px] text-neon-blue font-bold tracking-widest w-6 text-right">
-                          {skill.level}%
-                        </span>
-                      </div>
-
+                      <span className="font-poppins text-xs font-semibold text-white tracking-wide relative z-10">{skill.name}</span>
                     </motion.div>
                   );
                 })}
