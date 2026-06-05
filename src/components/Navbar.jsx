@@ -95,16 +95,11 @@ export default function Navbar() {
         />
       )}
 
-      <header 
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-          isOpen
-            ? 'py-3.5 bg-white border-b border-zinc-200/80 shadow-md'
-            : scrolled 
-              ? 'py-3.5 bg-background-primary/50 backdrop-blur-2xl border-b border-white/[0.04] shadow-[0_4px_30px_rgba(0,0,0,0.5)]' 
-              : 'py-6 bg-transparent'
-        }`}
-        style={isOpen ? { backgroundColor: '#ffffff', borderBottom: '1px solid #e4e4e7' } : {}}
-      >
+      <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        scrolled 
+          ? 'py-3.5 bg-background-primary/50 backdrop-blur-2xl border-b border-white/[0.04] shadow-[0_4px_30px_rgba(0,0,0,0.5)]' 
+          : 'py-6 bg-transparent'
+      }`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           
           {/* Logo brand */}
@@ -112,10 +107,7 @@ export default function Navbar() {
             href="#home" 
             onClick={(e) => handleLinkClick(e, '#home')}
             onMouseEnter={playHover}
-            className={`flex items-center gap-1.5 font-poppins text-base font-black tracking-[0.2em] transition-opacity hover:opacity-90 ${
-              isOpen ? 'text-black' : 'text-white'
-            }`}
-            style={isOpen ? { color: '#000000' } : {}}
+            className="flex items-center gap-1.5 font-poppins text-base font-black tracking-[0.2em] text-white hover:opacity-90 transition-opacity"
             aria-label="Mohammed Zakki Adnaan - Go to home section"
           >
             <span>ZAKKI</span>
@@ -151,19 +143,10 @@ export default function Navbar() {
               onClick={() => { toggleMute(); playClick(); }}
               onMouseEnter={playHover}
               className={`p-2.5 rounded-full border transition-all duration-300 relative group ${
-                isOpen
-                  ? !isMuted
-                    ? 'bg-purple-50 border-purple-200 text-[#7c3aed] shadow-sm'
-                    : 'bg-zinc-100 border-zinc-200 text-zinc-600 hover:bg-zinc-200 hover:text-black'
-                  : !isMuted 
-                    ? 'bg-neon-blue/5 border-neon-blue/20 text-neon-blue shadow-[0_0_12px_rgba(0,240,255,0.15)]' 
-                    : 'bg-white/5 border-white/5 text-text-gray hover:border-white/10 hover:text-white'
+                !isMuted 
+                  ? 'bg-neon-blue/5 border-neon-blue/20 text-neon-blue shadow-[0_0_12px_rgba(0,240,255,0.15)]' 
+                  : 'bg-white/5 border-white/5 text-text-gray hover:border-white/10 hover:text-white'
               }`}
-              style={isOpen ? {
-                backgroundColor: !isMuted ? '#f5f3ff' : '#f4f4f5',
-                borderColor: !isMuted ? '#ddd6fe' : '#e4e4e7',
-                color: !isMuted ? '#7c3aed' : '#52525b'
-              } : {}}
               title={isMuted ? 'Unmute Futuristic Synthesizer SFX' : 'Mute Synthesizer SFX'}
               aria-label={isMuted ? 'Unmute background music and sound effects' : 'Mute background music and sound effects'}
             >
@@ -182,16 +165,7 @@ export default function Navbar() {
             <button
               onClick={() => { playClick(); setIsOpen(!isOpen); }}
               onMouseEnter={playHover}
-              className={`lg:hidden p-2.5 rounded-lg border transition-colors ${
-                isOpen 
-                  ? 'bg-zinc-100 border-zinc-200 text-black hover:bg-zinc-200' 
-                  : 'bg-white/5 border-white/5 text-white hover:bg-white/10'
-              }`}
-              style={isOpen ? {
-                backgroundColor: '#f4f4f5',
-                borderColor: '#e4e4e7',
-                color: '#000000'
-              } : {}}
+              className="lg:hidden p-2.5 rounded-lg bg-white/5 border border-white/5 text-white hover:bg-white/10 transition-colors"
               aria-label="Toggle navigation menu"
               aria-expanded={isOpen}
               aria-controls="mobile-nav-menu"
@@ -207,12 +181,14 @@ export default function Navbar() {
         <div 
           id="mobile-nav-menu" 
           className={`lg:hidden absolute top-full left-0 w-full transition-all duration-300 origin-top overflow-hidden z-40 ${
-            isOpen ? 'scale-y-100 opacity-100 py-6 shadow-lg' : 'scale-y-0 opacity-0 py-0 pointer-events-none'
+            isOpen ? 'scale-y-100 opacity-100 py-6 shadow-[0_10px_40px_rgba(0,0,0,0.8)]' : 'scale-y-0 opacity-0 py-0 pointer-events-none'
           }`} 
           style={{ 
             maxHeight: '85vh',
-            backgroundColor: '#ffffff',
-            borderBottom: '1px solid #e4e4e7'
+            backgroundColor: 'rgba(10, 10, 12, 0.96)',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)'
           }}
         >
           <div className="flex flex-col items-center gap-5 px-6 font-mono text-xs tracking-widest">
@@ -222,10 +198,10 @@ export default function Navbar() {
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
                 onMouseEnter={playHover}
-                className={`uppercase transition-colors py-1.5`}
+                className="uppercase transition-colors py-1.5 hover:text-white"
                 style={{
-                  color: activeSection === link.href ? '#7c3aed' : '#52525b',
-                  fontWeight: activeSection === link.href ? '800' : '500'
+                  color: activeSection === link.href ? '#a78bfa' : '#8e9196',
+                  fontWeight: activeSection === link.href ? '700' : '400'
                 }}
               >
                 {link.label}
@@ -237,11 +213,11 @@ export default function Navbar() {
               download="New_MOHAMMED_ZAKKI_ADNAAN_P_2026-06-02.pdf"
               onMouseEnter={playHover}
               onClick={playClick}
-              className="flex items-center gap-2 px-8 py-2.5 rounded-full border transition-all duration-300 w-full max-w-xs justify-center text-[11px]"
+              className="flex items-center gap-2 px-8 py-2.5 rounded-full border transition-all duration-300 w-full max-w-xs justify-center text-[11px] hover:scale-105"
               style={{
                 border: '1px solid rgba(139, 92, 246, 0.3)',
-                backgroundColor: 'rgba(139, 92, 246, 0.05)',
-                color: '#7c3aed',
+                backgroundColor: 'rgba(139, 92, 246, 0.03)',
+                color: '#a78bfa',
                 fontWeight: '700'
               }}
             >
@@ -253,7 +229,7 @@ export default function Navbar() {
               href="#contact"
               onClick={(e) => handleLinkClick(e, '#contact')}
               onMouseEnter={playHover}
-              className="flex items-center gap-2 px-8 py-2.5 rounded-full transition-all duration-300 w-full max-w-xs justify-center shadow-lg text-[11px]"
+              className="flex items-center gap-2 px-8 py-2.5 rounded-full transition-all duration-300 w-full max-w-xs justify-center shadow-lg text-[11px] hover:scale-105"
               style={{
                 backgroundImage: 'linear-gradient(to right, #00f0ff, #8b5cf6)',
                 color: '#000000',
