@@ -40,6 +40,17 @@ export default function Navbar() {
   };
 
   useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
     const handleScroll = () => {
       // 1. Detect scroll height for background blurring
       if (window.scrollY > 40) {
@@ -91,6 +102,14 @@ export default function Navbar() {
     <>
       {/* 1. Global Page Scroll Progress Line */}
       <div className="fixed top-0 left-0 h-[2.5px] bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink z-[9999] transition-all duration-100" style={{ width: `${scrollProgress}%` }} />
+
+      {/* Mobile Menu Backdrop Overlay */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
 
       <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         scrolled 

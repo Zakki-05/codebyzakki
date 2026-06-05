@@ -5,29 +5,29 @@ import { useSound } from './SoundManager';
 
 const SKILL_CATEGORIES = [
   {
-    title: 'Core Architecture',
+    title: 'Frontend',
     skills: [
       { name: 'React JS', icon: Terminal, levelText: 'Intermediate', color: 'from-[#61dafb] to-[#1fc8f8]', shadow: 'rgba(97,218,251,0.1)' },
       { name: 'JavaScript (ES6+)', icon: Sparkles, levelText: 'Intermediate', color: 'from-[#f7df1e] to-[#f0db4f]', shadow: 'rgba(247,223,30,0.1)' },
       { name: 'HTML5 Platform', icon: Code, levelText: 'Advanced', color: 'from-[#e34f26] to-[#f06529]', shadow: 'rgba(240,101,41,0.1)' },
-      { name: 'CSS3 Styling', icon: Palette, levelText: 'Advanced', color: 'from-[#1572b6] to-[#33a9dc]', shadow: 'rgba(21,114,182,0.1)' }
-    ]
-  },
-  {
-    title: 'Frameworks & Design',
-    skills: [
+      { name: 'CSS3 Styling', icon: Palette, levelText: 'Advanced', color: 'from-[#1572b6] to-[#33a9dc]', shadow: 'rgba(21,114,182,0.1)' },
       { name: 'Tailwind CSS', icon: Wind, levelText: 'Advanced', color: 'from-[#06b6d4] to-[#3b82f6]', shadow: 'rgba(6,182,212,0.1)' },
-      { name: 'Bootstrap Grids', icon: Grid, levelText: 'Intermediate', color: 'from-[#7952b3] to-[#9b66cc]', shadow: 'rgba(121,82,179,0.1)' },
-      { name: 'UI/UX Visuals', icon: Layers, levelText: 'Intermediate', color: 'from-[#00f0ff] to-[#8b5cf6]', shadow: 'rgba(0,240,255,0.1)' },
-      { name: 'Responsive Design', icon: Smartphone, levelText: 'Advanced', color: 'from-[#10b981] to-[#059669]', shadow: 'rgba(16,185,129,0.1)' }
+      { name: 'Responsive Design', icon: Smartphone, levelText: 'Advanced', color: 'from-[#10b981] to-[#059669]', shadow: 'rgba(16,185,129,0.1)' },
+      { name: 'UI/UX Visuals', icon: Layers, levelText: 'Intermediate', color: 'from-[#00f0ff] to-[#8b5cf6]', shadow: 'rgba(0,240,255,0.1)' }
     ]
   },
   {
-    title: 'Integrations & Backends',
+    title: 'Backend',
     skills: [
       { name: 'Django Framework', icon: Database, levelText: 'Beginner', color: 'from-[#092e20] to-[#12583c]', shadow: 'rgba(9,46,32,0.1)' },
-      { name: 'REST API Caching', icon: Link, levelText: 'Intermediate', color: 'from-[#8b5cf6] to-[#ec4899]', shadow: 'rgba(139,92,246,0.1)' },
-      { name: 'Git & Github CD', icon: GitBranch, levelText: 'Intermediate', color: 'from-[#f05032] to-[#ff6b4a]', shadow: 'rgba(240,80,50,0.1)' }
+      { name: 'REST API Caching', icon: Link, levelText: 'Intermediate', color: 'from-[#8b5cf6] to-[#ec4899]', shadow: 'rgba(139,92,246,0.1)' }
+    ]
+  },
+  {
+    title: 'Tools',
+    skills: [
+      { name: 'Git & Github CD', icon: GitBranch, levelText: 'Intermediate', color: 'from-[#f05032] to-[#ff6b4a]', shadow: 'rgba(240,80,50,0.1)' },
+      { name: 'Bootstrap Grids', icon: Grid, levelText: 'Intermediate', color: 'from-[#7952b3] to-[#9b66cc]', shadow: 'rgba(121,82,179,0.1)' }
     ]
   }
 ];
