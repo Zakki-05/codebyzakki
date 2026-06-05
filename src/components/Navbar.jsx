@@ -168,8 +168,8 @@ export default function Navbar() {
 
             {/* Resume Button */}
             <a
-              href="/MOHAMMED_ZAKKI_ADNAAN_P_Resume_2026.pdf"
-              download="MOHAMMED_ZAKKI_ADNAAN_P_Resume_2026.pdf"
+              href="/New_MOHAMMED_ZAKKI_ADNAAN_P_2026-06-02.pdf"
+              download="New_MOHAMMED_ZAKKI_ADNAAN_P_2026-06-02.pdf"
               onMouseEnter={playHover}
               onClick={playClick}
               className="hidden sm:flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-neon-purple/20 bg-neon-purple/[0.03] text-neon-purple text-[10px] font-mono tracking-widest uppercase transition-all duration-300 hover:scale-105 hover:bg-neon-purple hover:text-white"
@@ -227,8 +227,8 @@ export default function Navbar() {
             ))}
             
             <a
-              href="/MOHAMMED_ZAKKI_ADNAAN_P_Resume_2026.pdf"
-              download="MOHAMMED_ZAKKI_ADNAAN_P_Resume_2026.pdf"
+              href="/New_MOHAMMED_ZAKKI_ADNAAN_P_2026-06-02.pdf"
+              download="New_MOHAMMED_ZAKKI_ADNAAN_P_2026-06-02.pdf"
               onMouseEnter={playHover}
               onClick={playClick}
               className="flex items-center gap-2 px-8 py-2.5 rounded-full border border-neon-purple/20 bg-neon-purple/[0.03] text-neon-purple font-bold tracking-widest uppercase transition-all duration-300 w-full max-w-xs justify-center text-[11px] hover:bg-neon-purple hover:text-white"

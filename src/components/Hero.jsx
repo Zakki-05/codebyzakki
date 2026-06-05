@@ -158,8 +158,8 @@ export default function Hero() {
             </a>
 
             <a
-              href="/MOHAMMED_ZAKKI_ADNAAN_P_Resume_2026.pdf"
-              download="MOHAMMED_ZAKKI_ADNAAN_P_Resume_2026.pdf"
+              href="/New_MOHAMMED_ZAKKI_ADNAAN_P_2026-06-02.pdf"
+              download="New_MOHAMMED_ZAKKI_ADNAAN_P_2026-06-02.pdf"
               onMouseEnter={playHover}
               onClick={playClick}
               className="px-6 py-3 rounded-full border border-neon-purple/20 bg-neon-purple/[0.03] text-neon-purple font-mono text-[10px] font-bold tracking-widest hover:bg-neon-purple hover:text-white transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105"
