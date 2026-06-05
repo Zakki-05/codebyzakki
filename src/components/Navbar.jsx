@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Volume2, VolumeX, Send, Download, Sun, Moon } from 'lucide-react';
+import { Menu, X, Volume2, VolumeX, Send, Download } from 'lucide-react';
 import { useSound } from './SoundManager';
 
 const NAV_LINKS = [
@@ -18,25 +18,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('#home');
-  const [theme, setTheme] = useState('dark');
   
   const { isMuted, toggleMute, playHover, playClick } = useSound();
-
-  // Sync theme status from document element on mount
-  useEffect(() => {
-    setTheme(document.documentElement.classList.contains('light') ? 'light' : 'dark');
-  }, []);
-
-  const toggleTheme = () => {
-    const nextTheme = theme === 'dark' ? 'light' : 'dark';
-    if (nextTheme === 'light') {
-      document.documentElement.classList.add('light');
-    } else {
-      document.documentElement.classList.remove('light');
-    }
-    setTheme(nextTheme);
-    localStorage.setItem('theme_mode', nextTheme);
-  };
 
 
 
@@ -122,8 +105,8 @@ export default function Navbar() {
               : 'py-6 bg-transparent'
         }`}
         style={isOpen ? { 
-          backgroundColor: theme === 'dark' ? 'rgba(10, 10, 12, 0.96)' : 'rgba(248, 250, 252, 0.96)', 
-          borderBottom: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.05)' : '1px solid rgba(15, 23, 42, 0.08)',
+          backgroundColor: 'rgba(10, 10, 12, 0.96)', 
+          borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)'
         } : {}}
@@ -163,7 +146,7 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Action Utilities (Audio, Theme Toggle, Socials, Mobile toggle) */}
+          {/* Action Utilities (Audio, Socials, Mobile toggle) */}
           <div className="flex items-center gap-3">
             
             {/* Audio Toggle Synthesizer */}
@@ -184,17 +167,6 @@ export default function Navbar() {
               {!isMuted && (
                 <span className="absolute -inset-1 rounded-full border border-neon-blue/20 animate-ping pointer-events-none" />
               )}
-            </button>
-
-            {/* Theme Toggle Switch */}
-            <button
-              onClick={() => { toggleTheme(); playClick(); }}
-              onMouseEnter={playHover}
-              className="p-2.5 rounded-full border border-white/5 bg-white/5 text-text-gray hover:border-white/10 hover:text-white transition-all duration-300 relative group"
-              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-              aria-label={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            >
-              {theme === 'dark' ? <Sun className="w-3.5 h-3.5 text-amber-500 animate-pulse" /> : <Moon className="w-3.5 h-3.5 text-indigo-400" />}
             </button>
 
 
@@ -224,8 +196,8 @@ export default function Navbar() {
           }`} 
           style={{ 
             maxHeight: '85vh',
-            backgroundColor: theme === 'dark' ? 'rgba(10, 10, 12, 0.96)' : 'rgba(248, 250, 252, 0.96)', 
-            borderBottom: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.05)' : '1px solid rgba(15, 23, 42, 0.08)',
+            backgroundColor: 'rgba(10, 10, 12, 0.96)',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)'
           }}
@@ -237,9 +209,9 @@ export default function Navbar() {
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
                 onMouseEnter={playHover}
-                className={`uppercase transition-colors py-1.5 ${theme === 'dark' ? 'hover:text-white' : 'hover:text-black'}`}
+                className="uppercase transition-colors py-1.5 hover:text-white"
                 style={{
-                  color: activeSection === link.href ? 'var(--neon-purple)' : 'var(--text-gray)',
+                  color: activeSection === link.href ? '#a78bfa' : '#8e9196',
                   fontWeight: activeSection === link.href ? '700' : '400'
                 }}
               >

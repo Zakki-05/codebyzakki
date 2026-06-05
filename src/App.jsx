@@ -27,16 +27,7 @@ function CoreApp() {
   const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Initialize theme mode on mount
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme_mode');
-    const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-    if (savedTheme === 'light' || (!savedTheme && systemPrefersLight)) {
-      document.documentElement.classList.add('light');
-    } else {
-      document.documentElement.classList.remove('light');
-    }
-  }, []);
+
 
   // Initialize mobile device viewport checking
   useEffect(() => {
