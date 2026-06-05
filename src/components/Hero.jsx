@@ -19,12 +19,16 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
           className="space-y-6"
         >
-          <h1 className="text-4xl md:text-5xl font-extrabold text-theme-text tracking-tight">
-            Mohammad Zakki Adnaan
+          {/* Badge */}
+          <div className="inline-block bg-theme-accentGlow text-theme-accent font-semibold px-3 py-1 rounded-full text-sm mb-4 animate-pulse">
+            Currently Seeking Frontend Developer Opportunities
+          </div>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-theme-accent tracking-tight">
+            Frontend Developer &amp; React Developer
           </h1>
-          <h2 className="text-2xl md:text-3xl font-medium text-theme-accent typewriter-cursor">
-            Frontend &amp; React Developer
-          </h2>
+          <p className="text-lg md:text-xl font-medium text-theme-text mt-2">
+            Passionate about crafting premium, high‑performance web experiences with React, Tailwind CSS, and modern SaaS‑style UI patterns.
+          </p>
           <p className="text-sm md:text-base text-theme-textSec max-w-lg">
             I specialize in building premium, high‑performance web experiences with React, Tailwind CSS, and modern SaaS‑style UI patterns.
           </p>
@@ -35,6 +39,12 @@ export default function Hero() {
               className="inline-flex items-center gap-2 px-5 py-2 bg-theme-accent text-white rounded-lg glass-card-premium hover:bg-theme-accentGlow transition-colors"
             >
               <Download size={18} /> Download Resume
+            </a>
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-2 px-5 py-2 bg-theme-accentGlow text-theme-accent rounded-lg glass-card-premium hover:bg-theme-accent transition-colors"
+            >
+              <ArrowRight size={18} /> View Projects
             </a>
             <a
               href="#contact"
@@ -75,6 +85,17 @@ export default function Hero() {
           />
         </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-theme-accent"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ repeat: Infinity, duration: 2 }}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </motion.div>
     </section>
   );
 }
