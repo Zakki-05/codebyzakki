@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Folder, Star, GitCommit, Sparkles, Terminal, ArrowUpRight } from 'lucide-react';
 import { useSound } from './SoundManager';
 
 export default function GithubContributions() {
   const { playHover, playClick } = useSound();
+  const [isLight, setIsLight] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsLight(document.documentElement.classList.contains('light'));
+      
+      const observer = new MutationObserver(() => {
+        setIsLight(document.documentElement.classList.contains('light'));
+      });
+      
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class'],
+      });
+      
+      return () => observer.disconnect();
+    }
+  }, []);
 
   return (
     <section id="github" className="relative py-28 px-6 overflow-hidden bg-[#030303]">
@@ -112,9 +130,9 @@ export default function GithubContributions() {
                 {/* SVG Render from rshah chart tool */}
                 <div className="rounded-xl border border-white/5 bg-black/40 p-4 flex items-center justify-center">
                   <img 
-                    src="https://ghchart.rshah.org/00f0ff/Zakki-05" 
+                    src={isLight ? "https://ghchart.rshah.org/7c3aed/Zakki-05" : "https://ghchart.rshah.org/00f0ff/Zakki-05"} 
                     alt="Github Contribution Chart" 
-                    className="w-full h-auto max-h-[110px] object-contain filter brightness-110 contrast-125"
+                    className={`w-full h-auto max-h-[110px] object-contain ${isLight ? "" : "filter brightness-110 contrast-125"}`}
                     loading="lazy"
                   />
                 </div>
@@ -132,7 +150,10 @@ export default function GithubContributions() {
                 
                 <div className="flex items-center justify-center p-2 rounded-xl bg-black/20 border border-white/5">
                   <img 
-                    src="https://github-readme-stats.vercel.app/api?username=Zakki-05&theme=transparent&title_color=00f0ff&text_color=8e9196&icon_color=8b5cf6&border_color=ffffff&border_radius=12&hide_rank=true&show_icons=true"
+                    src={isLight 
+                      ? "https://github-readme-stats.vercel.app/api?username=Zakki-05&theme=transparent&title_color=7c3aed&text_color=475569&icon_color=0284c7&border_color=7c3aed&border_radius=12&hide_rank=true&show_icons=true"
+                      : "https://github-readme-stats.vercel.app/api?username=Zakki-05&theme=transparent&title_color=00f0ff&text_color=8e9196&icon_color=8b5cf6&border_color=ffffff&border_radius=12&hide_rank=true&show_icons=true"
+                    }
                     alt="GitHub Metrics Stats"
                     className="w-full h-auto max-h-[120px] object-contain"
                     loading="lazy"

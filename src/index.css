@@ -87,6 +87,43 @@ html.lenis {
 .border-white\/10 {
   border-color: var(--border-hover-color) !important;
 }
+.border-white\/20 {
+  border-color: var(--border-hover-color) !important;
+}
+.border-white\/15 {
+  border-color: var(--border-hover-color) !important;
+}
+
+/* Override hardcoded background classes in light mode */
+:root.light .bg-\[\#030303\] { background-color: var(--bg-primary) !important; }
+:root.light .bg-\[\#050505\] { background-color: var(--bg-secondary) !important; }
+:root.light .bg-\[\#050508\] { background-color: var(--bg-secondary) !important; }
+:root.light .bg-\[\#09090b\] { background-color: var(--bg-secondary) !important; }
+:root.light .bg-\[\#09090c\]\/80 { background-color: rgba(255, 255, 255, 0.8) !important; }
+:root.light .bg-\[\#09090c\]\/90 { background-color: rgba(255, 255, 255, 0.9) !important; }
+:root.light .bg-black\/40 { background-color: rgba(15, 23, 42, 0.03) !important; }
+:root.light .bg-black\/50 { background-color: rgba(15, 23, 42, 0.05) !important; }
+:root.light .bg-black\/60 { background-color: rgba(15, 23, 42, 0.06) !important; }
+:root.light .bg-black\/80 { background-color: rgba(15, 23, 42, 0.08) !important; }
+:root.light .bg-black\/95 { background-color: rgba(255, 255, 255, 0.95) !important; }
+:root.light .bg-white\/\[0\.01\] { background-color: rgba(15, 23, 42, 0.01) !important; }
+:root.light .bg-white\/\[0\.02\] { background-color: rgba(15, 23, 42, 0.02) !important; }
+:root.light .bg-white\/\[0\.03\] { background-color: rgba(15, 23, 42, 0.03) !important; }
+:root.light .bg-white\/\[0\.005\] { background-color: rgba(15, 23, 42, 0.005) !important; }
+:root.light .bg-white\/\[0\.015\] { background-color: rgba(15, 23, 42, 0.015) !important; }
+:root.light .hover\:bg-white\/\[0\.02\]:hover { background-color: rgba(15, 23, 42, 0.03) !important; }
+:root.light .hover\:bg-white\/\[0\.03\]:hover { background-color: rgba(15, 23, 42, 0.04) !important; }
+:root.light .group:hover .group-hover\:bg-white\/\[0\.015\] { background-color: rgba(15, 23, 42, 0.03) !important; }
+
+/* Override hardcoded text classes in light mode */
+:root.light .text-white { color: var(--text-white) !important; }
+:root.light .text-white\/30 { color: rgba(15, 23, 42, 0.3) !important; }
+:root.light .text-white\/40 { color: rgba(15, 23, 42, 0.4) !important; }
+:root.light .text-white\/50 { color: rgba(15, 23, 42, 0.5) !important; }
+:root.light .text-white\/60 { color: rgba(15, 23, 42, 0.6) !important; }
+:root.light .text-white\/75 { color: rgba(15, 23, 42, 0.75) !important; }
+:root.light .text-white\/80 { color: rgba(15, 23, 42, 0.8) !important; }
+:root.light .text-white\/90 { color: rgba(15, 23, 42, 0.9) !important; }
 
 /* Glassmorphism Panel styles */
 .glass-panel {
