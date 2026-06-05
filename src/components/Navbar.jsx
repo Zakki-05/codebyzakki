@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Volume2, VolumeX, Send, Sun, Moon, Download } from 'lucide-react';
+import { Menu, X, Volume2, VolumeX, Send, Download } from 'lucide-react';
 import { useSound } from './SoundManager';
 
 const NAV_LINKS = [
@@ -21,23 +21,7 @@ export default function Navbar() {
   
   const { isMuted, toggleMute, playHover, playClick } = useSound();
 
-  const [theme, setTheme] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return document.documentElement.classList.contains('light') ? 'light' : 'dark';
-    }
-    return 'dark';
-  });
 
-  const toggleTheme = () => {
-    playClick();
-    const nextTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(nextTheme);
-    if (nextTheme === 'light') {
-      document.documentElement.classList.add('light');
-    } else {
-      document.documentElement.classList.remove('light');
-    }
-  };
 
   useEffect(() => {
     if (isOpen) {
@@ -174,16 +158,7 @@ export default function Navbar() {
               )}
             </button>
 
-            {/* Dark/Light Mode Switcher */}
-            <button
-              onClick={toggleTheme}
-              onMouseEnter={playHover}
-              className="p-2.5 rounded-full border border-white/5 bg-white/5 text-text-gray hover:border-white/10 hover:text-white transition-all duration-300"
-              title={theme === 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
-              aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-            >
-              {theme === 'dark' ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
-            </button>
+
 
             {/* Resume Button */}
             <a
