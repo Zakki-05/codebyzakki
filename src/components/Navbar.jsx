@@ -177,48 +177,6 @@ export default function Navbar() {
 
 
 
-            {/* Resume Button */}
-            <a
-              href="/New_MOHAMMED_ZAKKI_ADNAAN_P_2026-06-02.pdf"
-              download="New_MOHAMMED_ZAKKI_ADNAAN_P_2026-06-02.pdf"
-              onMouseEnter={playHover}
-              onClick={playClick}
-              className={`hidden sm:flex items-center gap-1.5 px-4 py-2.5 rounded-full border transition-all duration-300 hover:scale-105 ${
-                isOpen
-                  ? 'border-purple-200 bg-purple-50 text-[#7c3aed] hover:bg-[#7c3aed] hover:text-white'
-                  : 'border-neon-purple/20 bg-neon-purple/[0.03] text-neon-purple hover:bg-neon-purple hover:text-white'
-              } text-[10px] font-mono tracking-widest uppercase`}
-              style={isOpen ? {
-                borderColor: '#ddd6fe',
-                backgroundColor: '#f5f3ff',
-                color: '#7c3aed'
-              } : {}}
-              aria-label="Download Resume PDF"
-            >
-              <Download className="w-3 h-3" />
-              RESUME
-            </a>
-
-            {/* Quick Contact Button */}
-            <a
-              href="#contact"
-              onClick={(e) => handleLinkClick(e, '#contact')}
-              onMouseEnter={playHover}
-              className={`hidden sm:flex items-center gap-1.5 px-5 py-2.5 rounded-full border transition-all duration-300 hover:scale-105 ${
-                isOpen
-                  ? 'border-zinc-200 bg-zinc-50 text-zinc-700 hover:border-black hover:text-black'
-                  : 'border-white/5 bg-white/[0.01] text-white hover:border-neon-blue/30 hover:text-neon-blue'
-              } text-[10px] font-mono tracking-widest uppercase`}
-              style={isOpen ? {
-                borderColor: '#e4e4e7',
-                backgroundColor: '#f9f9fb',
-                color: '#3f3f46'
-              } : {}}
-              aria-label="Send a direct message - contact section"
-            >
-              <Send className="w-3 h-3" />
-              HIRE ME
-            </a>
 
             {/* Mobile Menu Hamburg Toggle */}
             <button
